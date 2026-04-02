@@ -723,6 +723,22 @@
     .calendar-header, .calendar-row { grid-template-columns: 1fr 1fr; }
   }
 
+  @media (max-width: 480px) {
+    body { overflow-x: hidden !important; }
+    .container { padding: 0 16px !important; max-width: 100% !important; }
+    nav { padding: 16px 16px !important; width: 100vw !important; }
+    section { padding: 50px 0 !important; }
+    .hero { padding: 100px 16px 60px !important; }
+    h1 { font-size: clamp(1.8rem, 5vw, 2.5rem) !important; }
+    h2 { font-size: clamp(1.4rem, 4vw, 2rem) !important; }
+    .hero-sub { font-size: 0.85rem !important; }
+    .section-title { font-size: clamp(1.2rem, 4vw, 1.8rem) !important; }
+    .pricing-box { padding: 40px 20px !important; }
+    .kpi-grid { grid-template-columns: 1fr !important; }
+    .calendar-header, .calendar-row { grid-template-columns: 1fr !important; }
+    .platforms { gap: 24px !important; flex-direction: column !important; }
+  }
+
 .logo-text{font-family:'Bebas Neue',sans-serif;letter-spacing:.14em;color:#F4F4F0;display:inline-block;background:transparent}
 </style>
 </head>
