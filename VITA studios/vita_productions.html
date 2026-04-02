@@ -362,8 +362,23 @@ body {
 .plan-card {
   background: #111118;
   padding: 3rem; display: flex; flex-direction: column; gap: 2rem;
+  transition: all .4s cubic-bezier(.16,1,.3,1);
+  cursor: pointer;
+  position: relative;
+  border: 1px solid transparent;
+}
+.plan-card:hover {
+  background: #16161F;
+  transform: translateY(-8px);
+  border-color: rgba(59,130,246,.3);
+  box-shadow: 0 20px 60px rgba(59,130,246,.15);
 }
 .plan-card.dark { background: #16161F; color: #F4F4F0; }
+.plan-card.dark:hover {
+  background: rgba(59,130,246,.08);
+  border-color: rgba(59,130,246,.4);
+  box-shadow: 0 20px 60px rgba(59,130,246,.2);
+}
 .plan-head { display: flex; justify-content: space-between; align-items: flex-start; }
 .plan-badge {
   font-size: .58rem; letter-spacing: .28em; text-transform: uppercase;
@@ -377,6 +392,8 @@ body {
 }
 .plan-tagline { font-size: .78rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
 .plan-card.dark .plan-tagline { color: #6B7280; }
+.plan-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; font-weight: 500; color: #3B82F6; letter-spacing: .08em; display: inline; }
+.plan-card.dark .plan-price { color: #60A5FA; }
 .plan-skit-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 4rem; font-weight: 300; letter-spacing: .02em;
@@ -388,6 +405,35 @@ body {
   color: var(--gray); text-align: right; line-height: 1.5; display: block;
 }
 .plan-card.dark .plan-skit-lbl { color: #6B7280; }
+.plan-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: 2px solid #3B82F6;
+  color: #3B82F6;
+  padding: 12px 24px;
+  font-family: 'Outfit', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.16,1,.3,1);
+  border-radius: 4px;
+}
+.plan-btn:hover {
+  background: #3B82F6;
+  color: #fff;
+  transform: translateX(4px);
+  box-shadow: 0 8px 24px rgba(59,130,246,.3);
+}
+.plan-card.dark .plan-btn {
+  border-color: #60A5FA;
+  color: #60A5FA;
+}
+.plan-card.dark .plan-btn:hover {
+  background: #60A5FA;
+  color: #111118;
+}
 .plan-desc {
   font-size: .8rem; font-weight: 300; color: var(--gray); line-height: 1.9;
   border-left: 2px solid var(--line); padding-left: 1.1rem;
@@ -423,6 +469,86 @@ body {
 .plan-card.dark .plan-ideal-lbl { color: #3B82F6; }
 .plan-ideal p { font-size: .74rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
 .plan-card.dark .plan-ideal p { color: #6B7280; }
+
+/* ─── PLAN MODAL ─── */
+.plan-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn .3s ease-out;
+}
+.plan-modal.active {
+  display: flex;
+}
+.plan-modal-content {
+  background: #111118;
+  border: 1px solid rgba(59,130,246,.2);
+  border-radius: 8px;
+  padding: 3rem;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp .4s cubic-bezier(.16,1,.3,1);
+}
+.plan-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #6B7280;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color .2s;
+}
+.plan-modal-close:hover {
+  color: #3B82F6;
+}
+.plan-modal-body h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: #F4F4F0;
+  margin-bottom: 1rem;
+}
+.plan-modal-body p {
+  font-size: .85rem;
+  color: #6B7280;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.plan-modal-body ul {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+.plan-modal-body li {
+  font-size: .8rem;
+  color: #6B7280;
+  padding: .5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.plan-modal-body li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #3B82F6;
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* ─── FOOTER ─── */
 .footer {
@@ -910,7 +1036,7 @@ body {
       <div class="plan-head">
         <div>
           <span class="plan-badge">Paquete 01</span>
-          <div class="plan-name">Esencia</div>
+          <div class="plan-name">Esencia<br><span class="plan-price">$5,000/mes</span></div>
           <p class="plan-tagline">Automatiza tu contenido.<br>Tu marca trabaja mientras tú creas.</p>
         </div>
         <div>
@@ -946,13 +1072,14 @@ body {
         <span class="plan-ideal-lbl">Ideal para —</span>
         <p>Artistas en etapa inicial que quieren construir presencia sólida con el mínimo de fricción operativa.</p>
       </div>
+      <a href="paquete-esencia.html" class="plan-btn">Ver detalles → </a>
     </div>
 
     <div class="plan-card dark">
       <div class="plan-head">
         <div>
           <span class="plan-badge">Paquete 02</span>
-          <div class="plan-name">Presencia</div>
+          <div class="plan-name">Presencia<br><span class="plan-price">$10,000/mes</span></div>
           <p class="plan-tagline">Acompañamiento total.<br>Estamos ahí contigo en cada momento.</p>
         </div>
         <div>
@@ -988,9 +1115,20 @@ body {
         <span class="plan-ideal-lbl">Ideal para —</span>
         <p>Artistas listos para lanzarse con todo, que necesitan un equipo presente en cada parte del proceso.</p>
       </div>
+      <a href="paquete-presencia.html" class="plan-btn">Ver detalles → </a>
     </div>
   </div>
 </section>
+
+<!-- PLAN MODAL -->
+<div id="planModal" class="plan-modal">
+  <div class="plan-modal-content">
+    <button class="plan-modal-close" onclick="closePlanModal()">&times;</button>
+    <div class="plan-modal-body" id="planModalBody">
+      <!-- El contenido se llenará dinámicamente -->
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer reveal" id="contacto">
@@ -1036,6 +1174,45 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Plan Modal
+function openPlanModal(plan) {
+  const modal = document.getElementById('planModal');
+  const body = document.getElementById('planModalBody');
+
+  const planData = {
+    'Esencia': {
+      title: 'Paquete Esencia',
+      price: '$5,000/mes',
+      description: 'Automatiza tu contenido. Tu marca trabaja mientras tú creas.',
+      content: '<p>Diseñado para el artista que quiere presencia digital consistente sin tener que estar encima de cada publicación. Nos encargamos de la estrategia, el contenido y la calendarización — tú solo apareces cuando toca brillar.</p><h3 style="color:#3B82F6;margin-top:1.5rem;margin-bottom:.8rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">Incluye:</h3><ul><li>2 skits cinematográficos al mes</li><li>Calendario editorial completo</li><li>Copys y textos para cada publicación</li><li>Templates de stories listos para usar</li><li>Estrategia de hashtags y horarios</li><li>Identidad visual de marca definida</li><li>Perfil de audiencia objetivo</li><li>Programación automatizada</li><li>Reporte de métricas mensual</li><li>Sesión estratégica mensual</li></ul>'
+    },
+    'Presencia': {
+      title: 'Paquete Presencia',
+      price: '$10,000/mes',
+      description: 'Acompañamiento total. Estamos ahí contigo en cada momento.',
+      content: '<p>Para el artista que quiere un equipo real a su lado. No solo producimos el contenido — estamos físicamente presentes en las sesiones, los eventos y los momentos clave para guiarte y capturarlo todo.</p><h3 style="color:#60A5FA;margin-top:1.5rem;margin-bottom:.8rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">Incluye:</h3><ul><li>4 skits cinematográficos al mes</li><li>Presencia física en sesiones</li><li>Cobertura completa de eventos</li><li>Dirección creativa en producción</li><li>Contenido espontáneo en vivo</li><li>Lanzamiento de marca completo</li><li>2 eventos coordinados al mes</li><li>Gestión activa de comunidad</li><li>Análisis de audiencia semanal</li><li>Sesión estratégica quincenal</li></ul>'
+    }
+  };
+
+  const plan_info = planData[plan];
+  if (plan_info) {
+    body.innerHTML = `<h2>${plan_info.title}</h2><p style="color:#3B82F6;font-weight:600;margin-bottom:1rem;">${plan_info.price}</p><p style="font-style:italic;color:#9CA3AF;margin-bottom:1.5rem;">${plan_info.description}</p>${plan_info.content}`;
+    modal.classList.add('active');
+  }
+}
+
+function closePlanModal() {
+  document.getElementById('planModal').classList.remove('active');
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+  const modal = document.getElementById('planModal');
+  if (event.target === modal) {
+    closePlanModal();
+  }
+});
 </script>
 </body>
 </html>
