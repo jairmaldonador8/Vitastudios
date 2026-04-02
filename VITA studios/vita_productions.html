@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VITA Studio Productions — Estrategia de Marca para Artistas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #0A0A0F;
+  --bg2: #111118;
+  --black: #F4F4F0;
+  --gray: #6B7280;
+  --line: rgba(255,255,255,0.07);
+  --blue: #3B82F6;
+  --blue2: #60A5FA;
+  --terra: #C4503A;
+  --white: #F4F4F0;
+  --muted: #6B7280;
+  --border: rgba(255,255,255,0.07);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: #0A0A0F;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 2.5rem;
+  background: rgba(10,10,15,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo img {
+  height: 20px; width: auto;
+  
+  display: block;
+}
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a {
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray);
+  text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-talk {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--black); text-decoration: none;
+  border-bottom: 1px solid #3B82F6; padding-bottom: 1px;
+  transition: opacity .2s;
+}
+.nav-talk:hover { opacity:.4; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  padding: 0 2.5rem;
+  padding-top: 80px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.hero-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 3rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.hero-eyebrow::before {
+  content:''; display:inline-block; width:20px; height:1px; background:var(--gray);
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 300; line-height: .9; letter-spacing: .02em;
+  margin-bottom: 4rem;
+}
+.hero-title .line {
+  display: block;
+  font-size: clamp(4.5rem, 11vw, 10.5rem);
+  overflow: hidden;
+}
+.hero-title .line span {
+  display: block;
+  transform: translateY(100%);
+  animation: slideUp .9s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-title .line:nth-child(1) span { animation-delay: .05s; }
+.hero-title .line:nth-child(2) span { animation-delay: .15s; color: #3B82F6; }
+.hero-title .line:nth-child(3) span { animation-delay: .25s; }
+
+@keyframes slideUp {
+  to { transform: translateY(0); }
+}
+
+.hero-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding: 2rem 0; border-top: 1px solid var(--line);
+}
+.hero-desc {
+  font-size: .82rem; font-weight: 300; color: var(--gray);
+  max-width: 340px; line-height: 1.85;
+}
+.hero-verbs {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem; font-weight: 300;
+  display: flex; align-items: center; gap: .8rem; color: var(--gray);
+}
+.hero-verbs span { color: var(--line); font-style: normal; font-size: .7rem; }
+.hero-scroll {
+  font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gray); cursor: pointer;
+  display: flex; align-items: center; gap: .6rem;
+  transition: opacity .2s; background: none; border: none;
+}
+.hero-scroll:hover { opacity: .4; }
+.hero-scroll-arrow {
+  width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem;
+}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap {
+  overflow: hidden; border-bottom: 1px solid var(--line);
+  padding: .85rem 0; background: #111118;
+}
+.marquee-track {
+  display: flex; gap: 3rem; white-space: nowrap;
+  animation: marquee 25s linear infinite;
+}
+.marquee-track span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .82rem; color: var(--gray);
+  flex-shrink: 0; letter-spacing: .04em;
+}
+.marquee-track span::before {
+  content: '✦'; margin-right: 3rem; font-style: normal; font-size: .45rem;
+  vertical-align: middle; opacity: .4;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── SECTION WRAPPER ─── */
+.s {
+  padding: 6rem 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.s-head {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2rem; align-items: end; margin-bottom: 5rem;
+}
+.s-index {
+  font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 1.2rem;
+}
+.s-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+  font-weight: 300; letter-spacing: .02em; line-height: .95;
+}
+.s-title em { color: #3B82F6; }
+.s-intro {
+  font-size: .8rem; font-weight: 300; color: var(--gray);
+  line-height: 1.9; align-self: end;
+}
+
+/* ─── ACCORDION ROWS (noomo style) ─── */
+.accordion { border-top: 1px solid var(--line); }
+.acc-row {
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.acc-trigger {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: grid; grid-template-columns: 60px 1fr auto;
+  align-items: center; gap: 2rem;
+  padding: 2rem 0; text-align: left;
+  transition: opacity .2s;
+}
+.acc-trigger:hover { opacity: .6; }
+.acc-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .7rem; letter-spacing: .2em; color: var(--gray);
+}
+.acc-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400; letter-spacing: .02em; color: var(--black);
+}
+.acc-arrow {
+  width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; transition: transform .4s cubic-bezier(.16,1,.3,1), background .2s;
+  flex-shrink: 0;
+}
+.acc-row.open .acc-arrow { transform: rotate(45deg); background: #3B82F6; color: #fff; border-color: #3B82F6; }
+.acc-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height .6s cubic-bezier(.16,1,.3,1);
+}
+.acc-body-inner {
+  display: grid; grid-template-columns: 60px 1fr 1fr;
+  gap: 2rem; padding: 0 0 3rem;
+}
+.acc-body-inner .acc-spacer { /* empty col */ }
+.acc-body p {
+  font-size: .8rem; font-weight: 300; color: var(--gray);
+  line-height: 1.85; grid-column: 2;
+}
+.acc-tags {
+  display: flex; flex-wrap: wrap; gap: .4rem; align-content: flex-start;
+}
+.acc-tag {
+  font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
+  border: 1px solid var(--line); padding: .3rem .75rem; color: var(--gray);
+}
+.acc-detail {
+  grid-column: 2 / 4;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  margin-top: 1rem;
+}
+.acc-detail-item { border-top: 1px solid var(--line); padding-top: 1rem; }
+.acc-detail-item strong {
+  display: block; font-size: .6rem; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--black); margin-bottom: .3rem; font-weight: 500;
+}
+.acc-detail-item span { font-size: .76rem; color: var(--gray); font-weight: 300; }
+
+/* ─── CALENDAR GRID ─── */
+.cal-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid var(--line);
+}
+.cal-col {
+  padding: 2.5rem 2.5rem 2.5rem 0;
+  border-right: 1px solid var(--line);
+}
+.cal-col:last-child { border-right: none; }
+.cal-col-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; font-weight: 300; letter-spacing: .02em; margin-bottom: .2rem;
+}
+.cal-col-sub {
+  font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gray); display: block;
+  padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); margin-bottom: 0;
+}
+.cal-row {
+  display: grid; grid-template-columns: 28px 1fr;
+  gap: .8rem; padding: .9rem 0;
+  border-bottom: 1px solid var(--line); align-items: start;
+}
+.cal-row:last-child { border-bottom: none; }
+.cal-w { font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gray); padding-top: .15rem; }
+.cal-row strong { font-size: .78rem; font-weight: 400; display: block; margin-bottom: .2rem; }
+.cal-row span { font-size: .7rem; color: var(--gray); font-weight: 300; line-height: 1.5; }
+.cal-note {
+  margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 2rem;
+}
+.cal-note-line { height: 1px; background: var(--line); }
+.cal-note p {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.05rem; font-weight: 300;
+  color: var(--gray); text-align: center; line-height: 1.7;
+}
+
+/* ─── EVENTS PILLARS ─── */
+.ev-pillars {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  margin-bottom: 4rem;
+}
+.ev-pillar {
+  padding: 2.5rem 2.5rem 2.5rem 0;
+  border-right: 1px solid var(--line);
+}
+.ev-pillar:last-child { border-right: none; }
+.ev-pillar-label {
+  font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gray); display: block; margin-bottom: 1.2rem;
+}
+.ev-pillar h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; font-weight: 400; line-height: 1.1;
+  letter-spacing: .02em; margin-bottom: .8rem;
+}
+.ev-pillar p { font-size: .78rem; font-weight: 300; color: var(--gray); line-height: 1.85; }
+.ev-formats-label {
+  font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 2rem;
+}
+.ev-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid var(--line);
+}
+.ev-card {
+  padding: 2.5rem 2.5rem 2.5rem 0;
+  border-right: 1px solid var(--line);
+  transition: background .2s;
+}
+.ev-card:last-child { border-right: none; }
+.ev-card:hover { background: rgba(59,130,246,.04); }
+.ev-card-icon { font-size: 1.1rem; margin-bottom: 1.5rem; display: block; }
+.ev-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; font-weight: 400; letter-spacing: .02em;
+  margin-bottom: .8rem; line-height: 1.1;
+}
+.ev-card p { font-size: .78rem; font-weight: 300; color: var(--gray); line-height: 1.8; margin-bottom: 1.5rem; }
+.ev-specs { border-top: 1px solid var(--line); padding-top: 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
+.ev-spec { display: flex; gap: .8rem; font-size: .7rem; }
+.ev-spec strong { min-width: 68px; font-weight: 500; }
+.ev-spec span { color: var(--gray); font-weight: 300; }
+
+/* ─── PILLARS ─── */
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid var(--line);
+}
+.pillar-card {
+  padding: 2.5rem 2.5rem 2.5rem 0;
+  border-right: 1px solid var(--line);
+  transition: background .2s;
+}
+.pillar-card:last-child { border-right: none; }
+.pillar-card:hover { background: rgba(59,130,246,.04); }
+.pillar-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem; font-weight: 300; color: var(--line);
+  line-height: 1; letter-spacing: .02em; margin-bottom: 1.2rem;
+}
+.pillar-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; font-weight: 400; letter-spacing: .02em;
+  margin-bottom: .8rem; line-height: 1.15;
+}
+.pillar-card p { font-size: .78rem; font-weight: 300; color: var(--gray); line-height: 1.85; margin-bottom: 1.2rem; }
+.pillar-list { list-style: none; padding: 0; }
+.pillar-list li {
+  font-size: .72rem; font-weight: 300; color: var(--gray);
+  padding: .35rem 0; border-bottom: 1px solid var(--line);
+  display: flex; gap: .6rem;
+}
+.pillar-list li:last-child { border-bottom: none; }
+.pillar-list li::before { content: '—'; color: var(--line); flex-shrink: 0; }
+
+/* ─── PLANS ─── */
+.plans-duo {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: rgba(255,255,255,0.07);
+  border: 1px solid var(--line);
+}
+.plan-card {
+  background: #111118;
+  padding: 3rem; display: flex; flex-direction: column; gap: 2rem;
+}
+.plan-card.dark { background: #16161F; color: #F4F4F0; }
+.plan-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.plan-badge {
+  font-size: .58rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--gray); display: block; margin-bottom: .6rem;
+}
+.plan-card.dark .plan-badge { color: #3B82F6; }
+.plan-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem; font-weight: 300; letter-spacing: .02em;
+  line-height: 1; margin-bottom: .7rem;
+}
+.plan-tagline { font-size: .78rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
+.plan-card.dark .plan-tagline { color: #6B7280; }
+.plan-skit-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem; font-weight: 300; letter-spacing: .02em;
+  line-height: 1; color: var(--line); text-align: right; display: block;
+}
+.plan-card.dark .plan-skit-num { color: rgba(59,130,246,.1); }
+.plan-skit-lbl {
+  font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gray); text-align: right; line-height: 1.5; display: block;
+}
+.plan-card.dark .plan-skit-lbl { color: #6B7280; }
+.plan-desc {
+  font-size: .8rem; font-weight: 300; color: var(--gray); line-height: 1.9;
+  border-left: 2px solid var(--line); padding-left: 1.1rem;
+}
+.plan-card.dark .plan-desc { color: #6B7280; border-color: rgba(59,130,246,.2); }
+.plan-divider { height: 1px; background: var(--line); }
+.plan-card.dark .plan-divider { background: rgba(255,255,255,.07); }
+.plan-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.plan-col-lbl {
+  font-size: .58rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--gray); display: block; margin-bottom: .9rem;
+}
+.plan-card.dark .plan-col-lbl { color: #3B82F6; }
+.plan-list { list-style: none; padding: 0; }
+.plan-list li {
+  font-size: .74rem; font-weight: 300; color: var(--gray);
+  padding: .5rem 0; border-bottom: 1px solid var(--line);
+  display: flex; gap: .6rem; line-height: 1.4;
+}
+.plan-card.dark .plan-list li { color: rgba(244,244,240,.5); border-color: rgba(255,255,255,.07); }
+.plan-list li:last-child { border-bottom: none; }
+.plan-list li::before { content: '+'; color: var(--line); flex-shrink: 0; }
+.plan-card.dark .plan-list li::before { color: #3B82F6; }
+.plan-ideal {
+  display: flex; gap: .9rem; align-items: flex-start;
+  background: rgba(0,0,0,.03); padding: 1.1rem; margin-top: auto;
+}
+.plan-card.dark .plan-ideal { background: rgba(59,130,246,.05); }
+.plan-ideal-lbl {
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gray); flex-shrink: 0; padding-top: .1rem;
+}
+.plan-card.dark .plan-ideal-lbl { color: #3B82F6; }
+.plan-ideal p { font-size: .74rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
+.plan-card.dark .plan-ideal p { color: #6B7280; }
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 6rem 2.5rem 3rem;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 4rem; align-items: end; padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+.footer-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300; line-height: .9; letter-spacing: .02em;
+}
+.footer-headline em { color: #3B82F6; }
+.footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2rem; }
+.footer-logo img {
+  height: 26px; width: auto;
+   display: block;
+}
+.footer-btn {
+  display: inline-flex; align-items: center; gap: .8rem;
+  font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--black); text-decoration: none;
+  border-bottom: 1px solid #3B82F6; padding-bottom: 2px; color: #3B82F6;
+  background: none; border-top: none; border-left: none; border-right: none;
+  cursor: pointer; font-family: 'Outfit', sans-serif; transition: opacity .2s;
+}
+.footer-btn::after { content: '↗'; }
+.footer-btn:hover { opacity: .4; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 2rem; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom span {
+  font-size: .62rem; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--gray);
+}
+.footer-back {
+  font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--gray); text-decoration: none; transition: opacity .2s;
+}
+.footer-back:hover { opacity: .4; }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:860px) {
+  .nav-links { display: none; }
+  .s { padding: 4rem 1.5rem; }
+  .s-head { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+  .hero { padding: 80px 1.5rem 0; }
+  .hero-bottom { flex-direction: column; gap: 1.5rem; align-items: flex-start; padding-bottom: 2rem; }
+  .acc-body-inner { grid-template-columns: 1fr; }
+  .acc-body-inner .acc-spacer { display: none; }
+  .acc-body p { grid-column: 1; }
+  .acc-detail { grid-template-columns: 1fr; }
+  .cal-grid { grid-template-columns: 1fr; }
+  .cal-col { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; }
+  .ev-pillars { grid-template-columns: 1fr; }
+  .ev-pillar { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; }
+  .ev-grid { grid-template-columns: 1fr; }
+  .ev-card { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar-card { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; }
+  .plans-duo { grid-template-columns: 1fr; }
+  .plan-cols { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-right { align-items: flex-start; }
+}
+
+.logo-text{font-family:'Bebas Neue',sans-serif;letter-spacing:.14em;color:#F4F4F0;display:inline-block;background:transparent}
+</style>
+</head>
+<body id="top">
+
+<!-- NAV -->
+<nav class="nav">
+  <div style="display:flex;align-items:center;gap:20px">
+    <a href="index.html" style="font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,244,240,.35);text-decoration:none;display:flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,0.1);padding:6px 14px;border-radius:2px;transition:all .2s" onmouseover="this.style.color='#F4F4F0';this.style.borderColor='rgba(59,130,246,0.5)'" onmouseout="this.style.color='rgba(244,244,240,.35)';this.style.borderColor='rgba(255,255,255,0.1)'">← Inicio</a>
+    <div class="nav-logo" style="background:transparent">
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.12em;color:#F4F4F0;">VITA STUDIO</span>
+  </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#skits">Skits</a></li>
+    <li><a href="#marca">Marca</a></li>
+    <li><a href="#calendario">Calendario</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#planes">Planes</a></li>
+  </ul>
+  <a href="#contacto" class="nav-talk">Agendar sesión</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Propuesta estratégica · 2026</p>
+  <h1 class="hero-title">
+    <span class="line"><span>El talento sin</span></span>
+    <span class="line"><span>visibilidad</span></span>
+    <span class="line"><span>es silencio.</span></span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Una propuesta integral para posicionar tu marca personal, crear contenido cinematográfico de alto impacto y conectar con tu audiencia real — desde el primer sonido hasta cada evento en vivo.</p>
+    <div class="hero-verbs">
+      Crear <span>—</span> Lanzar <span>—</span> Conectar <span>—</span> Escalar
+    </div>
+    <button class="hero-scroll" onclick="document.getElementById('skits').scrollIntoView({behavior:'smooth'})">
+      Descubrir
+      <span class="hero-scroll-arrow">↓</span>
+    </button>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Skits Cinematográficos</span><span>Marca Personal</span><span>Eventos en Vivo</span><span>Contenido Orgánico</span><span>Estrategia de Lanzamiento</span><span>Comunidad Real</span><span>Posicionamiento</span>
+    <span>Skits Cinematográficos</span><span>Marca Personal</span><span>Eventos en Vivo</span><span>Contenido Orgánico</span><span>Estrategia de Lanzamiento</span><span>Comunidad Real</span><span>Posicionamiento</span>
+  </div>
+</div>
+
+<!-- SKITS -->
+<section class="s reveal" id="skits">
+  <div class="s-head">
+    <div>
+      <p class="s-index">01 — Producción Audiovisual</p>
+      <h2 class="s-title">Skits<br><em>Cinematográficos</em></h2>
+    </div>
+    <p class="s-intro">Cuatro piezas audiovisuales al mes diseñadas para narrar quién eres como artista. Cada skit es un universo visual que conecta emocionalmente con tu audiencia.</p>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-row">
+      <button class="acc-trigger" onclick="toggle(this)">
+        <span class="acc-num">— 01</span>
+        <span class="acc-label">Skit Narrativo</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-spacer"></div>
+          <p>Historia personal del artista en formato documental-ficción. Humaniza la figura del artista y genera conexión profunda con una audiencia que aún no te conoce.</p>
+          <div class="acc-tags">
+            <span class="acc-tag">Guión narrativo</span>
+            <span class="acc-tag">Fotografía cinematográfica</span>
+            <span class="acc-tag">Paleta visual de marca</span>
+            <span class="acc-tag">60–90 seg · Reels / TikTok</span>
+          </div>
+          <div class="acc-detail">
+            <div class="acc-detail-item"><strong>Locación</strong><span>Seleccionada según narrativa</span></div>
+            <div class="acc-detail-item"><strong>Duración</strong><span>60 – 90 segundos</span></div>
+            <div class="acc-detail-item"><strong>Plataforma</strong><span>Reels, TikTok, YouTube Shorts</span></div>
+            <div class="acc-detail-item"><strong>Objetivo</strong><span>Conexión emocional y presentación</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="acc-row">
+      <button class="acc-trigger" onclick="toggle(this)">
+        <span class="acc-num">— 02</span>
+        <span class="acc-label">Behind the Sound</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-spacer"></div>
+          <p>El proceso creativo capturado en su estado más puro. Del primer loop al arreglo final. Muestra tu artesanía sonora y construye credibilidad artística con cada publicación.</p>
+          <div class="acc-tags">
+            <span class="acc-tag">Sesión de estudio íntima</span>
+            <span class="acc-tag">Momentos espontáneos</span>
+            <span class="acc-tag">Sincronización con el track</span>
+            <span class="acc-tag">30–45 seg</span>
+          </div>
+          <div class="acc-detail">
+            <div class="acc-detail-item"><strong>Locación</strong><span>Estudio o espacio de trabajo</span></div>
+            <div class="acc-detail-item"><strong>Duración</strong><span>30 – 45 segundos</span></div>
+            <div class="acc-detail-item"><strong>Plataforma</strong><span>Reels, TikTok, Stories</span></div>
+            <div class="acc-detail-item"><strong>Objetivo</strong><span>Credibilidad y proceso artístico</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="acc-row">
+      <button class="acc-trigger" onclick="toggle(this)">
+        <span class="acc-num">— 03</span>
+        <span class="acc-label">Skit Lifestyle</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-spacer"></div>
+          <p>La vida detrás del artista: lugares, rutinas, cultura y estética que lo definen. Construye aspiración e identidad de marca sin depender de la música directamente.</p>
+          <div class="acc-tags">
+            <span class="acc-tag">Art direction coordinado</span>
+            <span class="acc-tag">Concepto visual de género</span>
+            <span class="acc-tag">Ritmo de edición al mood</span>
+            <span class="acc-tag">20–40 seg</span>
+          </div>
+          <div class="acc-detail">
+            <div class="acc-detail-item"><strong>Locación</strong><span>Espacios con identidad visual</span></div>
+            <div class="acc-detail-item"><strong>Duración</strong><span>20 – 40 segundos</span></div>
+            <div class="acc-detail-item"><strong>Plataforma</strong><span>Reels, TikTok, Feed</span></div>
+            <div class="acc-detail-item"><strong>Objetivo</strong><span>Aspiración e identidad de marca</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="acc-row">
+      <button class="acc-trigger" onclick="toggle(this)">
+        <span class="acc-num">— 04</span>
+        <span class="acc-label">Skit de Lanzamiento</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-spacer"></div>
+          <p>La pieza de mayor impacto del mes. Diseñada para acompañar un lanzamiento, evento o momento clave. Alta producción, concepto de campaña y máximo alcance orgánico.</p>
+          <div class="acc-tags">
+            <span class="acc-tag">Concepto de campaña completo</span>
+            <span class="acc-tag">Versiones por plataforma</span>
+            <span class="acc-tag">CTA estratégico integrado</span>
+            <span class="acc-tag">Según campaña</span>
+          </div>
+          <div class="acc-detail">
+            <div class="acc-detail-item"><strong>Locación</strong><span>Según concepto de campaña</span></div>
+            <div class="acc-detail-item"><strong>Duración</strong><span>Variable según campaña</span></div>
+            <div class="acc-detail-item"><strong>Plataforma</strong><span>Todas las plataformas</span></div>
+            <div class="acc-detail-item"><strong>Objetivo</strong><span>Impacto máximo y conversión</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCA -->
+<section class="s reveal" id="marca">
+  <div class="s-head">
+    <div>
+      <p class="s-index">02 — Estrategia de Marca</p>
+      <h2 class="s-title">Lanzamiento de<br><em>Marca Personal</em></h2>
+    </div>
+    <p class="s-intro">Tres fases estructuradas para construir presencia, ganar autoridad y monetizar tu propuesta artística en el ecosistema digital.</p>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-row">
+      <button class="acc-trigger" onclick="toggle(this)">
+        <span class="acc-num">Mes 1–2</span>
+        <span class="acc-label">Fase Fundacional — Identidad</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-spacer"></div>
+          <p>Construimos los cimientos antes de publicar. Definimos el ADN del artista: historia única, propuesta de valor, estética visual, tono de comunicación y perfil de audiencia objetivo. Sin esta base, todo el contenido pierde dirección.</p>
+          <div class="acc-tags">
+            <span class="acc-tag">Moodboard de marca</span>
+            <span class="acc-tag">Paleta visual</span>
+            <span class="acc-tag">Perfil de audiencia</span>
+            <span class="acc-tag">Bio estratégica</span>
+            <span class="acc-tag">Audit de plataformas</span>
+            <span class="acc-tag">Definición de nicho</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="acc-row">
+      <button class="acc-trigger" onclick="toggle(this)">
+        <span class="acc-num">Mes 2–4</span>
+        <span class="acc-label">Fase de Activación — Contenido y Comunidad</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-spacer"></div>
+          <p>Comenzamos a publicar con intención. Cada pieza tiene un objetivo claro: presentar al artista, generar curiosidad, mostrar talento o construir comunidad. Los skits, el calendario y los eventos trabajan juntos como un sistema cohesivo.</p>
+          <div class="acc-tags">
+            <span class="acc-tag">Calendario editorial activo</span>
+            <span class="acc-tag">Producción de skits</span>
+            <span class="acc-tag">Estrategia de hashtags</span>
+            <span class="acc-tag">Community building</span>
+            <span class="acc-tag">Primer evento</span>
+            <span class="acc-tag">Análisis de métricas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="acc-row">
+      <button class="acc-trigger" onclick="toggle(this)">
+        <span class="acc-num">Mes 4+</span>
+        <span class="acc-label">Fase de Posicionamiento — Autoridad y Escala</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-spacer"></div>
+          <p>Con base sólida escalamos. Buscamos colaboraciones estratégicas, ampliamos formatos, incrementamos eventos y exploramos oportunidades de monetización: sync, booking y alianzas de marca.</p>
+          <div class="acc-tags">
+            <span class="acc-tag">Colaboraciones artísticas</span>
+            <span class="acc-tag">Press kit digital</span>
+            <span class="acc-tag">Pitching a medios</span>
+            <span class="acc-tag">Estrategia de playlists</span>
+            <span class="acc-tag">Monetización</span>
+            <span class="acc-tag">Escala de eventos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDARIO -->
+<section class="s reveal" id="calendario">
+  <div class="s-head">
+    <div>
+      <p class="s-index">03 — Calendarización Editorial</p>
+      <h2 class="s-title">Plan de<br><em>Contenidos</em></h2>
+    </div>
+    <p class="s-intro">Hoja de ruta mensual que mantiene al artista visible, relevante y en movimiento. Cada semana tiene propósito claro dentro del arco narrativo del mes.</p>
+  </div>
+
+  <div class="cal-grid">
+    <div class="cal-col">
+      <div class="cal-col-title">Mes 01</div>
+      <span class="cal-col-sub">Presentación</span>
+      <div class="cal-row"><span class="cal-w">S1</span><div><strong>Skit Narrativo — "Quién soy"</strong><span>Historia personal + stories de apoyo</span></div></div>
+      <div class="cal-row"><span class="cal-w">S2</span><div><strong>Behind the Sound #1</strong><span>Proceso creativo + carrusel con lyrics</span></div></div>
+      <div class="cal-row"><span class="cal-w">S3</span><div><strong>Skit Lifestyle + Q&A</strong><span>Primer contacto directo con audiencia</span></div></div>
+      <div class="cal-row"><span class="cal-w">S4</span><div><strong>Teaser — Primer Evento</strong><span>Anuncio + contenido de expectativa</span></div></div>
+    </div>
+    <div class="cal-col">
+      <div class="cal-col-title">Mes 02</div>
+      <span class="cal-col-sub">Activación</span>
+      <div class="cal-row"><span class="cal-w">S1</span><div><strong>Pre-save / Pre-lanzamiento</strong><span>Skit de activación + campaña de expectativa</span></div></div>
+      <div class="cal-row"><span class="cal-w">S2</span><div><strong>Día de Lanzamiento</strong><span>Release + skit cinematográfico + live</span></div></div>
+      <div class="cal-row"><span class="cal-w">S3</span><div><strong>Primer Evento en Vivo</strong><span>Cobertura completa + contenido en tiempo real</span></div></div>
+      <div class="cal-row"><span class="cal-w">S4</span><div><strong>Recap + Próximo Capítulo</strong><span>Testimonios + anuncio siguiente etapa</span></div></div>
+    </div>
+    <div class="cal-col">
+      <div class="cal-col-title">Mes 03</div>
+      <span class="cal-col-sub">Expansión</span>
+      <div class="cal-row"><span class="cal-w">S1</span><div><strong>Colaboración Artística</strong><span>Skit conjunto + audiencia cruzada</span></div></div>
+      <div class="cal-row"><span class="cal-w">S2</span><div><strong>Behind the Sound #3</strong><span>EP en proceso + expectativa de proyecto</span></div></div>
+      <div class="cal-row"><span class="cal-w">S3</span><div><strong>Segundo Evento</strong><span>Pop-up o sesión acústica en nuevo espacio</span></div></div>
+      <div class="cal-row"><span class="cal-w">S4</span><div><strong>Análisis + Optimización</strong><span>Revisión de métricas + ajuste mes 4</span></div></div>
+    </div>
+  </div>
+
+  <div class="cal-note">
+    <div class="cal-note-line"></div>
+    <p>Cada semana se publicará contenido estratégicamente diseñado para el posicionamiento de tu marca personal — construyendo presencia, autoridad y comunidad de forma consistente y orgánica.</p>
+    <div class="cal-note-line"></div>
+  </div>
+</section>
+
+<!-- EVENTOS -->
+<section class="s reveal" id="eventos">
+  <div class="s-head">
+    <div>
+      <p class="s-index">04 — Eventos en Vivo</p>
+      <h2 class="s-title">Un espacio para<br><em>ser escuchado.</em></h2>
+    </div>
+    <p class="s-intro">Noches curadas donde artistas emergentes se presentan ante público nuevo, se conectan entre sí y generamos contenido de alto valor — todo en un mismo momento.</p>
+  </div>
+
+  <div class="ev-pillars">
+    <div class="ev-pillar">
+      <span class="ev-pillar-label">I — Escena</span>
+      <h3>Tu primera<br>audiencia real.</h3>
+      <p>Personas que no te conocen y que esa noche se convierten en tus primeros fans. Nada reemplaza el impacto de la música presentada en vivo.</p>
+    </div>
+    <div class="ev-pillar">
+      <span class="ev-pillar-label">II — Red</span>
+      <h3>Conoce a otros<br>artistas.</h3>
+      <p>Cada evento reúne a varios artistas del ecosistema. Conéctate, colabora y construye relaciones con personas que entienden hacia dónde vas.</p>
+    </div>
+    <div class="ev-pillar">
+      <span class="ev-pillar-label">III — Contenido</span>
+      <h3>Todo queda<br>documentado.</h3>
+      <p>Video, foto, reacciones del público, momentos únicos en vivo. Material auténtico que alimenta semanas de presencia digital con un solo evento.</p>
+    </div>
+  </div>
+
+  <p class="ev-formats-label">Formatos de evento</p>
+  <div class="ev-grid">
+    <div class="ev-card">
+      <span class="ev-card-icon">🎤</span>
+      <h3>Open Mic</h3>
+      <p>Noche de presentaciones abiertas. Varios artistas emergentes, formato íntimo. El primer paso para pararte frente a un público real y ganar confianza en escena.</p>
+      <div class="ev-specs">
+        <div class="ev-spec"><strong>Artistas</strong><span>5 – 10 por noche</span></div>
+        <div class="ev-spec"><strong>Capacidad</strong><span>30 – 80 personas</span></div>
+        <div class="ev-spec"><strong>Contenido</strong><span>Video + foto de cada presentación</span></div>
+      </div>
+    </div>
+    <div class="ev-card">
+      <span class="ev-card-icon">✦</span>
+      <h3>Showcase</h3>
+      <p>Evento curado con 3–5 artistas seleccionados. Mayor producción, branding y experiencia completa para el asistente. Tu momento de brillar con todo lo que tienes.</p>
+      <div class="ev-specs">
+        <div class="ev-spec"><strong>Artistas</strong><span>3 – 5 seleccionados</span></div>
+        <div class="ev-spec"><strong>Capacidad</strong><span>80 – 200 personas</span></div>
+        <div class="ev-spec"><strong>Contenido</strong><span>Cobertura completa del evento</span></div>
+      </div>
+    </div>
+    <div class="ev-card">
+      <span class="ev-card-icon">🎬</span>
+      <h3>Sessions</h3>
+      <p>Grabación en vivo en una locación especial. Íntimo, cinematográfico y de alta calidad. Tu música en su estado más puro, convertida en el contenido más poderoso que puedes tener.</p>
+      <div class="ev-specs">
+        <div class="ev-spec"><strong>Artistas</strong><span>1 – 2 protagonistas</span></div>
+        <div class="ev-spec"><strong>Capacidad</strong><span>20 – 40 personas</span></div>
+        <div class="ev-spec"><strong>Contenido</strong><span>Pieza cinematográfica final</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILOSOFÍA -->
+<section class="s reveal">
+  <div class="s-head">
+    <div>
+      <p class="s-index">05 — Filosofía de Contenido</p>
+      <h2 class="s-title">Los tres pilares<br><em>del crecimiento</em></h2>
+    </div>
+    <p class="s-intro">Todo el ecosistema descansa sobre tres principios que garantizan crecimiento real, sin atajos y sin artificios.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-n">I</div>
+      <h3>Autenticidad Narrativa</h3>
+      <p>El contenido más poderoso es el que solo tú puedes contar. Historias desde la experiencia real del artista para generar confianza y conexión genuina.</p>
+      <ul class="pillar-list">
+        <li>Historia de origen del artista</li>
+        <li>Proceso creativo honesto</li>
+        <li>Vulnerabilidad estratégica</li>
+        <li>Momentos no producidos</li>
+        <li>Punto de vista propio</li>
+      </ul>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-n">II</div>
+      <h3>Consistencia Visual</h3>
+      <p>La marca es reconocible cuando cada pieza parece parte del mismo universo. Sistema visual coherente que funciona en todas las plataformas.</p>
+      <ul class="pillar-list">
+        <li>Paleta de color fija</li>
+        <li>Tipografías y recursos gráficos</li>
+        <li>Estilo de edición consistente</li>
+        <li>Tono de comunicación unificado</li>
+        <li>Templates de stories</li>
+      </ul>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-n">III</div>
+      <h3>Comunidad Real</h3>
+      <p>Los algoritmos favorecen el contenido que genera conversación. Cada pieza diseñada para provocar una respuesta humana genuina.</p>
+      <ul class="pillar-list">
+        <li>Preguntas integradas al contenido</li>
+        <li>Llamados a participar</li>
+        <li>Reconocimiento de fans tempranos</li>
+        <li>Grupos privados de comunidad</li>
+        <li>UGC de asistentes a eventos</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="s reveal" id="planes">
+  <div class="s-head">
+    <div>
+      <p class="s-index">06 — Planes de Colaboración</p>
+      <h2 class="s-title">Dos formas de<br><em>trabajar juntos.</em></h2>
+    </div>
+    <p class="s-intro">Cada artista está en un momento distinto. Estos dos paquetes responden a necesidades reales — uno para automatizar, otro para acompañar.</p>
+  </div>
+
+  <div class="plans-duo">
+    <div class="plan-card">
+      <div class="plan-head">
+        <div>
+          <span class="plan-badge">Paquete 01</span>
+          <div class="plan-name">Esencia</div>
+          <p class="plan-tagline">Automatiza tu contenido.<br>Tu marca trabaja mientras tú creas.</p>
+        </div>
+        <div>
+          <span class="plan-skit-num">02</span>
+          <span class="plan-skit-lbl">Skits<br>cinematográficos</span>
+        </div>
+      </div>
+      <p class="plan-desc">Diseñado para el artista que quiere presencia digital consistente sin tener que estar encima de cada publicación. Nos encargamos de la estrategia, el contenido y la calendarización — tú solo apareces cuando toca brillar.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-cols">
+        <div>
+          <span class="plan-col-lbl">Contenido</span>
+          <ul class="plan-list">
+            <li>2 skits cinematográficos al mes</li>
+            <li>Calendario editorial completo</li>
+            <li>Copys y textos para cada publicación</li>
+            <li>Templates de stories listos para usar</li>
+            <li>Estrategia de hashtags y horarios</li>
+          </ul>
+        </div>
+        <div>
+          <span class="plan-col-lbl">Estrategia</span>
+          <ul class="plan-list">
+            <li>Identidad visual de marca definida</li>
+            <li>Perfil de audiencia objetivo</li>
+            <li>Programación automatizada</li>
+            <li>Reporte de métricas mensual</li>
+            <li>Sesión estratégica mensual</li>
+          </ul>
+        </div>
+      </div>
+      <div class="plan-ideal">
+        <span class="plan-ideal-lbl">Ideal para —</span>
+        <p>Artistas en etapa inicial que quieren construir presencia sólida con el mínimo de fricción operativa.</p>
+      </div>
+    </div>
+
+    <div class="plan-card dark">
+      <div class="plan-head">
+        <div>
+          <span class="plan-badge">Paquete 02</span>
+          <div class="plan-name">Presencia</div>
+          <p class="plan-tagline">Acompañamiento total.<br>Estamos ahí contigo en cada momento.</p>
+        </div>
+        <div>
+          <span class="plan-skit-num">04</span>
+          <span class="plan-skit-lbl">Skits<br>cinematográficos</span>
+        </div>
+      </div>
+      <p class="plan-desc">Para el artista que quiere un equipo real a su lado. No solo producimos el contenido — estamos físicamente presentes en las sesiones, los eventos y los momentos clave para guiarte y capturarlo todo.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-cols">
+        <div>
+          <span class="plan-col-lbl">En Campo</span>
+          <ul class="plan-list">
+            <li>4 skits cinematográficos al mes</li>
+            <li>Presencia física en sesiones</li>
+            <li>Cobertura completa de eventos</li>
+            <li>Dirección creativa en producción</li>
+            <li>Contenido espontáneo en vivo</li>
+          </ul>
+        </div>
+        <div>
+          <span class="plan-col-lbl">Estrategia</span>
+          <ul class="plan-list">
+            <li>Lanzamiento de marca completo</li>
+            <li>2 eventos coordinados al mes</li>
+            <li>Gestión activa de comunidad</li>
+            <li>Análisis de audiencia semanal</li>
+            <li>Sesión estratégica quincenal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="plan-ideal">
+        <span class="plan-ideal-lbl">Ideal para —</span>
+        <p>Artistas listos para lanzarse con todo, que necesitan un equipo presente en cada parte del proceso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer reveal" id="contacto">
+  <div class="footer-top">
+    <h2 class="footer-headline">
+      Es hora de que<br>
+      el mundo te<br>
+      <em>escuche.</em>
+    </h2>
+    <div class="footer-right">
+      <div class="footer-logo">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.12em;color:#F4F4F0;">VITA STUDIO</span>
+      </div>
+      <button class="footer-btn">Agendar primera sesión</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 VITA Studio Productions</span>
+    <span>Estrategia · Contenido · Eventos</span>
+    <a href="#top" class="footer-back">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<script>
+// Accordion
+function toggle(btn) {
+  const row = btn.closest('.acc-row');
+  const body = row.querySelector('.acc-body');
+  const isOpen = row.classList.contains('open');
+  // close all
+  document.querySelectorAll('.acc-row.open').forEach(r => {
+    r.classList.remove('open');
+    r.querySelector('.acc-body').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    row.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
