@@ -604,6 +604,43 @@
     text-transform: uppercase;
     margin-bottom: 40px;
   }
+  .price-original {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    letter-spacing: .05em;
+    margin-bottom: 8px;
+    opacity: .7;
+  }
+  .price-badge {
+    display: inline-block;
+    background: rgba(59,130,246,.15);
+    border: 1px solid rgba(59,130,246,.3);
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    margin-bottom: 16px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .april-countdown-creator {
+    font-size: .9rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    min-height: 24px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: .8; }
+    50% { opacity: 1; }
+  }
   .price-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -986,8 +1023,11 @@
     <p class="section-desc" style="text-align: center; margin: 0 auto 60px;">Una inversión accesible con pagos divididos para tu comodidad. Sin sorpresas, sin costos ocultos.</p>
 
     <div class="pricing-box">
+      <div class="price-original">$10,000</div>
       <div class="price-main">$5,000</div>
+      <div class="price-badge">Descuento especial Abril ⏰</div>
       <div class="price-period">pesos · mensuales</div>
+      <div id="aprilCounterCreator" class="april-countdown-creator"></div>
       <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">Incluye los 12 contenidos, las 2 sesiones de grabación, edición completa y la presentación de resultados mensual.</p>
       <div class="price-split">
         <div class="price-split-item">
@@ -1009,7 +1049,7 @@
   <div class="container">
     <h2>¿Listo para llevar tu contenido<br>al siguiente <em>nivel</em>?</h2>
     <p>Comencemos a crear juntos.</p>
-    <a href="#" class="cta-button">Agendar reunión</a>
+    <a href="agendar-sesion.html" class="cta-button">Agendar reunión</a>
   </div>
 </section>
 
@@ -1026,6 +1066,32 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // April countdown for creator package
+  function updateAprilCountdownCreator() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const aprilEnd = new Date(currentYear, 3, 30, 23, 59, 59); // Abril 30
+
+    // Si abril ya pasó, mostrar nada
+    if (now > aprilEnd) {
+      document.getElementById('aprilCounterCreator').innerHTML = '';
+      return;
+    }
+
+    const diff = aprilEnd - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    const counter = document.getElementById('aprilCounterCreator');
+    if (counter) {
+      counter.innerHTML = `⏳ Descuento válido por: ${days}d ${hours}h ${minutes}m`;
+    }
+  }
+
+  updateAprilCountdownCreator();
+  setInterval(updateAprilCountdownCreator, 60000); // Actualizar cada minuto
 </script>
 
 </body>

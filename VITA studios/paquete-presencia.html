@@ -51,7 +51,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:24px 60px;display:fl
 .pkg-eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--blue2);margin-bottom:20px}
 .pkg-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;letter-spacing:.02em;color:var(--white);margin-bottom:20px}
 .pkg-subtitle{font-size:clamp(1rem,2vw,1.3rem);color:var(--muted);max-width:600px;margin:0 auto 40px;line-height:1.8}
+.pkg-price-section{text-align:center}
+.pkg-price-original{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--muted);text-decoration:line-through;letter-spacing:.05em;margin-bottom:8px;opacity:.7}
 .pkg-price{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--blue2);font-weight:700;letter-spacing:.05em}
+.pkg-discount-badge{display:inline-block;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);color:var(--blue2);padding:8px 16px;border-radius:4px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:12px;animation:pulse 2s ease-in-out infinite}
+
+@keyframes pulse{0%,100%{opacity:.8}50%{opacity:1}}
+
+.april-countdown{font-size:.9rem;color:var(--blue2);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:24px;min-height:24px}
 .pkg-cta-group{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:60px}
 .pkg-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all .3s cubic-bezier(.16,1,.3,1);border:none}
 .pkg-btn-primary{background:var(--blue2);color:#fff}
@@ -169,7 +176,13 @@ footer a:hover{color:var(--blue)}
     <div class="pkg-eyebrow">Paquete de colaboración</div>
     <h1 class="pkg-title">Acompañamiento<br><em>Total</em></h1>
     <p class="pkg-subtitle">Estamos ahí contigo en cada momento. Diseñado para artistas listos para lanzarse con todo, que necesitan un equipo presente en cada parte del proceso.</p>
-    <div class="pkg-price">$10,000 / mes</div>
+    <div class="pkg-price-section">
+      <div class="pkg-price-original">$20,000/mes</div>
+      <div class="pkg-price">$10,000 / mes</div>
+      <div class="pkg-discount-badge">Descuento especial Abril ⏰</div>
+    </div>
+    <div id="aprilCounter" class="april-countdown"></div>
+
     <div class="pkg-cta-group">
       <a href="agendar-sesion.html" class="pkg-btn pkg-btn-primary">Agendar sesión</a>
       <a href="agendar-sesion.html" class="pkg-btn pkg-btn-secondary">Agendar sesión</a>
@@ -387,6 +400,32 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// April countdown
+function updateAprilCountdown() {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const aprilEnd = new Date(currentYear, 3, 30, 23, 59, 59); // Abril 30
+
+  // Si abril ya pasó, mostrar nada o mensaje
+  if (now > aprilEnd) {
+    document.getElementById('aprilCounter').innerHTML = '';
+    return;
+  }
+
+  const diff = aprilEnd - now;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+  const counter = document.getElementById('aprilCounter');
+  if (counter) {
+    counter.innerHTML = `⏳ Descuento válido por: ${days}d ${hours}h ${minutes}m`;
+  }
+}
+
+updateAprilCountdown();
+setInterval(updateAprilCountdown, 60000); // Actualizar cada minuto
 </script>
 </body>
 </html>
