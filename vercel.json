@@ -1,0 +1,5 @@
+{
+  "buildCommand": "echo 'Static files ready'",
+  "outputDirectory": "VITA studios",
+  "installCommand": "echo 'No dependencies needed'"
+}
