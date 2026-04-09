@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="styles.css" />
 <title>Agendar Sesión - VITA Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
@@ -14,15 +15,15 @@ body{font-family:'Outfit',sans-serif;background:#0A0A0F;color:#F4F4F0;overflow-x
   --bg:#0A0A0F;
   --bg2:#111118;
   --white:#F4F4F0;
-  --blue:#3B82F6;
-  --blue2:#60A5FA;
+  --blue:#C4503A;
+  --blue2:#E06B52;
   --muted:#6B7280;
   --border:rgba(255,255,255,0.07);
 }
 
 /* CUSTOM CURSOR */
-#cursor-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .1s ease;transform:translate(-50%,-50%);mix-blend-mode:difference}
-#cursor-ring{width:28px;height:28px;border:1px solid var(--blue2);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s cubic-bezier(.25,.46,.45,.94),width .3s;opacity:.4;mix-blend-mode:difference}
+#cursor-dot{width:6px;height:6px;background:var(--terra);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .1s ease;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cursor-ring{width:28px;height:28px;border:1px solid var(--terra2);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s cubic-bezier(.25,.46,.45,.94),width .3s;opacity:.4;mix-blend-mode:difference}
 
 /* FORM CONTAINER */
 .form-container{width:100%;max-width:500px;animation:slideUp .5s cubic-bezier(.16,1,.3,1)}
@@ -36,7 +37,7 @@ body{font-family:'Outfit',sans-serif;background:#0A0A0F;color:#F4F4F0;overflow-x
 .form{display:flex;flex-direction:column;gap:24px;margin-top:50px}
 
 .form-group{display:flex;flex-direction:column;gap:8px}
-.form-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);display:block}
+.form-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);display:block}
 .form-input,.form-select{
   background:rgba(59,130,246,.05);
   border:1px solid rgba(59,130,246,.2);
@@ -75,7 +76,7 @@ body{font-family:'Outfit',sans-serif;background:#0A0A0F;color:#F4F4F0;overflow-x
 
 /* BUTTON */
 .form-btn{
-  background:var(--blue);
+  background:var(--terra);
   color:#fff;
   border:none;
   padding:16px 32px;
@@ -91,7 +92,7 @@ body{font-family:'Outfit',sans-serif;background:#0A0A0F;color:#F4F4F0;overflow-x
 }
 
 .form-btn:hover{
-  background:var(--blue2);
+  background:var(--terra2);
   transform:translateY(-4px);
   box-shadow:0 16px 48px rgba(59,130,246,.35);
 }
@@ -107,13 +108,13 @@ body{font-family:'Outfit',sans-serif;background:#0A0A0F;color:#F4F4F0;overflow-x
 .success-icon{font-size:3rem;margin-bottom:20px}
 .success-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:15px;color:var(--white)}
 .success-msg{font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:30px}
-.success-msg strong{color:var(--blue)}
+.success-msg strong{color:var(--terra)}
 
-.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .25s;text-decoration:none;cursor:pointer}
-.back-link:hover{gap:12px;color:var(--blue2)}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--terra);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .25s;text-decoration:none;cursor:pointer}
+.back-link:hover{gap:12px;color:var(--terra2)}
 
-.form-back{position:fixed;top:30px;left:30px;display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .25s;text-decoration:none;cursor:pointer;z-index:100}
-.form-back:hover{gap:12px;color:var(--blue2)}
+.form-back{position:fixed;top:30px;left:30px;display:inline-flex;align-items:center;gap:8px;color:var(--terra);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .25s;text-decoration:none;cursor:pointer;z-index:100}
+.form-back:hover{gap:12px;color:var(--terra2)}
 
 /* ANIMATIONS */
 @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
@@ -218,5 +219,6 @@ function handleSubmit(event) {
   }, 1000);
 }
 </script>
+<script src="script.js"></script>
 </body>
 </html>
