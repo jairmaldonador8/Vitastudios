@@ -30,6 +30,12 @@ body {
   --terra: #C4503A;
   --terra2: #E06B52;
 
+  /* TERRA GLOW & SHADOW VARIABLES */
+  --terra-glow-low: rgba(196, 80, 58, 0.1);
+  --terra-glow-med: rgba(196, 80, 58, 0.3);
+  --terra-glow-high: rgba(196, 80, 58, 0.6);
+  --terra-shadow: 0 12px 40px rgba(196, 80, 58, 0.35);
+
   /* BACKGROUNDS */
   --bg: #000000;
   --bg2: #0A0A0A;
@@ -38,14 +44,11 @@ body {
   /* TEXT COLORS */
   --text-primary: rgba(255, 255, 255, 0.9);
   --text-secondary: rgba(255, 255, 255, 0.6);
-  --text-tertiary: rgba(255, 255, 255, 0.4);
-  --text-muted: rgba(255, 255, 255, 0.2);
 
   /* WHITE & ACCENTS */
   --white: #FFFFFF;
   --white-05: rgba(255, 255, 255, 0.05);
   --white-1: rgba(255, 255, 255, 0.1);
-  --white-2: rgba(255, 255, 255, 0.2);
 
   /* BORDERS & DIVIDERS */
   --border-color: rgba(255, 255, 255, 0.1);
@@ -74,6 +77,10 @@ body {
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+
+  /* BURGER MENU OFFSETS */
+  --burger-x-offset: 10px;
+  --burger-y-offset: 7px;
 
   /* Z-LAYERS */
   --z-nav: 1000;
@@ -107,6 +114,12 @@ body {
 /* ============================================================================
    2. CUSTOM CURSOR SYSTEM
    ============================================================================ */
+
+/* NOTE: For the CSS-only cursor system to work correctly, .cursor-dot and
+   .cursor-ring elements must be siblings of interactive elements (or their
+   container). The hover state selector `interactive:hover ~ .cursor-ring`
+   relies on this DOM relationship. Ensure HTML structure maintains this
+   sibling relationship for proper cursor styling on hover. */
 
 .cursor-dot,
 .cursor-ring {
@@ -443,10 +456,10 @@ em {
 @keyframes pulseGlow {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(196, 80, 58, 0.3);
+    box-shadow: 0 0 20px var(--terra-glow-med);
   }
   50% {
-    box-shadow: 0 0 40px rgba(196, 80, 58, 0.6);
+    box-shadow: 0 0 40px var(--terra-glow-high);
   }
 }
 
@@ -604,7 +617,7 @@ button {
   background-color: var(--terra2);
   border-color: var(--terra2);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(196, 80, 58, 0.3);
+  box-shadow: 0 10px 30px var(--terra-glow-med);
 }
 
 .btn-primary:active,
@@ -622,7 +635,7 @@ button {
 .btn-outline:hover {
   background-color: var(--terra);
   color: var(--white);
-  box-shadow: 0 10px 30px rgba(196, 80, 58, 0.3);
+  box-shadow: 0 10px 30px var(--terra-glow-med);
   transform: translateY(-2px);
 }
 
@@ -635,7 +648,7 @@ button {
 
 .btn-terra:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 40px rgba(196, 80, 58, 0.4);
+  box-shadow: var(--terra-shadow);
 }
 
 /* Button Small */
@@ -776,7 +789,7 @@ nav.solid {
 }
 
 .burger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(10px, 10px);
+  transform: rotate(45deg) translate(var(--burger-x-offset), var(--burger-y-offset));
 }
 
 .burger.active span:nth-child(2) {
@@ -784,7 +797,7 @@ nav.solid {
 }
 
 .burger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+  transform: rotate(-45deg) translate(var(--burger-y-offset), calc(var(--burger-y-offset) * -1));
 }
 
 /* Mobile Menu */
@@ -846,7 +859,7 @@ select:focus {
   outline: none;
   border-color: var(--terra);
   background-color: var(--bg3);
-  box-shadow: 0 0 0 3px rgba(196, 80, 58, 0.1);
+  box-shadow: 0 0 0 3px var(--terra-glow-low);
 }
 
 textarea {
