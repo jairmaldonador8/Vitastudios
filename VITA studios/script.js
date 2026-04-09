@@ -13,21 +13,39 @@ class CustomCursor {
     this.mouseX = 0;
     this.mouseY = 0;
     this.isVisible = true;
+    this.rafPending = false;
+
+    this.boundMouseMove = (e) => this.onMouseMove(e);
+    this.boundShow = () => this.show();
+    this.boundHide = () => this.hide();
 
     this.init();
   }
 
   init() {
-    document.addEventListener('mousemove', (e) => this.onMouseMove(e));
-    document.addEventListener('mouseenter', () => this.show());
-    document.addEventListener('mouseleave', () => this.hide());
+    document.addEventListener('mousemove', this.boundMouseMove);
+    document.addEventListener('mouseenter', this.boundShow);
+    document.addEventListener('mouseleave', this.boundHide);
   }
 
   onMouseMove(e) {
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
 
-    // Update cursor positions
+    // Check for hoverable elements
+    this.checkHoverableElements(e.target);
+
+    // Check for text input focus
+    this.checkTextInputFocus(e.target);
+
+    // Batch DOM updates with requestAnimationFrame
+    if (!this.rafPending) {
+      this.rafPending = true;
+      requestAnimationFrame(() => this.updateCursorPosition());
+    }
+  }
+
+  updateCursorPosition() {
     if (this.cursorDot) {
       this.cursorDot.style.left = this.mouseX + 'px';
       this.cursorDot.style.top = this.mouseY + 'px';
@@ -36,12 +54,7 @@ class CustomCursor {
       this.cursorRing.style.left = this.mouseX + 'px';
       this.cursorRing.style.top = this.mouseY + 'px';
     }
-
-    // Check for hoverable elements
-    this.checkHoverableElements(e.target);
-
-    // Check for text input focus
-    this.checkTextInputFocus(e.target);
+    this.rafPending = false;
   }
 
   checkHoverableElements(target) {
@@ -77,6 +90,12 @@ class CustomCursor {
     if (this.cursorDot) this.cursorDot.style.opacity = '0';
     if (this.cursorRing) this.cursorRing.style.opacity = '0';
   }
+
+  destroy() {
+    document.removeEventListener('mousemove', this.boundMouseMove);
+    document.removeEventListener('mouseenter', this.boundShow);
+    document.removeEventListener('mouseleave', this.boundHide);
+  }
 }
 
 /**
@@ -105,6 +124,10 @@ class ScrollReveal {
       this.observer.observe(el);
     });
   }
+
+  destroy() {
+    this.observer.disconnect();
+  }
 }
 
 /**
@@ -119,11 +142,13 @@ class NavSolidOnScroll {
     }
 
     this.scrollThreshold = 50;
+    this.boundOnScroll = throttle(() => this.onScroll(), 100);
+
     this.init();
   }
 
   init() {
-    window.addEventListener('scroll', () => this.onScroll());
+    window.addEventListener('scroll', this.boundOnScroll);
     // Initial check
     this.onScroll();
   }
@@ -135,13 +160,24 @@ class NavSolidOnScroll {
       this.nav.classList.remove('solid');
     }
   }
+
+  destroy() {
+    window.removeEventListener('scroll', this.boundOnScroll);
+  }
 }
 
 /**
  * MobileMenuToggle - Handles mobile menu open/close behavior
  */
 class MobileMenuToggle {
+  static instance = null;
+
   constructor() {
+    // Ensure only one instance
+    if (MobileMenuToggle.instance) {
+      return MobileMenuToggle.instance;
+    }
+
     this.burger = document.querySelector('.burger');
     this.menu = document.querySelector('.mob');
 
@@ -149,30 +185,38 @@ class MobileMenuToggle {
       return;
     }
 
+    this.boundToggle = (e) => {
+      e.stopPropagation();
+      this.toggleMenu();
+    };
+
+    this.boundCloseMenu = () => this.closeMenu();
+
+    this.boundClickOutside = (e) => {
+      if (!this.burger.contains(e.target) && !this.menu.contains(e.target)) {
+        this.closeMenu();
+      }
+    };
+
+    MobileMenuToggle.instance = this;
     this.init();
   }
 
   init() {
     // Toggle menu when burger is clicked
-    this.burger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.toggleMenu();
-    });
+    this.burger.addEventListener('click', this.boundToggle);
 
     // Close menu when a link is clicked
     const menuLinks = this.menu.querySelectorAll('a');
     menuLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        this.closeMenu();
-      });
+      link.addEventListener('click', this.boundCloseMenu);
     });
 
     // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!this.burger.contains(e.target) && !this.menu.contains(e.target)) {
-        this.closeMenu();
-      }
-    });
+    document.addEventListener('click', this.boundClickOutside);
+
+    // Store reference to links for cleanup
+    this.menuLinks = menuLinks;
   }
 
   toggleMenu() {
@@ -184,6 +228,15 @@ class MobileMenuToggle {
     this.burger.classList.remove('open');
     this.menu.classList.remove('open');
   }
+
+  destroy() {
+    this.burger.removeEventListener('click', this.boundToggle);
+    this.menuLinks.forEach((link) => {
+      link.removeEventListener('click', this.boundCloseMenu);
+    });
+    document.removeEventListener('click', this.boundClickOutside);
+    MobileMenuToggle.instance = null;
+  }
 }
 
 /**
@@ -192,12 +245,13 @@ class MobileMenuToggle {
 class SmoothScrollLinks {
   constructor() {
     this.links = document.querySelectorAll('a[href^="#"]');
+    this.boundHandlers = new Map();
     this.init();
   }
 
   init() {
     this.links.forEach((link) => {
-      link.addEventListener('click', (e) => {
+      const handler = (e) => {
         const href = link.getAttribute('href');
 
         // Skip if href is just '#'
@@ -211,8 +265,20 @@ class SmoothScrollLinks {
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
         }
-      });
+      };
+      this.boundHandlers.set(link, handler);
+      link.addEventListener('click', handler);
     });
+  }
+
+  destroy() {
+    this.links.forEach((link) => {
+      const handler = this.boundHandlers.get(link);
+      if (handler) {
+        link.removeEventListener('click', handler);
+      }
+    });
+    this.boundHandlers.clear();
   }
 }
 
@@ -240,6 +306,10 @@ class StatCounter {
     this.stats.forEach((stat) => {
       this.observer.observe(stat);
     });
+  }
+
+  destroy() {
+    this.observer.disconnect();
   }
 }
 
@@ -286,11 +356,24 @@ function throttle(func, delay) {
 /**
  * Initialize all utilities when DOM is ready
  */
+const instances = {};
+
 document.addEventListener('DOMContentLoaded', () => {
-  new CustomCursor();
-  new ScrollReveal();
-  new NavSolidOnScroll();
-  new MobileMenuToggle();
-  new SmoothScrollLinks();
-  new StatCounter();
+  instances.customCursor = new CustomCursor();
+  instances.scrollReveal = new ScrollReveal();
+  instances.navSolidOnScroll = new NavSolidOnScroll();
+  instances.mobileMenuToggle = new MobileMenuToggle();
+  instances.smoothScrollLinks = new SmoothScrollLinks();
+  instances.statCounter = new StatCounter();
+});
+
+/**
+ * Clean up all instances on unload
+ */
+window.addEventListener('unload', () => {
+  Object.values(instances).forEach((instance) => {
+    if (instance && typeof instance.destroy === 'function') {
+      instance.destroy();
+    }
+  });
 });
