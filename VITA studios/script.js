@@ -1,0 +1,296 @@
+/**
+ * CustomCursor - Tracks mouse position and manages custom cursor behavior
+ */
+class CustomCursor {
+  constructor() {
+    this.cursorDot = document.getElementById('cursor-dot');
+    this.cursorRing = document.getElementById('cursor-ring');
+
+    if (!this.cursorDot || !this.cursorRing) {
+      return;
+    }
+
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.isVisible = true;
+
+    this.init();
+  }
+
+  init() {
+    document.addEventListener('mousemove', (e) => this.onMouseMove(e));
+    document.addEventListener('mouseenter', () => this.show());
+    document.addEventListener('mouseleave', () => this.hide());
+  }
+
+  onMouseMove(e) {
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
+
+    // Update cursor positions
+    if (this.cursorDot) {
+      this.cursorDot.style.left = this.mouseX + 'px';
+      this.cursorDot.style.top = this.mouseY + 'px';
+    }
+    if (this.cursorRing) {
+      this.cursorRing.style.left = this.mouseX + 'px';
+      this.cursorRing.style.top = this.mouseY + 'px';
+    }
+
+    // Check for hoverable elements
+    this.checkHoverableElements(e.target);
+
+    // Check for text input focus
+    this.checkTextInputFocus(e.target);
+  }
+
+  checkHoverableElements(target) {
+    const isHoverable = target.matches('a, button, input, textarea, [role="button"]') ||
+                        target.closest('a, button, input, textarea, [role="button"]');
+
+    if (isHoverable) {
+      document.body.classList.add('cursor-hover');
+    } else {
+      document.body.classList.remove('cursor-hover');
+    }
+  }
+
+  checkTextInputFocus(target) {
+    const isTextInput = target.matches('input, textarea, [contenteditable]') ||
+                        target.closest('input, textarea, [contenteditable]');
+
+    if (isTextInput) {
+      document.body.classList.add('cursor-text-active');
+    } else {
+      document.body.classList.remove('cursor-text-active');
+    }
+  }
+
+  show() {
+    this.isVisible = true;
+    if (this.cursorDot) this.cursorDot.style.opacity = '1';
+    if (this.cursorRing) this.cursorRing.style.opacity = '1';
+  }
+
+  hide() {
+    this.isVisible = false;
+    if (this.cursorDot) this.cursorDot.style.opacity = '0';
+    if (this.cursorRing) this.cursorRing.style.opacity = '0';
+  }
+}
+
+/**
+ * ScrollReveal - Uses IntersectionObserver to reveal elements on scroll
+ */
+class ScrollReveal {
+  constructor() {
+    this.elements = document.querySelectorAll('.reveal, .reveal-left');
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          this.observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    this.init();
+  }
+
+  init() {
+    this.elements.forEach((el) => {
+      this.observer.observe(el);
+    });
+  }
+}
+
+/**
+ * NavSolidOnScroll - Adds solid class to nav when scrolling down
+ */
+class NavSolidOnScroll {
+  constructor() {
+    this.nav = document.querySelector('nav');
+
+    if (!this.nav) {
+      return;
+    }
+
+    this.scrollThreshold = 50;
+    this.init();
+  }
+
+  init() {
+    window.addEventListener('scroll', () => this.onScroll());
+    // Initial check
+    this.onScroll();
+  }
+
+  onScroll() {
+    if (window.scrollY > this.scrollThreshold) {
+      this.nav.classList.add('solid');
+    } else {
+      this.nav.classList.remove('solid');
+    }
+  }
+}
+
+/**
+ * MobileMenuToggle - Handles mobile menu open/close behavior
+ */
+class MobileMenuToggle {
+  constructor() {
+    this.burger = document.querySelector('.burger');
+    this.menu = document.querySelector('.mob');
+
+    if (!this.burger || !this.menu) {
+      return;
+    }
+
+    this.init();
+  }
+
+  init() {
+    // Toggle menu when burger is clicked
+    this.burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleMenu();
+    });
+
+    // Close menu when a link is clicked
+    const menuLinks = this.menu.querySelectorAll('a');
+    menuLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        this.closeMenu();
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!this.burger.contains(e.target) && !this.menu.contains(e.target)) {
+        this.closeMenu();
+      }
+    });
+  }
+
+  toggleMenu() {
+    this.burger.classList.toggle('open');
+    this.menu.classList.toggle('open');
+  }
+
+  closeMenu() {
+    this.burger.classList.remove('open');
+    this.menu.classList.remove('open');
+  }
+}
+
+/**
+ * SmoothScrollLinks - Smooth scroll to anchor links
+ */
+class SmoothScrollLinks {
+  constructor() {
+    this.links = document.querySelectorAll('a[href^="#"]');
+    this.init();
+  }
+
+  init() {
+    this.links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+
+        // Skip if href is just '#'
+        if (href === '#') {
+          return;
+        }
+
+        const target = document.querySelector(href);
+
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  }
+}
+
+/**
+ * StatCounter - Animate stat numbers when they come into view
+ */
+class StatCounter {
+  constructor() {
+    this.stats = document.querySelectorAll('.stat-cell');
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          this.observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    this.init();
+  }
+
+  init() {
+    this.stats.forEach((stat) => {
+      this.observer.observe(stat);
+    });
+  }
+}
+
+/**
+ * Utility Functions
+ */
+
+/**
+ * debounce - Returns a debounced version of the function
+ * @param {Function} func - Function to debounce
+ * @param {number} delay - Delay in milliseconds
+ * @returns {Function} Debounced function
+ */
+function debounce(func, delay) {
+  let timeoutId;
+
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+/**
+ * throttle - Returns a throttled version of the function
+ * @param {Function} func - Function to throttle
+ * @param {number} delay - Delay in milliseconds
+ * @returns {Function} Throttled function
+ */
+function throttle(func, delay) {
+  let lastCall = 0;
+
+  return function(...args) {
+    const now = Date.now();
+
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  };
+}
+
+/**
+ * Initialize all utilities when DOM is ready
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  new CustomCursor();
+  new ScrollReveal();
+  new NavSolidOnScroll();
+  new MobileMenuToggle();
+  new SmoothScrollLinks();
+  new StatCounter();
+});
