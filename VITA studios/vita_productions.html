@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css" />
 <title>VITA Studio Productions — Estrategia de Marca para Artistas</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap');
@@ -14,8 +15,8 @@
   --black: #F4F4F0;
   --gray: #6B7280;
   --line: rgba(255,255,255,0.07);
-  --blue: #3B82F6;
-  --blue2: #60A5FA;
+  --blue: #C4503A;
+  --blue2: #E06B52;
   --terra: #C4503A;
   --white: #F4F4F0;
   --muted: #6B7280;
@@ -60,7 +61,7 @@ body {
 .nav-talk {
   font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--black); text-decoration: none;
-  border-bottom: 1px solid #3B82F6; padding-bottom: 1px;
+  border-bottom: 1px solid #C4503A; padding-bottom: 1px;
   transition: opacity .2s;
 }
 .nav-talk:hover { opacity:.4; }
@@ -98,7 +99,7 @@ body {
   animation: slideUp .9s cubic-bezier(.16,1,.3,1) forwards;
 }
 .hero-title .line:nth-child(1) span { animation-delay: .05s; }
-.hero-title .line:nth-child(2) span { animation-delay: .15s; color: #3B82F6; }
+.hero-title .line:nth-child(2) span { animation-delay: .15s; color: #C4503A; }
 .hero-title .line:nth-child(3) span { animation-delay: .25s; }
 
 @keyframes slideUp {
@@ -173,7 +174,7 @@ body {
   font-size: clamp(2.5rem, 4.5vw, 4.2rem);
   font-weight: 300; letter-spacing: .02em; line-height: .95;
 }
-.s-title em { color: #3B82F6; }
+.s-title em { color: #C4503A; }
 .s-intro {
   font-size: .8rem; font-weight: 300; color: var(--gray);
   line-height: 1.9; align-self: end;
@@ -208,7 +209,7 @@ body {
   font-size: .9rem; transition: transform .4s cubic-bezier(.16,1,.3,1), background .2s;
   flex-shrink: 0;
 }
-.acc-row.open .acc-arrow { transform: rotate(45deg); background: #3B82F6; color: #fff; border-color: #3B82F6; }
+.acc-row.open .acc-arrow { transform: rotate(45deg); background: #C4503A; color: #fff; border-color: #C4503A; }
 .acc-body {
   max-height: 0; overflow: hidden;
   transition: max-height .6s cubic-bezier(.16,1,.3,1);
@@ -391,7 +392,7 @@ body {
   font-size: .58rem; letter-spacing: .28em; text-transform: uppercase;
   color: var(--gray); display: block; margin-bottom: .6rem;
 }
-.plan-card.dark .plan-badge { color: #3B82F6; }
+.plan-card.dark .plan-badge { color: #C4503A; }
 .plan-name {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.6rem; font-weight: 300; letter-spacing: .02em;
@@ -399,8 +400,8 @@ body {
 }
 .plan-tagline { font-size: .78rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
 .plan-card.dark .plan-tagline { color: #6B7280; }
-.plan-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; font-weight: 500; color: #3B82F6; letter-spacing: .08em; display: inline; }
-.plan-card.dark .plan-price { color: #60A5FA; }
+.plan-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; font-weight: 500; color: #C4503A; letter-spacing: .08em; display: inline; }
+.plan-card.dark .plan-price { color: #E06B52; }
 .plan-skit-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 4rem; font-weight: 300; letter-spacing: .02em;
@@ -415,8 +416,8 @@ body {
 .plan-btn {
   align-self: flex-start;
   background: transparent;
-  border: 2px solid #3B82F6;
-  color: #3B82F6;
+  border: 2px solid #C4503A;
+  color: #C4503A;
   padding: 12px 24px;
   font-family: 'Outfit', sans-serif;
   font-size: .75rem;
@@ -428,17 +429,17 @@ body {
   border-radius: 4px;
 }
 .plan-btn:hover {
-  background: #3B82F6;
+  background: #C4503A;
   color: #fff;
   transform: translateX(4px);
   box-shadow: 0 8px 24px rgba(59,130,246,.3);
 }
 .plan-card.dark .plan-btn {
-  border-color: #60A5FA;
-  color: #60A5FA;
+  border-color: #E06B52;
+  color: #E06B52;
 }
 .plan-card.dark .plan-btn:hover {
-  background: #60A5FA;
+  background: #E06B52;
   color: #111118;
 }
 .plan-desc {
@@ -453,7 +454,7 @@ body {
   font-size: .58rem; letter-spacing: .28em; text-transform: uppercase;
   color: var(--gray); display: block; margin-bottom: .9rem;
 }
-.plan-card.dark .plan-col-lbl { color: #3B82F6; }
+.plan-card.dark .plan-col-lbl { color: #C4503A; }
 .plan-list { list-style: none; padding: 0; }
 .plan-list li {
   font-size: .74rem; font-weight: 300; color: var(--gray);
@@ -463,7 +464,7 @@ body {
 .plan-card.dark .plan-list li { color: rgba(244,244,240,.5); border-color: rgba(255,255,255,.07); }
 .plan-list li:last-child { border-bottom: none; }
 .plan-list li::before { content: '+'; color: var(--line); flex-shrink: 0; }
-.plan-card.dark .plan-list li::before { color: #3B82F6; }
+.plan-card.dark .plan-list li::before { color: #C4503A; }
 .plan-ideal {
   display: flex; gap: .9rem; align-items: flex-start;
   background: rgba(0,0,0,.03); padding: 1.1rem; margin-top: auto;
@@ -473,7 +474,7 @@ body {
   font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
   color: var(--gray); flex-shrink: 0; padding-top: .1rem;
 }
-.plan-card.dark .plan-ideal-lbl { color: #3B82F6; }
+.plan-card.dark .plan-ideal-lbl { color: #C4503A; }
 .plan-ideal p { font-size: .74rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
 .plan-card.dark .plan-ideal p { color: #6B7280; }
 
@@ -515,7 +516,7 @@ body {
   transition: color .2s;
 }
 .plan-modal-close:hover {
-  color: #3B82F6;
+  color: #C4503A;
 }
 .plan-modal-body h2 {
   font-family: 'Bebas Neue', sans-serif;
@@ -544,7 +545,7 @@ body {
   content: '→';
   position: absolute;
   left: 0;
-  color: #3B82F6;
+  color: #C4503A;
 }
 @keyframes slideUp {
   from {
@@ -571,7 +572,7 @@ body {
   font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 300; line-height: .9; letter-spacing: .02em;
 }
-.footer-headline em { color: #3B82F6; }
+.footer-headline em { color: #C4503A; }
 .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2rem; }
 .footer-logo img {
   height: 26px; width: auto;
@@ -581,7 +582,7 @@ body {
   display: inline-flex; align-items: center; gap: .8rem;
   font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
   color: var(--black); text-decoration: none;
-  border-bottom: 1px solid #3B82F6; padding-bottom: 2px; color: #3B82F6;
+  border-bottom: 1px solid #C4503A; padding-bottom: 2px; color: #C4503A;
   background: none; border-top: none; border-left: none; border-right: none;
   cursor: pointer; font-family: 'Outfit', sans-serif; transition: opacity .2s;
 }
@@ -651,6 +652,8 @@ body {
 </style>
 </head>
 <body id="top">
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -1220,19 +1223,19 @@ function openPlanModal(plan) {
       title: 'Paquete Esencia',
       price: '$5,000/mes',
       description: 'Automatiza tu contenido. Tu marca trabaja mientras tú creas.',
-      content: '<p>Diseñado para el artista que quiere presencia digital consistente sin tener que estar encima de cada publicación. Nos encargamos de la estrategia, el contenido y la calendarización — tú solo apareces cuando toca brillar.</p><h3 style="color:#3B82F6;margin-top:1.5rem;margin-bottom:.8rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">Incluye:</h3><ul><li>2 skits cinematográficos al mes</li><li>Calendario editorial completo</li><li>Copys y textos para cada publicación</li><li>Templates de stories listos para usar</li><li>Estrategia de hashtags y horarios</li><li>Identidad visual de marca definida</li><li>Perfil de audiencia objetivo</li><li>Programación automatizada</li><li>Reporte de métricas mensual</li><li>Sesión estratégica mensual</li></ul>'
+      content: '<p>Diseñado para el artista que quiere presencia digital consistente sin tener que estar encima de cada publicación. Nos encargamos de la estrategia, el contenido y la calendarización — tú solo apareces cuando toca brillar.</p><h3 style="color:#C4503A;margin-top:1.5rem;margin-bottom:.8rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">Incluye:</h3><ul><li>2 skits cinematográficos al mes</li><li>Calendario editorial completo</li><li>Copys y textos para cada publicación</li><li>Templates de stories listos para usar</li><li>Estrategia de hashtags y horarios</li><li>Identidad visual de marca definida</li><li>Perfil de audiencia objetivo</li><li>Programación automatizada</li><li>Reporte de métricas mensual</li><li>Sesión estratégica mensual</li></ul>'
     },
     'Presencia': {
       title: 'Paquete Presencia',
       price: '$10,000/mes',
       description: 'Acompañamiento total. Estamos ahí contigo en cada momento.',
-      content: '<p>Para el artista que quiere un equipo real a su lado. No solo producimos el contenido — estamos físicamente presentes en las sesiones, los eventos y los momentos clave para guiarte y capturarlo todo.</p><h3 style="color:#60A5FA;margin-top:1.5rem;margin-bottom:.8rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">Incluye:</h3><ul><li>4 skits cinematográficos al mes</li><li>Presencia física en sesiones</li><li>Cobertura completa de eventos</li><li>Dirección creativa en producción</li><li>Contenido espontáneo en vivo</li><li>Lanzamiento de marca completo</li><li>2 eventos coordinados al mes</li><li>Gestión activa de comunidad</li><li>Análisis de audiencia semanal</li><li>Sesión estratégica quincenal</li></ul>'
+      content: '<p>Para el artista que quiere un equipo real a su lado. No solo producimos el contenido — estamos físicamente presentes en las sesiones, los eventos y los momentos clave para guiarte y capturarlo todo.</p><h3 style="color:#E06B52;margin-top:1.5rem;margin-bottom:.8rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">Incluye:</h3><ul><li>4 skits cinematográficos al mes</li><li>Presencia física en sesiones</li><li>Cobertura completa de eventos</li><li>Dirección creativa en producción</li><li>Contenido espontáneo en vivo</li><li>Lanzamiento de marca completo</li><li>2 eventos coordinados al mes</li><li>Gestión activa de comunidad</li><li>Análisis de audiencia semanal</li><li>Sesión estratégica quincenal</li></ul>'
     }
   };
 
   const plan_info = planData[plan];
   if (plan_info) {
-    body.innerHTML = `<h2>${plan_info.title}</h2><p style="color:#3B82F6;font-weight:600;margin-bottom:1rem;">${plan_info.price}</p><p style="font-style:italic;color:#9CA3AF;margin-bottom:1.5rem;">${plan_info.description}</p>${plan_info.content}`;
+    body.innerHTML = `<h2>${plan_info.title}</h2><p style="color:#C4503A;font-weight:600;margin-bottom:1rem;">${plan_info.price}</p><p style="font-style:italic;color:#9CA3AF;margin-bottom:1.5rem;">${plan_info.description}</p>${plan_info.content}`;
     modal.classList.add('active');
   }
 }
@@ -1260,5 +1263,6 @@ function closeMob() {
   document.getElementById('mobMenu').classList.remove('open');
 }
 </script>
+<script src="script.js"></script>
 </body>
 </html>
