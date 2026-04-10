@@ -10,7 +10,7 @@
 <style>
 /* ─── RESET & ROOT ─────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
 body{font-family:'Outfit',sans-serif;font-weight:400;overflow-x:hidden;background:#0A0A0F;cursor:none}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:#0A0A0F}
@@ -105,9 +105,9 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .mob a:hover{color:var(--white)}
 
 /* ─── HERO ──────────────────────────────────────────────────── */
-.hero{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 40px;position:relative;overflow:hidden;text-align:center}
+.hero{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 40px;position:relative;overflow:hidden;text-align:center;scroll-snap-align:start;scroll-snap-stop:always}
 .hero-splash{min-height:100vh;height:100vh}
-.hero-content-section{min-height:auto;padding:120px 40px}
+.hero-content-section{min-height:auto;padding:120px 40px;scroll-snap-align:start;scroll-snap-stop:always}
 .hero-logo-only{gap:0}
 .hero-content-only{gap:20px}
 .hero-noise{display:none}
@@ -143,7 +143,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 @keyframes drift{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh) translateX(30px);opacity:0}}
 
 /* ─── MARQUEE ───────────────────────────────────────────────── */
-.marquee{overflow:hidden;padding:32px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative}
+.marquee{overflow:hidden;padding:32px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;scroll-snap-align:start}
 .marquee::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.2),transparent);pointer-events:none}
 .marquee-track{display:flex;width:max-content;animation:marquee 24s linear infinite}
 .marquee-item{display:flex;align-items:center;gap:18px;padding:0 36px;white-space:nowrap;font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,244,240,.18);transition:color .3s}
@@ -154,7 +154,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* ─── STATS ─────────────────────────────────────────────────── */
-.stats-band{display:grid;grid-template-columns:repeat(4,1fr);background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.stats-band{display:grid;grid-template-columns:repeat(4,1fr);background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden;scroll-snap-align:start}
 .stats-band::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .stat-cell{padding:56px 48px;border-right:1px solid var(--border);position:relative;transition:background .3s,border-color .3s}
 .stat-cell:hover{background:rgba(196,80,58,.03);border-color:rgba(196,80,58,.2)}
@@ -169,7 +169,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .stat-cell:hover .stat-lbl{color:rgba(196,80,58,.7)}
 
 /* ─── MANIFESTO ─────────────────────────────────────────────── */
-.manifesto{background:var(--bg);padding:140px 60px;position:relative;overflow:hidden;border-top:1px solid var(--border)}
+.manifesto{background:var(--bg);padding:140px 60px;position:relative;overflow:hidden;border-top:1px solid var(--border);scroll-snap-align:start;scroll-snap-stop:always}
 .manifesto::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .manifesto-bg-text{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:20vw;color:rgba(255,255,255,.008);top:65%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:.05em}
 .manifesto-bg-logo{position:absolute;width:clamp(320px,35vw,600px);height:auto;top:55%;left:50%;transform:translate(-50%,-50%);opacity:.04;pointer-events:none}
@@ -192,7 +192,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .pillar:hover p{color:rgba(244,244,240,.5)}
 
 /* ─── SERVICES ──────────────────────────────────────────────── */
-.services{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative}
+.services{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;scroll-snap-align:start;scroll-snap-stop:always}
 .services::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .services-header{padding:100px 60px 0;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-bottom:60px;border-bottom:1px solid var(--border)}
 .services-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,10vw,12rem);line-height:.85;color:var(--white)}
@@ -221,7 +221,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .svc-opt-btn:hover::before{animation:shimmer .6s cubic-bezier(.16,1,.3,1) forwards}
 
 /* ─── PROCESS ──────────────────────────────────────────────── */
-.process{background:var(--bg3);padding:140px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.process{background:var(--bg3);padding:140px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always}
 .process::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .process-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:80px}
 .process-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,9vw,11rem);line-height:.85;color:var(--white)}
@@ -241,7 +241,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .process-cta p{font-size:.9rem;color:var(--muted);max-width:480px;line-height:1.7}
 
 /* ─── TESTIMONIALS ─────────────────────────────────────────── */
-.testi{background:var(--bg);padding:140px 60px;border-bottom:1px solid var(--border);position:relative}
+.testi{background:var(--bg);padding:140px 60px;border-bottom:1px solid var(--border);position:relative;scroll-snap-align:start;scroll-snap-stop:always}
 .testi::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .testi-head{margin-bottom:72px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--border)}
 .testi-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,8vw,10rem);line-height:.88;color:var(--white)}
@@ -270,7 +270,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .tcard:hover .tcard-role{color:rgba(196,80,58,.6)}
 
 /* ─── FAQ ───────────────────────────────────────────────────── */
-.faq{background:var(--bg2);padding:140px 60px;border-bottom:1px solid var(--border);position:relative}
+.faq{background:var(--bg2);padding:140px 60px;border-bottom:1px solid var(--border);position:relative;scroll-snap-align:start;scroll-snap-stop:always}
 .faq::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .faq-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:100px;align-items:start}
 .faq-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,7vw,9rem);line-height:.88;color:var(--white);margin:20px 0 24px}
@@ -291,7 +291,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .faq-item.open .faq-a p{color:rgba(244,244,240,.6)}
 
 /* ─── CONTACT ──────────────────────────────────────────────── */
-.contact{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;border-top:1px solid var(--border);position:relative}
+.contact{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;border-top:1px solid var(--border);position:relative;scroll-snap-align:start;scroll-snap-stop:always}
 .contact::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .contact-left{background:#111111;padding:100px 72px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .contact-left::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.2),transparent);pointer-events:none}
@@ -337,7 +337,7 @@ nav.solid{background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop
 .footer-contact-cta:hover{background:var(--terra);color:#fff;border-color:var(--terra)}
 
 /* ─── FOOTER ──────────────────────────────────────────────── */
-footer{background:var(--bg2);padding:80px 60px 40px;border-top:1px solid var(--border);position:relative}
+footer{background:var(--bg2);padding:80px 60px 40px;border-top:1px solid var(--border);position:relative;scroll-snap-align:start;scroll-snap-stop:always}
 footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,80,58,.3),transparent);pointer-events:none}
 .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:60px;margin-bottom:64px}
 .nav-logo img{height:36px;width:auto;object-fit:contain;display:block;background:transparent!important}
