@@ -42,6 +42,38 @@
     z-index: 9999;
   }
 
+  /* Cursor */
+  #cursor-dot {
+    width: 6px; height: 6px; background: var(--accent);
+    border-radius: 50%; position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transition: transform .1s ease, background .3s;
+    transform: translate(-50%, -50%); mix-blend-mode: difference;
+  }
+  #cursor-ring {
+    width: 28px; height: 28px; border: 1px solid var(--accent-light);
+    border-radius: 50%; position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform .18s cubic-bezier(.25,.46,.45,.94), width .3s, height .3s, opacity .3s, border-color .3s;
+    opacity: .4; mix-blend-mode: difference;
+  }
+  .cursor-hover #cursor-dot {
+    transform: translate(-50%, -50%) scale(2);
+    background: #fff;
+  }
+  .cursor-hover #cursor-ring {
+    width: 44px; height: 44px;
+    border-color: #fff; opacity: .3;
+  }
+  .cursor-text-active #cursor-dot {
+    opacity: 0;
+  }
+  .cursor-text-active #cursor-ring {
+    width: 50px; height: 50px;
+    opacity: .1; border-color: var(--accent);
+  }
+
   .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
   /* ── Navigation ── */
@@ -1127,6 +1159,19 @@
 
   updateAprilCountdownCreator();
   setInterval(updateAprilCountdownCreator, 60000); // Actualizar cada minuto
+
+  // Interactive cursor
+  const interactiveEls = document.querySelectorAll('a, button, input, textarea, [role="button"]');
+  interactiveEls.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  const textInputs = document.querySelectorAll('input, textarea, [contenteditable]');
+  textInputs.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text-active'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text-active'));
+  });
 </script>
 
 <script src="script.js"></script>
