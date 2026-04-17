@@ -404,7 +404,7 @@ class TrackSelection {
 }
 
 /**
- * FormSubmission - Handle contact form submission
+ * FormSubmission - Handle contact form submission with Supabase
  */
 class FormSubmission {
   constructor() {
@@ -414,6 +414,10 @@ class FormSubmission {
     if (!this.contactForm) {
       return;
     }
+
+    // Supabase Configuration
+    this.SUPABASE_URL = 'https://mjotemmimojrscwcntwa.supabase.co';
+    this.SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qb3RlbW1pbW9qcnNjd2NudHdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDM1NzEsImV4cCI6MjA5MjAxOTU3MX0.GjE3aP646AFLgFTuhRVaADkNJVZPDZpDs45B-_qbmWg';
 
     this.boundSubmit = (e) => this.handleSubmit(e);
     this.init();
@@ -433,7 +437,31 @@ class FormSubmission {
     submitBtn.disabled = true;
 
     try {
-      // Staticforms handles the submission
+      // Get form data
+      const formData = {
+        nombre: document.getElementById('nombre').value,
+        email: document.getElementById('email').value,
+        telefono: document.getElementById('telefono').value,
+        servicio: document.getElementById('servicio').value,
+        mensaje: document.getElementById('mensaje').value,
+        track: document.documentElement.getAttribute('data-active-track') || 'neutral'
+      };
+
+      // Send to Supabase
+      const response = await fetch(`${this.SUPABASE_URL}/rest/v1/consultas`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.SUPABASE_KEY}`,
+          'apikey': this.SUPABASE_KEY
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       // Show success message
       if (this.formFeedback) {
         this.formFeedback.textContent = '✓ Consulta enviada exitosamente. Te responderé pronto.';
@@ -455,6 +483,7 @@ class FormSubmission {
         }, 5000);
       }, 1000);
     } catch (error) {
+      console.error('Error:', error);
       if (this.formFeedback) {
         this.formFeedback.textContent = 'Error al enviar. Intenta de nuevo.';
         this.formFeedback.className = 'form-feedback error';
