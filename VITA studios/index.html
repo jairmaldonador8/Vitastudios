@@ -87,94 +87,147 @@
 
     <div class="divider"></div>
 
-    <!-- CASOS DE ÉXITO -->
+    <!-- CASOS DE ÉXITO / CAROUSEL -->
     <section id="casos" class="casos">
         <div class="container">
             <h2 class="section-title reveal">Casos de Éxito</h2>
             <p class="section-subtitle reveal">Clientes que transformaron su negocio con VITA Studios</p>
 
-            <div class="casos-grid reveal">
-                <!-- Caso 1 -->
-                <div class="caso-card">
-                    <div class="caso-image-wrapper">
-                        <img src="casos/01-doctor-wilber.png" alt="Doctor Wilber - Caso de éxito">
-                        <div class="caso-overlay">
-                            <h3 class="caso-name">Doctor Wilber</h3>
-                            <p class="caso-category">Profesional de Salud</p>
+            <div class="carousel-container reveal">
+                <!-- Carousel Content -->
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <!-- Caso 1 -->
+                        <div class="carousel-slide" data-case-id="1">
+                            <div class="caso-card clickable">
+                                <div class="caso-image-wrapper">
+                                    <img src="casos/01-doctor-wilber.png" alt="Doctor Wilber">
+                                    <div class="caso-overlay">
+                                        <h3 class="caso-name">Doctor Wilber</h3>
+                                        <p class="caso-category">Profesional de Salud</p>
+                                        <p class="caso-cta">Ver Campaña →</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caso 2 -->
+                        <div class="carousel-slide" data-case-id="2">
+                            <div class="caso-card clickable">
+                                <div class="caso-image-wrapper">
+                                    <img src="casos/02-rosa-de-oro.png" alt="Rosa de Oro">
+                                    <div class="caso-overlay">
+                                        <h3 class="caso-name">Rosa de Oro</h3>
+                                        <p class="caso-category">E-commerce</p>
+                                        <p class="caso-cta">Ver Campaña →</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caso 3 -->
+                        <div class="carousel-slide" data-case-id="3">
+                            <div class="caso-card clickable">
+                                <div class="caso-image-wrapper">
+                                    <img src="casos/03-renace.png" alt="Renace">
+                                    <div class="caso-overlay">
+                                        <h3 class="caso-name">Renace</h3>
+                                        <p class="caso-category">Bienestar</p>
+                                        <p class="caso-cta">Ver Campaña →</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caso 4 -->
+                        <div class="carousel-slide" data-case-id="4">
+                            <div class="caso-card clickable">
+                                <div class="caso-image-wrapper">
+                                    <img src="casos/04-hinaitu.png" alt="Hinaitu">
+                                    <div class="caso-overlay">
+                                        <h3 class="caso-name">Hinaitu</h3>
+                                        <p class="caso-category">Consultoría</p>
+                                        <p class="caso-cta">Ver Campaña →</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caso 5 -->
+                        <div class="carousel-slide" data-case-id="5">
+                            <div class="caso-card clickable">
+                                <div class="caso-image-wrapper">
+                                    <img src="casos/05-doctora-vannia.png" alt="Doctora Vannia">
+                                    <div class="caso-overlay">
+                                        <h3 class="caso-name">Dra. Vannia</h3>
+                                        <p class="caso-category">Profesional de Salud</p>
+                                        <p class="caso-cta">Ver Campaña →</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caso 6 -->
+                        <div class="carousel-slide" data-case-id="6">
+                            <div class="caso-card clickable">
+                                <div class="caso-image-wrapper">
+                                    <img src="casos/06-doctor-jose-luis.png" alt="Doctor José Luis">
+                                    <div class="caso-overlay">
+                                        <h3 class="caso-name">Dr. José Luis</h3>
+                                        <p class="caso-category">Profesional de Salud</p>
+                                        <p class="caso-cta">Ver Campaña →</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caso 7 -->
+                        <div class="carousel-slide" data-case-id="7">
+                            <div class="caso-card clickable">
+                                <div class="caso-image-wrapper">
+                                    <img src="casos/07-doctora-karen.png" alt="Doctora Karen">
+                                    <div class="caso-overlay">
+                                        <h3 class="caso-name">Dra. Karen</h3>
+                                        <p class="caso-category">Profesional de Salud</p>
+                                        <p class="caso-cta">Ver Campaña →</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Caso 2 -->
-                <div class="caso-card">
-                    <div class="caso-image-wrapper">
-                        <img src="casos/02-rosa-de-oro.png" alt="Rosa de Oro - Caso de éxito">
-                        <div class="caso-overlay">
-                            <h3 class="caso-name">Rosa de Oro</h3>
-                            <p class="caso-category">E-commerce</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- Controls -->
+                <button class="carousel-prev" aria-label="Caso anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="carousel-next" aria-label="Caso siguiente">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
 
-                <!-- Caso 3 -->
-                <div class="caso-card">
-                    <div class="caso-image-wrapper">
-                        <img src="casos/03-renace.png" alt="Renace - Caso de éxito">
-                        <div class="caso-overlay">
-                            <h3 class="caso-name">Renace</h3>
-                            <p class="caso-category">Bienestar</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 4 -->
-                <div class="caso-card">
-                    <div class="caso-image-wrapper">
-                        <img src="casos/04-hinaitu.png" alt="Hinaitu - Caso de éxito">
-                        <div class="caso-overlay">
-                            <h3 class="caso-name">Hinaitu</h3>
-                            <p class="caso-category">Consultoría</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 5 -->
-                <div class="caso-card">
-                    <div class="caso-image-wrapper">
-                        <img src="casos/05-doctora-vannia.png" alt="Doctora Vannia - Caso de éxito">
-                        <div class="caso-overlay">
-                            <h3 class="caso-name">Dra. Vannia</h3>
-                            <p class="caso-category">Profesional de Salud</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 6 -->
-                <div class="caso-card">
-                    <div class="caso-image-wrapper">
-                        <img src="casos/06-doctor-jose-luis.png" alt="Doctor José Luis - Caso de éxito">
-                        <div class="caso-overlay">
-                            <h3 class="caso-name">Dr. José Luis</h3>
-                            <p class="caso-category">Profesional de Salud</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 7 -->
-                <div class="caso-card">
-                    <div class="caso-image-wrapper">
-                        <img src="casos/07-doctora-karen.png" alt="Doctora Karen - Caso de éxito">
-                        <div class="caso-overlay">
-                            <h3 class="caso-name">Dra. Karen</h3>
-                            <p class="caso-category">Profesional de Salud</p>
-                        </div>
-                    </div>
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <span class="carousel-counter"><span id="current-slide">1</span> / 7</span>
                 </div>
             </div>
         </div>
     </section>
 
     <div class="divider"></div>
+
+    <!-- MODAL PARA CAMPAÑAS -->
+    <div id="campaign-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar">&times;</button>
+            <div id="campaign-body">
+                <!-- Las campañas se cargarán aquí -->
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>

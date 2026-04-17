@@ -684,3 +684,109 @@ class PortfolioCarousel {
 document.addEventListener('DOMContentLoaded', () => {
     new PortfolioCarousel();
 });
+
+/**
+ * CasosCarousel - Carousel para casos de éxito con navegación por flechas
+ */
+class CasosCarousel {
+    constructor() {
+        this.track = document.querySelector('.carousel-track');
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.prevBtn = document.querySelector('.carousel-prev');
+        this.nextBtn = document.querySelector('.carousel-next');
+        this.currentSlide = document.getElementById('current-slide');
+        this.currentIndex = 0;
+        this.slideCount = this.slides.length;
+
+        this.init();
+    }
+
+    init() {
+        this.prevBtn?.addEventListener('click', () => this.prev());
+        this.nextBtn?.addEventListener('click', () => this.next());
+
+        // Click en casos para abrir modal
+        document.querySelectorAll('.caso-card.clickable').forEach(card => {
+            card.addEventListener('click', (e) => this.openCampaign(e));
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') this.prev();
+            if (e.key === 'ArrowRight') this.next();
+        });
+
+        // Modal close
+        const modalClose = document.querySelector('#campaign-modal .modal-close');
+        const modal = document.getElementById('campaign-modal');
+
+        if (modalClose) {
+            modalClose.addEventListener('click', () => this.closeModal());
+        }
+
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeModal();
+                }
+            });
+        }
+
+        this.updateSlide();
+    }
+
+    prev() {
+        this.currentIndex = (this.currentIndex - 1 + this.slideCount) % this.slideCount;
+        this.updateSlide();
+    }
+
+    next() {
+        this.currentIndex = (this.currentIndex + 1) % this.slideCount;
+        this.updateSlide();
+    }
+
+    updateSlide() {
+        const offset = -this.currentIndex * 100;
+        this.track.style.transform = `translateX(${offset}%)`;
+        this.currentSlide.textContent = this.currentIndex + 1;
+    }
+
+    openCampaign(e) {
+        const slide = e.currentTarget.closest('.carousel-slide');
+        const caseId = slide?.dataset.caseId;
+
+        if (caseId) {
+            // Emit event para abrir modal con campaña
+            const event = new CustomEvent('openCampaign', { detail: { caseId } });
+            document.dispatchEvent(event);
+
+            // Mostrar modal (preparado para integración)
+            const modal = document.getElementById('campaign-modal');
+            const modalBody = document.getElementById('campaign-body');
+
+            if (modal && modalBody) {
+                // Aquí se integrará con los archivos de campaña
+                modalBody.innerHTML = `<p>Campaña para caso #${caseId} - Proximamente...</p>`;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            console.log('Opening campaign for case:', caseId);
+        }
+    }
+
+    closeModal() {
+        const modal = document.getElementById('campaign-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+}
+
+// Initialize carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.carousel-container')) {
+        new CasosCarousel();
+    }
+});

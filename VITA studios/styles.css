@@ -806,28 +806,81 @@ body {
     margin: 0 auto;
 }
 
-/* CASOS DE ÉXITO / PORTFOLIO */
+/* CAROUSEL CASOS DE ÉXITO */
 .casos {
     padding: var(--spacing-3xl) var(--spacing-lg);
     background: var(--color-bg);
 }
 
-.section-subtitle {
-    font-size: 18px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.6);
-    text-align: center;
-    margin-bottom: var(--spacing-3xl);
-    letter-spacing: 0.3px;
-    animation: fadeIn 1s ease-in-out 0.5s both;
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.casos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    gap: 20px;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    min-height: 500px;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(201, 169, 97, 0.15);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    color: var(--color-gold);
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-default);
+    z-index: 10;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background: rgba(201, 169, 97, 0.3);
+    border-color: rgba(201, 169, 97, 0.6);
+    color: var(--color-terra);
+}
+
+.carousel-prev {
+    left: -70px;
+}
+
+.carousel-next {
+    right: -70px;
+}
+
+.carousel-indicators {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+}
+
+.carousel-counter {
+    font-size: 14px;
+    color: var(--color-gold);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-family: var(--font-sans);
 }
 
 .caso-card {
@@ -835,18 +888,12 @@ body {
     overflow: hidden;
     border-radius: 4px;
     aspect-ratio: 1 / 1;
-    cursor: pointer;
-    animation: scaleIn 0.8s ease-out forwards;
-    opacity: 0;
+    height: 500px;
 }
 
-.caso-card:nth-child(1) { animation-delay: 0.1s; }
-.caso-card:nth-child(2) { animation-delay: 0.2s; }
-.caso-card:nth-child(3) { animation-delay: 0.3s; }
-.caso-card:nth-child(4) { animation-delay: 0.4s; }
-.caso-card:nth-child(5) { animation-delay: 0.5s; }
-.caso-card:nth-child(6) { animation-delay: 0.6s; }
-.caso-card:nth-child(7) { animation-delay: 0.7s; }
+.caso-card.clickable {
+    cursor: pointer;
+}
 
 .caso-image-wrapper {
     width: 100%;
@@ -863,7 +910,7 @@ body {
 }
 
 .caso-card:hover .caso-image-wrapper img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .caso-overlay {
@@ -884,7 +931,7 @@ body {
 
 .caso-name {
     font-family: var(--font-serif);
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 400;
     margin-bottom: var(--spacing-xs);
     letter-spacing: -0.5px;
@@ -896,6 +943,14 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 500;
+    margin-bottom: var(--spacing-md);
+}
+
+.caso-cta {
+    font-size: 13px;
+    color: var(--color-terra);
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .caso-card::before {
@@ -912,6 +967,16 @@ body {
 
 .caso-card:hover::before {
     border-color: rgba(201, 169, 97, 0.5);
+}
+
+.section-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    letter-spacing: 0.3px;
+    animation: fadeIn 1s ease-in-out 0.5s both;
 }
 
 /* Footer */
@@ -1340,6 +1405,93 @@ footer p {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
+}
+
+/* CAMPAIGN MODAL */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--color-bg);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    padding: var(--spacing-2xl);
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: transparent;
+    border: none;
+    color: var(--color-gold);
+    font-size: 32px;
+    cursor: pointer;
+    transition: color var(--transition-default);
+    z-index: 1001;
+}
+
+.modal-close:hover {
+    color: var(--color-terra);
+}
+
+/* Carousel Responsive */
+@media (max-width: 768px) {
+    .carousel-slide {
+        min-height: 350px;
+    }
+
+    .caso-card {
+        height: 350px;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-prev {
+        left: 10px;
+    }
+
+    .carousel-next {
+        right: 10px;
+    }
+
+    .caso-name {
+        font-size: 22px;
+    }
+
+    .caso-overlay {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .modal-content {
+        max-width: 95vw;
+        max-height: 80vh;
+    }
+
+    .modal-close {
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+    }
 }
 
 /* RESPONSIVE PAGES */
