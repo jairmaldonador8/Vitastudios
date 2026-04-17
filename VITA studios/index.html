@@ -3,368 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crecimiento y Optimización para tu Negocio">
-    <meta name="og:title" content="VITA Studios | Crecimiento Personalizado">
-    <meta name="og:description" content="Optimización con IA, Consultoría Estratégica">
-    <meta name="og:image" content="https://vitastudios.com/og-image.jpg">
-    <title>VITA Studios | Crecimiento y Optimización para tu Negocio</title>
+    <title>VITA Studios | Crecimiento Personalizado</title>
 
-    <!-- Performance & SEO -->
-    <meta name="theme-color" content="#0a0a0a">
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="dns-prefetch" href="https://api.staticforms.com">
-    <link rel="dns-prefetch" href="https://mjotemmimojrscwcntwa.supabase.co">
-
-    <!-- Preload critical resources -->
-    <link rel="preload" as="style" href="styles.css">
-    <link rel="preload" as="script" href="script.js">
 
     <link rel="stylesheet" href="styles.css">
 </head>
-<body data-active-track="neutral">
-
-<header class="header" role="banner">
-    <div class="container">
-        <div class="logo">
-            <img src="logo.png" alt="VITA Studios" class="logo-img">
-        </div>
-        <nav class="nav" role="navigation" aria-label="Primary Navigation">
-            <ul>
-                <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="#casos" class="nav-link">Casos</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<section id="inicio" class="hero">
-    <div class="container hero-content">
-        <h2 class="hero-headline">Lleva tu Negocio al Siguiente Nivel</h2>
-        <p class="hero-subheadline">Estrategia, IA y Crecimiento Personalizado</p>
-
-        <div class="hero-cta-buttons">
-            <button class="btn btn-primary" data-track="medicos" data-action="select-track">
-                <span class="btn-label">Soy Profesional de Salud</span>
-                <span class="btn-emoji">⚕️</span>
-            </button>
-            <button class="btn btn-primary" data-track="retail" data-action="select-track">
-                <span class="btn-label">Tengo un Negocio</span>
-                <span class="btn-emoji">📈</span>
-            </button>
-        </div>
-    </div>
-</section>
-
-<section id="servicios" class="servicios">
-    <div class="container">
-        <h2 class="section-title">Nuestros Servicios</h2>
-
-        <!-- Track: Médicos -->
-        <div class="services-grid" data-track="medicos">
-            <article class="service-card">
-                <div class="service-icon">🏥</div>
-                <h3 class="service-title">Optimización Médica con IA</h3>
-                <p class="service-description">
-                    Automatiza procesos de tu práctica, mejora captación de pacientes y optimiza tu presencia digital.
-                </p>
-                <ul class="service-benefits">
-                    <li>Sitio web médico de alto rendimiento</li>
-                    <li>Captura de pacientes inteligente</li>
-                    <li>Branding profesional</li>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="VITA STUDIOS">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#inicio" class="nav-link">INICIO</a></li>
+                    <li><a href="#servicios" class="nav-link">SERVICIOS</a></li>
+                    <li><a href="#casos" class="nav-link">CASOS</a></li>
+                    <li><a href="#contacto" class="nav-link">CONTACTO</a></li>
                 </ul>
-            </article>
-
-            <article class="service-card">
-                <div class="service-icon">📋</div>
-                <h3 class="service-title">Consultoría Estratégica para Médicos</h3>
-                <p class="service-description">
-                    Análisis personalizado de tu práctica, oportunidades de crecimiento y acompañamiento en transformación.
-                </p>
-                <ul class="service-benefits">
-                    <li>Diagnóstico de tu práctica</li>
-                    <li>Estrategia de crecimiento</li>
-                    <li>Prospección de oportunidades</li>
-                </ul>
-            </article>
+            </nav>
         </div>
+    </header>
 
-        <!-- Track: Retail -->
-        <div class="services-grid" data-track="retail">
-            <article class="service-card">
-                <div class="service-icon">🤖</div>
-                <h3 class="service-title">Optimización Digital con IA</h3>
-                <p class="service-description">
-                    Potencia tu negocio retail con tecnología. Desde tu presencia digital hasta campañas inteligentes.
-                </p>
-                <ul class="service-benefits">
-                    <li>Sitio web optimizado para ventas</li>
-                    <li>Campañas de marketing inteligentes</li>
-                    <li>Presencia en redes potenciada</li>
-                </ul>
-            </article>
-
-            <article class="service-card">
-                <div class="service-icon">📊</div>
-                <h3 class="service-title">Consultoría de Crecimiento Retail</h3>
-                <p class="service-description">
-                    Estrategia personalizada para aumentar visibilidad, atraer clientes y crecer ventas.
-                </p>
-                <ul class="service-benefits">
-                    <li>Análisis de mercado</li>
-                    <li>Estrategia de posicionamiento</li>
-                    <li>Áreas de oportunidad</li>
-                </ul>
-            </article>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="logo.png" alt="VITA STUDIOS">
+            </div>
+            <div class="hero-subtitle">✦ Crecimiento Personalizado</div>
+            <h1 class="hero-headline">Lleva tu negocio al siguiente nivel</h1>
+            <p class="hero-subheadline">Estrategia, IA y Crecimiento Personalizado</p>
+            <button class="btn btn-primary" onclick="document.getElementById('servicios').scrollIntoView({behavior: 'smooth'})">EXPLORAR SERVICIOS</button>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="casos" class="casos">
-    <div class="container">
-        <h2 class="section-title">Casos de Éxito</h2>
+    <div class="divider"></div>
 
-        <!-- Track: Médicos -->
-        <div class="cases-grid" data-track="medicos">
-            <article class="case-card">
-                <div class="case-header">
-                    <h3 class="case-client">Dr. Cirujano Plástico</h3>
-                    <span class="case-service">Branding + Web</span>
+    <!-- CHOOSE PATH -->
+    <section class="choose-path">
+        <div class="container">
+            <h2 class="section-title reveal">¿Cuál es tu camino?</h2>
+            <div class="paths reveal">
+                <div class="path-card">
+                    <h3 class="service-title">⚕️ Profesional de Salud</h3>
+                    <p class="service-description">Optimización digital, captación de pacientes y branding profesional para tu práctica.</p>
                 </div>
-                <p class="case-result">
-                    <strong>+150%</strong> en captación de nuevos pacientes
-                </p>
-                <p class="case-description">
-                    Rediseño completo de presencia digital, sitio web optimizado y campañas de branding.
-                </p>
-            </article>
-
-            <article class="case-card">
-                <div class="case-header">
-                    <h3 class="case-client">Clínica Dental San Pedro</h3>
-                    <span class="case-service">Marketing + SEO</span>
-                </div>
-                <p class="case-result">
-                    <strong>+200%</strong> en consultas mensuales
-                </p>
-                <p class="case-description">
-                    Estrategia SEO + campañas digitales dirigidas. Resultados en 3 meses.
-                </p>
-            </article>
-
-            <article class="case-card">
-                <div class="case-header">
-                    <h3 class="case-client">Oftalmólogo Especialista</h3>
-                    <span class="case-service">Consultoría + Implementación</span>
-                </div>
-                <p class="case-result">
-                    <strong>+300%</strong> en visibilidad online
-                </p>
-                <p class="case-description">
-                    Diagnóstico, implementación de estrategia digital y acompañamiento mensual.
-                </p>
-            </article>
-        </div>
-
-        <!-- Track: Retail -->
-        <div class="cases-grid" data-track="retail">
-            <article class="case-card">
-                <div class="case-header">
-                    <h3 class="case-client">Tienda Centro Valle</h3>
-                    <span class="case-service">Marketing + Branding</span>
-                </div>
-                <p class="case-result">
-                    <strong>+85%</strong> en tráfico de tienda
-                </p>
-                <p class="case-description">
-                    Campaña de branding en redes, presencia digital integrada y estrategia de posicionamiento.
-                </p>
-            </article>
-
-            <article class="case-card">
-                <div class="case-header">
-                    <h3 class="case-client">San Pedro Centro Comercial</h3>
-                    <span class="case-service">Consultoría Estratégica</span>
-                </div>
-                <p class="case-result">
-                    <strong>+120%</strong> en visibilidad y captación
-                </p>
-                <p class="case-description">
-                    Análisis de mercado, prospección de oportunidades y plan de acción personalizado.
-                </p>
-            </article>
-
-            <article class="case-card">
-                <div class="case-header">
-                    <h3 class="case-client">VITA Estudios (Portfolio)</h3>
-                    <span class="case-service">Transformación Integral</span>
-                </div>
-                <p class="case-result">
-                    <strong>+250%</strong> en crecimiento anual
-                </p>
-                <p class="case-description">
-                    Posicionamiento, branding, web, marketing y consultoría integral del negocio.
-                </p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- Portfolio Carousel -->
-<section id="portfolio" class="portfolio-section">
-    <div class="container">
-        <h2 class="section-title">Nuestro Portafolio</h2>
-        <p class="portfolio-subtitle">Campañas de branding que transforman negocios</p>
-
-        <div class="carousel-container">
-            <button class="carousel-btn carousel-prev" id="prevBtn" aria-label="Anterior">&#10094;</button>
-
-            <div class="carousel-wrapper">
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="carousel-item active">
-                        <div class="case-image-wrapper">
-                            <img src="casos/01-doctor-wilber.png" class="case-image" data-full="casos/01-doctor-wilber.png" alt="Doctor Wilber">
-                        </div>
-                        <p class="case-name">Doctor Wilber</p>
-                        <p class="case-tag">Branding Médico</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="case-image-wrapper">
-                            <img src="casos/02-rosa-de-oro.png" class="case-image" data-full="casos/02-rosa-de-oro.png" alt="Rosa de Oro">
-                        </div>
-                        <p class="case-name">Rosa de Oro</p>
-                        <p class="case-tag">Branding &amp; Identidad</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="case-image-wrapper">
-                            <img src="casos/03-renace.png" class="case-image" data-full="casos/03-renace.png" alt="Renace">
-                        </div>
-                        <p class="case-name">Renace</p>
-                        <p class="case-tag">Campaña de Marca</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="case-image-wrapper">
-                            <img src="casos/04-hinaitu.png" class="case-image" data-full="casos/04-hinaitu.png" alt="Hinaitu">
-                        </div>
-                        <p class="case-name">Hinaitu</p>
-                        <p class="case-tag">Branding &amp; Identidad</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="case-image-wrapper">
-                            <img src="casos/05-doctora-vannia.png" class="case-image" data-full="casos/05-doctora-vannia.png" alt="Doctora Vannia">
-                        </div>
-                        <p class="case-name">Doctora Vannia Maldonado</p>
-                        <p class="case-tag">Branding Médico</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="case-image-wrapper">
-                            <img src="casos/06-doctor-jose-luis.png" class="case-image" data-full="casos/06-doctor-jose-luis.png" alt="Doctor Jose Luis">
-                        </div>
-                        <p class="case-name">Doctor Jose Luis Vivas</p>
-                        <p class="case-tag">Branding Médico</p>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="case-image-wrapper">
-                            <img src="casos/07-doctora-karen.png" class="case-image" data-full="casos/07-doctora-karen.png" alt="Doctora Karen">
-                        </div>
-                        <p class="case-name">Doctora Karen Astuñague</p>
-                        <p class="case-tag">Branding Médico</p>
-                    </div>
+                <div class="path-card">
+                    <h3 class="service-title">📈 Tengo un Negocio</h3>
+                    <p class="service-description">Estrategia de crecimiento, marketing digital y transformación con IA para tu empresa.</p>
                 </div>
             </div>
-
-            <button class="carousel-btn carousel-next" id="nextBtn" aria-label="Siguiente">&#10095;</button>
         </div>
+    </section>
 
-        <div class="carousel-indicators" id="indicators"></div>
-    </div>
-</section>
+    <div class="divider"></div>
 
-<!-- Modal para imagen completa -->
-<div id="imageModal" class="modal">
-    <span class="modal-close">&times;</span>
-    <img class="modal-content" id="modalImage" src="" alt="">
-    <p class="modal-name" id="modalName"></p>
-</div>
-
-<section id="contacto" class="contacto">
-    <div class="container">
-        <h2 class="section-title">Agenda tu Consulta</h2>
-        <p class="section-subtitle">Responderé en máximo 24 horas</p>
-
-        <form class="contact-form" id="contactForm">
-
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+    <!-- SERVICES -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title reveal">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <h3 class="service-title">Optimización Digital</h3>
+                    <p class="service-description">Sitios web de alto rendimiento, captación inteligente y presencia online profesional.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3 class="service-title">Consultoría Estratégica</h3>
+                    <p class="service-description">Análisis personalizado, oportunidades de crecimiento y acompañamiento en transformación.</p>
+                </div>
+                <div class="service-card reveal">
+                    <h3 class="service-title">Implementación IA</h3>
+                    <p class="service-description">Automatización de procesos, análisis inteligente y optimización con tecnología.</p>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="tu@email.com">
-            </div>
-
-            <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" required placeholder="+56 9 xxxx xxxx">
-            </div>
-
-            <div class="form-group">
-                <label for="servicio">Servicio de Interés</label>
-                <select id="servicio" name="servicio" required>
-                    <option value="">Selecciona un servicio</option>
-                    <option value="optimizacion">Optimización con IA</option>
-                    <option value="consultoria">Consultoría Estratégica</option>
-                    <option value="ambos">Ambos Servicios</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="mensaje">Cuéntame tu desafío</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿Cuál es tu principal desafío o meta?"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-submit">Enviar Consulta</button>
-
-            <div class="form-feedback" id="formFeedback"></div>
-        </form>
-    </div>
-</section>
-
-<footer class="footer">
-    <div class="container footer-content">
-        <div class="footer-section">
-            <h4>VITA Studios</h4>
-            <p>Crecimiento y optimización para tu negocio.</p>
         </div>
+    </section>
 
-        <div class="footer-section">
-            <h4>Enlaces</h4>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#casos">Casos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </div>
+    <div class="divider"></div>
 
-        <div class="footer-section">
-            <h4>Redes</h4>
-            <ul>
-                <li><a href="https://instagram.com/vitastudios" target="_blank">Instagram</a></li>
-                <li><a href="https://linkedin.com/company/vitastudios" target="_blank">LinkedIn</a></li>
-            </ul>
-        </div>
-    </div>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 VITA STUDIOS. CRECIMIENTO PERSONALIZADO.</p>
+    </footer>
 
-    <div class="footer-bottom">
-        <p>&copy; 2026 VITA Studios. Todos los derechos reservados.</p>
-    </div>
-</footer>
-
-    <script defer src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
