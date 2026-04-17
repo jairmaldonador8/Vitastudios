@@ -102,32 +102,34 @@ class CustomCursor {
  * ScrollReveal - Uses IntersectionObserver to reveal elements on scroll
  */
 class ScrollReveal {
-  constructor() {
-    this.elements = document.querySelectorAll('.reveal, .reveal-left');
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          this.observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    constructor() {
+        this.elements = document.querySelectorAll('.reveal, .reveal-left');
+        this.options = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        this.observer = new IntersectionObserver(this.observerCallback.bind(this), this.options);
+        this.init();
+    }
 
-    this.init();
-  }
+    init() {
+        this.elements.forEach(el => {
+            this.observer.observe(el);
+        });
+    }
 
-  init() {
-    this.elements.forEach((el) => {
-      this.observer.observe(el);
-    });
-  }
+    observerCallback(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('active')) {
+                entry.target.classList.add('active');
+                this.observer.unobserve(entry.target);
+            }
+        });
+    }
 
-  destroy() {
-    this.observer.disconnect();
-  }
+    destroy() {
+        this.observer.disconnect();
+    }
 }
 
 /**
