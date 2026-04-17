@@ -569,6 +569,7 @@ class PortfolioCarousel {
         this.items = document.querySelectorAll('.carousel-item');
         this.totalItems = this.items.length;
         this.autoRotateInterval = null;
+        this.isNavigating = false;
 
         this.init();
     }
@@ -576,8 +577,8 @@ class PortfolioCarousel {
     init() {
         this.createIndicators();
         this.updateCarousel();
-        this.prevBtn.addEventListener('click', () => { this.previous(); this.resetAutoRotate(); });
-        this.nextBtn.addEventListener('click', () => { this.next(); this.resetAutoRotate(); });
+        this.prevBtn.addEventListener('click', (e) => { e.preventDefault(); this.previous(); this.resetAutoRotate(); });
+        this.nextBtn.addEventListener('click', (e) => { e.preventDefault(); this.next(); this.resetAutoRotate(); });
         this.setupImageClickListeners();
         this.modalClose.addEventListener('click', () => this.closeModal());
         this.modal.addEventListener('click', (e) => {
@@ -588,6 +589,12 @@ class PortfolioCarousel {
         const wrapper = document.querySelector('.carousel-wrapper');
         wrapper.addEventListener('mouseenter', () => this.stopAutoRotate());
         wrapper.addEventListener('mouseleave', () => this.startAutoRotate());
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') this.navigateWithKey(() => this.previous());
+            if (e.key === 'ArrowRight') this.navigateWithKey(() => this.next());
+        });
 
         this.startAutoRotate();
     }
@@ -623,6 +630,14 @@ class PortfolioCarousel {
     goToSlide(index) {
         this.currentIndex = index;
         this.updateCarousel();
+    }
+
+    navigateWithKey(callback) {
+        if (this.isNavigating) return;
+        this.isNavigating = true;
+        callback();
+        this.resetAutoRotate();
+        setTimeout(() => { this.isNavigating = false; }, 500);
     }
 
     startAutoRotate() {
