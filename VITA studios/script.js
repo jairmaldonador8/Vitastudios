@@ -551,105 +551,140 @@ document.querySelectorAll('.service-card, .case-card, .section-title').forEach(e
     observer.observe(element);
 });
 
-// Portfolio Carousel
+// Portfolio Carousel with Featured Image + Thumbnails
 class PortfolioCarousel {
     constructor() {
-        this.carouselTrack = document.getElementById('carouselTrack');
+        this.thumbnailsTrack = document.getElementById('thumbnailsTrack');
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
-        this.indicatorsContainer = document.getElementById('indicators');
+        this.featuredImage = document.getElementById('featuredImage');
+        this.featuredName = document.getElementById('featuredName');
         this.modal = document.getElementById('imageModal');
         this.modalImage = document.getElementById('modalImage');
         this.modalName = document.getElementById('modalName');
         this.modalClose = document.querySelector('.modal-close');
+        this.featuredImageWrapper = document.querySelector('.featured-image-wrapper');
 
-        if (!this.carouselTrack) return;
+        if (!this.thumbnailsTrack || !this.featuredImage) return;
 
         this.currentIndex = 0;
-        this.items = document.querySelectorAll('.carousel-item');
-        this.totalItems = this.items.length;
+        this.thumbnails = document.querySelectorAll('.thumbnail-item');
+        this.totalItems = this.thumbnails.length;
+        this.scrollPosition = 0;
+        this.itemWidth = 120; // 100px + gap
+        this.visibleItems = 5;
 
         this.init();
     }
 
     init() {
-        this.createIndicators();
-        this.updateCarousel();
-        this.prevBtn.addEventListener('click', () => this.previous());
-        this.nextBtn.addEventListener('click', () => this.next());
-        this.setupImageClickListeners();
+        // Setup thumbnail click listeners
+        this.thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => this.selectThumbnail(index));
+            thumbnail.addEventListener('click', () => this.openModalForThumbnail(thumbnail));
+        });
+
+        // Setup navigation buttons
+        this.prevBtn.addEventListener('click', () => this.scrollThumbnails('prev'));
+        this.nextBtn.addEventListener('click', () => this.scrollThumbnails('next'));
+
+        // Setup featured image click
+        this.featuredImageWrapper.addEventListener('click', () => this.openModalForFeatured());
+
+        // Setup modal close
         this.modalClose.addEventListener('click', () => this.closeModal());
         this.modal.addEventListener('click', (e) => {
             if (e.target === this.modal) this.closeModal();
         });
 
-        // Auto-rotate carousel every 5 seconds
-        setInterval(() => this.next(), 5000);
+        // Initialize first thumbnail as active
+        this.selectThumbnail(0);
     }
 
-    createIndicators() {
-        for (let i = 0; i < this.totalItems; i++) {
-            const indicator = document.createElement('div');
-            indicator.className = 'indicator';
-            if (i === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => this.goToSlide(i));
-            this.indicatorsContainer.appendChild(indicator);
-        }
-    }
-
-    updateCarousel() {
-        // Update items visibility
-        this.items.forEach((item, index) => {
-            if (index === this.currentIndex) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
-        });
-
-        // Update indicators
-        document.querySelectorAll('.indicator').forEach((ind, index) => {
-            if (index === this.currentIndex) {
-                ind.classList.add('active');
-            } else {
-                ind.classList.remove('active');
-            }
-        });
-
-        // Move carousel track
-        const offset = -this.currentIndex * 100;
-        this.carouselTrack.style.transform = `translateX(${offset}%)`;
-    }
-
-    next() {
-        this.currentIndex = (this.currentIndex + 1) % this.totalItems;
-        this.updateCarousel();
-    }
-
-    previous() {
-        this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
-        this.updateCarousel();
-    }
-
-    goToSlide(index) {
+    selectThumbnail(index) {
         this.currentIndex = index;
-        this.updateCarousel();
+
+        // Update active state on thumbnails
+        this.thumbnails.forEach((thumb, i) => {
+            if (i === index) {
+                thumb.classList.add('active');
+            } else {
+                thumb.classList.remove('active');
+            }
+        });
+
+        // Update featured image
+        const selectedThumbnail = this.thumbnails[index].querySelector('.thumbnail');
+        const fullImageSrc = selectedThumbnail.getAttribute('data-full');
+        const caseName = selectedThumbnail.getAttribute('data-name');
+
+        this.featuredImage.src = fullImageSrc;
+        this.featuredName.textContent = caseName;
+
+        // Animate featured image update
+        this.featuredImage.style.animation = 'none';
+        setTimeout(() => {
+            this.featuredImage.style.animation = 'fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+        }, 10);
+
+        // Scroll to make thumbnail visible
+        this.ensureThumbnailVisible(index);
     }
 
-    setupImageClickListeners() {
-        document.querySelectorAll('.case-image').forEach(img => {
-            img.addEventListener('click', (e) => {
-                const fullImageSrc = img.getAttribute('data-full');
-                const caseName = img.parentElement.nextElementSibling.textContent;
-                this.openModal(fullImageSrc, caseName);
-            });
-        });
+    ensureThumbnailVisible(index) {
+        const trackRect = this.thumbnailsTrack.parentElement.getBoundingClientRect();
+        const itemPosition = index * this.itemWidth;
+        const trackPosition = this.scrollPosition;
+
+        if (itemPosition < trackPosition) {
+            this.scrollPosition = itemPosition;
+        } else if (itemPosition + this.itemWidth > trackPosition + trackRect.width - 40) {
+            this.scrollPosition = itemPosition + this.itemWidth - trackRect.width + 40;
+        }
+
+        this.updateTrackPosition();
+    }
+
+    scrollThumbnails(direction) {
+        const containerWidth = this.thumbnailsTrack.parentElement.offsetWidth - 40;
+        const maxScroll = Math.max(0, this.totalItems * this.itemWidth - containerWidth);
+
+        if (direction === 'next') {
+            this.scrollPosition = Math.min(maxScroll, this.scrollPosition + this.itemWidth * 2);
+        } else {
+            this.scrollPosition = Math.max(0, this.scrollPosition - this.itemWidth * 2);
+        }
+
+        this.updateTrackPosition();
+    }
+
+    updateTrackPosition() {
+        this.thumbnailsTrack.style.transform = `translateX(-${this.scrollPosition}px)`;
+    }
+
+    openModalForThumbnail(thumbnail) {
+        const img = thumbnail.querySelector('.thumbnail');
+        const fullSrc = img.getAttribute('data-full');
+        const name = img.getAttribute('data-name');
+        this.openModal(fullSrc, name);
+    }
+
+    openModalForFeatured() {
+        this.openModal(this.featuredImage.src, this.featuredName.textContent);
     }
 
     openModal(imageSrc, caseName) {
         this.modalImage.src = imageSrc;
         this.modalName.textContent = caseName;
         this.modal.classList.add('show');
+
+        // Add animation to modal content
+        const modalContent = this.modal.querySelector('.modal-content');
+        modalContent.style.animation = 'none';
+        setTimeout(() => {
+            modalContent.style.animation = 'modalSlideInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+        }, 10);
+
         document.body.style.overflow = 'hidden';
     }
 
