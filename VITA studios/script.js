@@ -551,7 +551,7 @@ document.querySelectorAll('.service-card, .case-card, .section-title').forEach(e
     observer.observe(element);
 });
 
-// Portfolio Carousel
+// Portfolio Carousel - Elegant Fade Overlay
 class PortfolioCarousel {
     constructor() {
         this.carouselTrack = document.getElementById('carouselTrack');
@@ -568,6 +568,7 @@ class PortfolioCarousel {
         this.currentIndex = 0;
         this.items = document.querySelectorAll('.carousel-item');
         this.totalItems = this.items.length;
+        this.autoRotateInterval = null;
 
         this.init();
     }
@@ -575,50 +576,38 @@ class PortfolioCarousel {
     init() {
         this.createIndicators();
         this.updateCarousel();
-        this.prevBtn.addEventListener('click', () => this.previous());
-        this.nextBtn.addEventListener('click', () => this.next());
+        this.prevBtn.addEventListener('click', () => { this.previous(); this.resetAutoRotate(); });
+        this.nextBtn.addEventListener('click', () => { this.next(); this.resetAutoRotate(); });
         this.setupImageClickListeners();
         this.modalClose.addEventListener('click', () => this.closeModal());
         this.modal.addEventListener('click', (e) => {
             if (e.target === this.modal) this.closeModal();
         });
 
-        // Auto-rotate carousel every 5 seconds
-        setInterval(() => this.next(), 5000);
+        // Pause on hover
+        const wrapper = document.querySelector('.carousel-wrapper');
+        wrapper.addEventListener('mouseenter', () => this.stopAutoRotate());
+        wrapper.addEventListener('mouseleave', () => this.startAutoRotate());
+
+        this.startAutoRotate();
     }
 
     createIndicators() {
         for (let i = 0; i < this.totalItems; i++) {
             const indicator = document.createElement('div');
-            indicator.className = 'indicator';
-            if (i === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => this.goToSlide(i));
+            indicator.className = 'indicator' + (i === 0 ? ' active' : '');
+            indicator.addEventListener('click', () => { this.goToSlide(i); this.resetAutoRotate(); });
             this.indicatorsContainer.appendChild(indicator);
         }
     }
 
     updateCarousel() {
-        // Update items visibility
         this.items.forEach((item, index) => {
-            if (index === this.currentIndex) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
+            item.classList.toggle('active', index === this.currentIndex);
         });
-
-        // Update indicators
         document.querySelectorAll('.indicator').forEach((ind, index) => {
-            if (index === this.currentIndex) {
-                ind.classList.add('active');
-            } else {
-                ind.classList.remove('active');
-            }
+            ind.classList.toggle('active', index === this.currentIndex);
         });
-
-        // Move carousel track
-        const offset = -this.currentIndex * 100;
-        this.carouselTrack.style.transform = `translateX(${offset}%)`;
     }
 
     next() {
@@ -636,11 +625,24 @@ class PortfolioCarousel {
         this.updateCarousel();
     }
 
+    startAutoRotate() {
+        this.autoRotateInterval = setInterval(() => this.next(), 5000);
+    }
+
+    stopAutoRotate() {
+        clearInterval(this.autoRotateInterval);
+    }
+
+    resetAutoRotate() {
+        this.stopAutoRotate();
+        this.startAutoRotate();
+    }
+
     setupImageClickListeners() {
         document.querySelectorAll('.case-image').forEach(img => {
-            img.addEventListener('click', (e) => {
+            img.addEventListener('click', () => {
                 const fullImageSrc = img.getAttribute('data-full');
-                const caseName = img.parentElement.nextElementSibling.textContent;
+                const caseName = img.closest('.carousel-item').querySelector('.case-name').textContent;
                 this.openModal(fullImageSrc, caseName);
             });
         });
@@ -651,11 +653,13 @@ class PortfolioCarousel {
         this.modalName.textContent = caseName;
         this.modal.classList.add('show');
         document.body.style.overflow = 'hidden';
+        this.stopAutoRotate();
     }
 
     closeModal() {
         this.modal.classList.remove('show');
         document.body.style.overflow = 'auto';
+        this.startAutoRotate();
     }
 }
 
