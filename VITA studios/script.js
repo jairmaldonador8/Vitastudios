@@ -969,6 +969,104 @@ class CasosCarousel {
     }
 }
 
+/**
+ * LeadPopup - Manages the lead magnet popup trigger and form submission
+ */
+class LeadPopup {
+  constructor() {
+    this.popupElement = document.getElementById('lead-popup');
+    this.popupForm = document.getElementById('popup-form');
+    this.popupClose = document.querySelector('.popup-close');
+    this.isOpen = false;
+    this.triggerDelay = 10000; // 10 seconds
+    this.dismissedKey = 'vita_popup_dismissed';
+
+    if (this.popupElement) {
+      this.init();
+    }
+  }
+
+  init() {
+    // Check if popup was previously dismissed
+    if (this.isDismissed()) {
+      return;
+    }
+
+    // Set timeout to show popup after 10 seconds
+    setTimeout(() => this.show(), this.triggerDelay);
+
+    // Add close button click listener
+    if (this.popupClose) {
+      this.popupClose.addEventListener('click', () => this.close());
+    }
+
+    // Add background click listener
+    this.popupElement.addEventListener('click', (e) => {
+      if (e.target === this.popupElement) {
+        this.close();
+      }
+    });
+
+    // Add ESC key listener
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isOpen) {
+        this.close();
+      }
+    });
+
+    // Add form submit listener
+    if (this.popupForm) {
+      this.popupForm.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+  }
+
+  show() {
+    this.popupElement.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    this.isOpen = true;
+  }
+
+  close() {
+    this.popupElement.classList.remove('active');
+    document.body.style.overflow = '';
+    this.isOpen = false;
+    this.setDismissed();
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('popup-name');
+    const emailInput = document.getElementById('popup-email');
+
+    const lead = {
+      name: nameInput.value,
+      email: emailInput.value,
+      source: 'popup'
+    };
+
+    // Get existing leads from localStorage
+    const leads = JSON.parse(localStorage.getItem('vita_leads')) || [];
+
+    // Add new lead
+    leads.push(lead);
+
+    // Save back to localStorage
+    localStorage.setItem('vita_leads', JSON.stringify(leads));
+
+    // Redirect to lead magnet page
+    window.location.href = 'lead-magnet.html';
+  }
+
+  setDismissed() {
+    localStorage.setItem(this.dismissedKey, 'true');
+  }
+
+  isDismissed() {
+    return localStorage.getItem(this.dismissedKey) === 'true';
+  }
+}
+
 // Initialize carousel when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.carousel-container')) {
@@ -977,4 +1075,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('campaign-modal')) {
         new CampaignModal();
     }
+    new LeadPopup();
 });
