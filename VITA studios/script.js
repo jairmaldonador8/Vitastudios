@@ -693,43 +693,43 @@ const campaignsData = {
         id: 1,
         name: 'Doctor Wilber',
         category: 'Profesional de Salud',
-        image: 'campañas/01-doctor-wilber.jpg'
+        image: 'campañas/Doctor Wilber.jpg'
     },
     2: {
         id: 2,
         name: 'Rosa de Oro',
         category: 'E-commerce',
-        image: 'campañas/02-rosa-de-oro.gif'
+        image: 'campañas/Rosa de Oro.gif'
     },
     3: {
         id: 3,
         name: 'Renace',
         category: 'Bienestar',
-        image: 'campañas/03-renace.gif'
+        image: 'campañas/Renace.gif'
     },
     4: {
         id: 4,
         name: 'Hinaitu',
         category: 'Consultoría',
-        image: 'campañas/04-hinaitu.gif'
+        image: 'campañas/HINAITU.gif'
     },
     5: {
         id: 5,
         name: 'Dra. Vannia',
         category: 'Profesional de Salud',
-        image: 'campañas/05-doctora-vannia.png'
+        image: 'campañas/Doctora Vannia Maldonado.png'
     },
     6: {
         id: 6,
         name: 'Dr. José Luis',
         category: 'Profesional de Salud',
-        image: 'campañas/06-doctor-jose-luis.png'
+        image: 'campañas/Doctor Jose Luis vivas.png'
     },
     7: {
         id: 7,
         name: 'Dra. Karen',
         category: 'Profesional de Salud',
-        image: 'campañas/07-doctora-karen.gif'
+        image: 'campañas/Doctora Karen Astuñague.gif'
     }
 };
 
