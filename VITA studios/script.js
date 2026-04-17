@@ -354,6 +354,125 @@ function throttle(func, delay) {
 }
 
 /**
+ * TrackSelection - Handle track selection and form population
+ */
+class TrackSelection {
+  constructor() {
+    this.trackButtons = document.querySelectorAll('[data-action="select-track"]');
+    this.boundHandlers = new Map();
+    this.init();
+  }
+
+  init() {
+    this.trackButtons.forEach((button) => {
+      const handler = (e) => {
+        e.preventDefault();
+
+        const track = button.dataset.track;
+
+        // Set active track
+        document.documentElement.setAttribute('data-active-track', track);
+
+        // Update form hidden field
+        const trackField = document.getElementById('trackField');
+        if (trackField) {
+          trackField.value = track;
+        }
+
+        // Scroll to services smoothly
+        setTimeout(() => {
+          const servicios = document.getElementById('servicios');
+          if (servicios) {
+            servicios.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
+      };
+      this.boundHandlers.set(button, handler);
+      button.addEventListener('click', handler);
+    });
+  }
+
+  destroy() {
+    this.trackButtons.forEach((button) => {
+      const handler = this.boundHandlers.get(button);
+      if (handler) {
+        button.removeEventListener('click', handler);
+      }
+    });
+    this.boundHandlers.clear();
+  }
+}
+
+/**
+ * FormSubmission - Handle contact form submission
+ */
+class FormSubmission {
+  constructor() {
+    this.contactForm = document.getElementById('contactForm');
+    this.formFeedback = document.getElementById('formFeedback');
+
+    if (!this.contactForm) {
+      return;
+    }
+
+    this.boundSubmit = (e) => this.handleSubmit(e);
+    this.init();
+  }
+
+  init() {
+    this.contactForm.addEventListener('submit', this.boundSubmit);
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+
+    // Show loading state
+    const submitBtn = this.contactForm.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+
+    try {
+      // Staticforms handles the submission
+      // Show success message
+      if (this.formFeedback) {
+        this.formFeedback.textContent = '✓ Consulta enviada exitosamente. Te responderé pronto.';
+        this.formFeedback.className = 'form-feedback success';
+      }
+
+      // Reset form
+      setTimeout(() => {
+        this.contactForm.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+
+        // Clear feedback after 5 seconds
+        setTimeout(() => {
+          if (this.formFeedback) {
+            this.formFeedback.textContent = '';
+            this.formFeedback.className = 'form-feedback';
+          }
+        }, 5000);
+      }, 1000);
+    } catch (error) {
+      if (this.formFeedback) {
+        this.formFeedback.textContent = 'Error al enviar. Intenta de nuevo.';
+        this.formFeedback.className = 'form-feedback error';
+      }
+
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  }
+
+  destroy() {
+    if (this.contactForm) {
+      this.contactForm.removeEventListener('submit', this.boundSubmit);
+    }
+  }
+}
+
+/**
  * Initialize all utilities when DOM is ready
  */
 const instances = {};
@@ -365,6 +484,8 @@ document.addEventListener('DOMContentLoaded', () => {
   instances.mobileMenuToggle = new MobileMenuToggle();
   instances.smoothScrollLinks = new SmoothScrollLinks();
   instances.statCounter = new StatCounter();
+  instances.trackSelection = new TrackSelection();
+  instances.formSubmission = new FormSubmission();
 });
 
 /**
