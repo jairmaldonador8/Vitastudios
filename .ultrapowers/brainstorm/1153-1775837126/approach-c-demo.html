@@ -1,0 +1,243 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #000;
+    color: #FFF;
+    font-family: Outfit, sans-serif;
+  }
+
+  /* Hero Section (shrinks on scroll) */
+  .hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(196, 80, 58, 0.15), rgba(0, 0, 0, 0));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: all 0.1s ease-out;
+  }
+
+  .hero.scrolled {
+    height: 80px;
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 1px solid rgba(196, 80, 58, 0.2);
+  }
+
+  .hero-logo {
+    font-size: 120px;
+    font-weight: 900;
+    color: #C4503A;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+    transition: all 0.1s ease-out;
+  }
+
+  .hero.scrolled .hero-logo {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+    z-index: 51;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+  }
+
+  .nav-links.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #C4503A;
+  }
+
+  /* Content Container (starts below hero) */
+  .content {
+    position: relative;
+    z-index: 40;
+    width: 100%;
+    min-height: 400vh;
+  }
+
+  /* Content Sections */
+  .section {
+    min-height: 100vh;
+    padding: 120px 40px;
+    border-bottom: 1px solid rgba(196, 80, 58, 0.2);
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    animation: slideInFade 0.8s ease-out forwards;
+  }
+
+  .section:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+
+  .section:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  .section:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  .section:nth-child(4) {
+    animation-delay: 0.8s;
+  }
+
+  .section-content {
+    max-width: 700px;
+  }
+
+  .section h2 {
+    font-size: 48px;
+    color: #C4503A;
+    margin: 0 0 20px 0;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  .section p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+  }
+
+  @keyframes slideInFade {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .scroll-hint {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #C4503A;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: bounce 2s ease-in-out infinite, fadeOut 0.6s ease-out 4s forwards;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<div class="hero" id="heroSection">
+  <div class="hero-logo">VITA</div>
+</div>
+
+<nav class="nav-links" id="navLinks">
+  <li><a href="#servicios">Servicios</a></li>
+  <li><a href="#paquetes">Paquetes</a></li>
+  <li><a href="#contacto">Contacto</a></li>
+</nav>
+
+<div class="content">
+  <section class="section">
+    <div class="section-content">
+      <h2>Fotografía Profesional</h2>
+      <p>Capturamos la esencia de tu marca con fotografía de estudio de calidad profesional. Cada sesión está diseñada para resaltar la identidad visual única de tu empresa.</p>
+      <p style="margin-top: 20px; opacity: 0.6;">Explora nuestros servicios mientras scrolleas. El logo se transforma en navegación automáticamente.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <h2>Servicios Premium</h2>
+      <p>Ofrecemos sesiones fotográficas personalizadas diseñadas específicamente para tus necesidades. Desde retratos corporativos hasta sesiones de productos, contamos con la experiencia y equipo necesario para hacer realidad tu visión.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <h2>Paquetes Flexibles</h2>
+      <p>Elige el paquete que mejor se adapte a tu proyecto. Tenemos opciones para todos los presupuestos, desde sesiones individuales hasta proyectos corporativos completos con múltiples locaciones y ediciones profesionales.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-content">
+      <h2>Comienza Hoy</h2>
+      <p>¿Listo para darle vida a tu visión? Contáctanos hoy mismo y hagamos realidad tu proyecto fotográfico. Estamos aquí para convertir tus ideas en imágenes impactantes que resuenen con tu audiencia.</p>
+    </div>
+  </section>
+</div>
+
+<div class="scroll-hint">
+  ↓ Scroll
+</div>
+
+<script>
+  const heroSection = document.getElementById('heroSection');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const heroHeight = window.innerHeight;
+
+    if (scrollTop > heroHeight * 0.2) {
+      heroSection.classList.add('scrolled');
+      navLinks.classList.add('visible');
+    } else {
+      heroSection.classList.remove('scrolled');
+      navLinks.classList.remove('visible');
+    }
+  });
+</script>

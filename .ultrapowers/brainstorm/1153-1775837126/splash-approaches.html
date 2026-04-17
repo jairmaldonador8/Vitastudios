@@ -1,0 +1,84 @@
+<h2>Splash Screen Approaches</h2>
+<p class="subtitle">How should the logo splash work and transition to content?</p>
+
+<div class="options">
+  <div class="option" data-choice="fade-out" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Fade Out Splash</h3>
+      <p>Logo fills the screen (2-3 sec), then fades out. Reveals the page with scroll animations. No navigation visible on splash.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Clean, dramatic entrance</li>
+            <li>Clear loading phase</li>
+            <li>Easy to understand</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Forces users to wait</li>
+            <li>Less interactive feel</li>
+            <li>Harder on mobile (time feels long)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="scroll-reveal" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Scroll Reveal</h3>
+      <p>Logo stays at top of page. User scrolls to reveal content beneath. Navigation hidden until scroll. More interactive.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>No waiting required</li>
+            <li>Interactive & engaging</li>
+            <li>Guides user to scroll</li>
+            <li>Works well on mobile</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Logo might feel "stuck"</li>
+            <li>Less of a splash moment</li>
+            <li>Need clear scroll hint</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="hero-transition" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Hero Transition</h3>
+      <p>Logo is large hero section at top. As you scroll, logo scales down & moves to nav. Content animates in. Smooth integration.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Sophisticated feel</li>
+            <li>Logo becomes nav</li>
+            <li>No "loading" wait</li>
+            <li>Modern web pattern</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>More complex to code</li>
+            <li>Mobile can feel cramped</li>
+            <li>Subtle effect (less dramatic)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

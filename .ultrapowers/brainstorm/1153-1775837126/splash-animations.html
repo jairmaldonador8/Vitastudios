@@ -1,0 +1,225 @@
+<h2>Splash Approaches Animated</h2>
+<p class="subtitle">See each approach in action. Each mockup auto-plays and loops.</p>
+
+<style>
+  .mockup-demo {
+    margin: 40px 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .demo-viewport {
+    width: 100%;
+    height: 300px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Approach A: Fade Out */
+  .logo {
+    font-size: 48px;
+    font-weight: bold;
+    color: #C4503A;
+    letter-spacing: 2px;
+  }
+
+  .fade-out-demo .logo {
+    animation: fadeOutSplash 4s ease-in-out infinite;
+  }
+
+  @keyframes fadeOutSplash {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  /* Approach B: Scroll Reveal */
+  .scroll-reveal-demo {
+    height: 600px;
+    background: linear-gradient(to bottom, #000 0%, #000 300px, #0A0A0A 300px, #0A0A0A 100%);
+    position: relative;
+    overflow: auto;
+  }
+
+  .scroll-reveal-demo .logo {
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+  }
+
+  .reveal-content {
+    padding: 400px 20px 40px;
+    text-align: center;
+    opacity: 0;
+    animation: revealSlideIn 0.8s ease-out 3s forwards;
+  }
+
+  .reveal-content h3 {
+    color: #E06B52;
+    margin: 20px 0 10px;
+    font-size: 20px;
+  }
+
+  @keyframes revealSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+
+  /* Approach C: Hero Transition */
+  .hero-transition-demo {
+    height: 600px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(196, 80, 58, 0.1), rgba(224, 107, 82, 0.05));
+    animation: heroShrink 4s ease-in-out infinite;
+  }
+
+  .hero-section .logo {
+    animation: logoScale 4s ease-in-out infinite;
+  }
+
+  @keyframes heroShrink {
+    0% { height: 300px; }
+    60% { height: 300px; }
+    100% { height: 60px; }
+  }
+
+  @keyframes logoScale {
+    0% { font-size: 48px; }
+    60% { font-size: 48px; }
+    100% { font-size: 24px; }
+  }
+
+  .hero-content {
+    padding: 20px;
+    opacity: 0;
+    animation: contentFade 0.8s ease-out 2.5s forwards;
+  }
+
+  @keyframes contentFade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .demo-label {
+    padding: 12px 20px;
+    background: rgba(196, 80, 58, 0.2);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(196, 80, 58, 0.3);
+  }
+
+  .demo-buttons {
+    padding: 12px 20px;
+    display: flex;
+    gap: 12px;
+  }
+
+  button {
+    flex: 1;
+    padding: 8px 16px;
+    background: rgba(196, 80, 58, 0.2);
+    border: 1px solid #C4503A;
+    color: #C4503A;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: all 0.2s;
+  }
+
+  button:hover {
+    background: #C4503A;
+    color: #000;
+  }
+
+  button.selected {
+    background: #C4503A;
+    color: #000;
+  }
+</style>
+
+<!-- Approach A: Fade Out Splash -->
+<div class="mockup-demo">
+  <div class="demo-label">A. Fade Out Splash</div>
+  <div class="demo-viewport fade-out-demo">
+    <div class="logo">VITA</div>
+  </div>
+  <div class="demo-buttons">
+    <button onclick="toggleSelect(this); this.parentElement.parentElement.scrollIntoView();">Select Approach A</button>
+  </div>
+</div>
+
+<!-- Approach B: Scroll Reveal -->
+<div class="mockup-demo">
+  <div class="demo-label">B. Scroll Reveal</div>
+  <div class="demo-viewport scroll-reveal-demo">
+    <div class="logo">VITA</div>
+    <div class="scroll-indicator">↓</div>
+    <div class="reveal-content">
+      <h3>Services</h3>
+      <p>Your content appears as you scroll</p>
+    </div>
+  </div>
+  <div class="demo-buttons">
+    <button onclick="toggleSelect(this); this.parentElement.parentElement.scrollIntoView();">Select Approach B</button>
+  </div>
+</div>
+
+<!-- Approach C: Hero Transition -->
+<div class="mockup-demo">
+  <div class="demo-label">C. Hero Transition</div>
+  <div class="demo-viewport hero-transition-demo">
+    <div class="hero-section">
+      <div class="logo">VITA</div>
+    </div>
+    <div class="hero-content">
+      <h3 style="color: #E06B52; margin-top: 20px;">Content reveals as you scroll</h3>
+      <p>Logo becomes navigation</p>
+    </div>
+  </div>
+  <div class="demo-buttons">
+    <button onclick="toggleSelect(this); this.parentElement.parentElement.scrollIntoView();">Select Approach C</button>
+  </div>
+</div>

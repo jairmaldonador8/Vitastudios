@@ -550,3 +550,116 @@ document.querySelectorAll('.service-card, .case-card, .section-title').forEach(e
     element.classList.add('scroll-animate');
     observer.observe(element);
 });
+
+// Portfolio Carousel
+class PortfolioCarousel {
+    constructor() {
+        this.carouselTrack = document.getElementById('carouselTrack');
+        this.prevBtn = document.getElementById('prevBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+        this.indicatorsContainer = document.getElementById('indicators');
+        this.modal = document.getElementById('imageModal');
+        this.modalImage = document.getElementById('modalImage');
+        this.modalName = document.getElementById('modalName');
+        this.modalClose = document.querySelector('.modal-close');
+
+        if (!this.carouselTrack) return;
+
+        this.currentIndex = 0;
+        this.items = document.querySelectorAll('.carousel-item');
+        this.totalItems = this.items.length;
+
+        this.init();
+    }
+
+    init() {
+        this.createIndicators();
+        this.updateCarousel();
+        this.prevBtn.addEventListener('click', () => this.previous());
+        this.nextBtn.addEventListener('click', () => this.next());
+        this.setupImageClickListeners();
+        this.modalClose.addEventListener('click', () => this.closeModal());
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) this.closeModal();
+        });
+
+        // Auto-rotate carousel every 5 seconds
+        setInterval(() => this.next(), 5000);
+    }
+
+    createIndicators() {
+        for (let i = 0; i < this.totalItems; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => this.goToSlide(i));
+            this.indicatorsContainer.appendChild(indicator);
+        }
+    }
+
+    updateCarousel() {
+        // Update items visibility
+        this.items.forEach((item, index) => {
+            if (index === this.currentIndex) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+
+        // Update indicators
+        document.querySelectorAll('.indicator').forEach((ind, index) => {
+            if (index === this.currentIndex) {
+                ind.classList.add('active');
+            } else {
+                ind.classList.remove('active');
+            }
+        });
+
+        // Move carousel track
+        const offset = -this.currentIndex * 100;
+        this.carouselTrack.style.transform = `translateX(${offset}%)`;
+    }
+
+    next() {
+        this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+        this.updateCarousel();
+    }
+
+    previous() {
+        this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+        this.updateCarousel();
+    }
+
+    goToSlide(index) {
+        this.currentIndex = index;
+        this.updateCarousel();
+    }
+
+    setupImageClickListeners() {
+        document.querySelectorAll('.case-image').forEach(img => {
+            img.addEventListener('click', (e) => {
+                const fullImageSrc = img.getAttribute('data-full');
+                const caseName = img.parentElement.nextElementSibling.textContent;
+                this.openModal(fullImageSrc, caseName);
+            });
+        });
+    }
+
+    openModal(imageSrc, caseName) {
+        this.modalImage.src = imageSrc;
+        this.modalName.textContent = caseName;
+        this.modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+        this.modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Initialize carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new PortfolioCarousel();
+});

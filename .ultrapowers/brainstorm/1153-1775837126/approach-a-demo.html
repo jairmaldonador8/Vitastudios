@@ -1,0 +1,294 @@
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: Outfit, sans-serif;
+    overflow: hidden;
+  }
+
+  .demo-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* Splash Screen */
+  .splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: splashFadeOut 4s ease-in-out forwards;
+  }
+
+  .splash-logo {
+    font-size: 120px;
+    font-weight: 900;
+    color: #C4503A;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+    animation: logoEntry 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes logoEntry {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes splashFadeOut {
+    0% {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    70% {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    100% {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  /* Main Content (appears after splash) */
+  .main-content {
+    width: 100%;
+    height: 100vh;
+    padding-top: 80px;
+    background: #000;
+    overflow-y: auto;
+    opacity: 0;
+    animation: fadeInContent 0.8s ease-out 3.2s forwards;
+  }
+
+  @keyframes fadeInContent {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Navigation (hidden during splash, appears after) */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: navFadeIn 0.6s ease-out 3.2s forwards;
+  }
+
+  @keyframes navFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .nav-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #C4503A;
+    letter-spacing: 2px;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #C4503A;
+  }
+
+  /* Content Sections */
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(196, 80, 58, 0.05), rgba(0, 0, 0, 0));
+    border-bottom: 1px solid rgba(196, 80, 58, 0.2);
+    animation: slideInUp 0.8s ease-out 3.2s backwards;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 72px;
+    color: #FFF;
+    margin: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 20px;
+  }
+
+  .section {
+    min-height: 50vh;
+    padding: 80px 40px;
+    border-bottom: 1px solid rgba(196, 80, 58, 0.2);
+    animation: slideInUp 0.8s ease-out forwards;
+  }
+
+  .section:nth-child(3) {
+    animation-delay: 3.4s;
+  }
+
+  .section:nth-child(4) {
+    animation-delay: 3.6s;
+  }
+
+  .section h2 {
+    font-size: 48px;
+    color: #C4503A;
+    margin: 0 0 20px 0;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  .section p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  @keyframes slideInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .scroll-hint {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: hintFade 0.6s ease-out 4s forwards;
+    animation: hintFade 0.6s ease-out 4s forwards, bounce 2s ease-in-out 5s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes hintFade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  .scroll-hint-text {
+    font-size: 12px;
+    color: #C4503A;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+
+<div class="demo-container">
+  <!-- Splash Screen (fades out) -->
+  <div class="splash">
+    <div class="splash-logo">VITA</div>
+  </div>
+
+  <!-- Navigation (appears after splash) -->
+  <nav>
+    <div class="nav-logo">VITA</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#paquetes">Paquetes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content (appears after splash) -->
+  <div class="main-content">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Fotografía de Estudio</h1>
+        <p>Capturamos la esencia de tu marca</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Servicios</h2>
+      <p>Ofrecemos sesiones fotográficas profesionales diseñadas para resaltar la identidad visual de tu empresa. Cada sesión es personalizada según tus necesidades y objetivos.</p>
+    </div>
+
+    <div class="section">
+      <h2>Paquetes</h2>
+      <p>Elige el paquete que mejor se adapte a tu proyecto. Desde sesiones individuales hasta proyectos corporativos completos, tenemos opciones flexibles para todos los presupuestos.</p>
+    </div>
+
+    <div class="section">
+      <h2>Contáctanos</h2>
+      <p>¿Listo para comenzar tu proyecto? Ponte en contacto con nosotros hoy mismo y déjanos saber cómo podemos ayudarte a alcanzar tus objetivos visuales.</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-hint-text">↓ Scroll</div>
+  </div>
+</div>
