@@ -1640,28 +1640,91 @@ footer p {
     opacity: 0;
 }
 
-.campaign-image {
-    width: 100%;
-    max-width: 100%;
+.campaign-gallery {
     margin: var(--spacing-2xl) 0;
+    animation: slideUp 0.7s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.campaign-image-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
     border-radius: 4px;
     overflow: hidden;
     border: 1px solid rgba(201, 169, 97, 0.15);
-    animation: slideUp 0.7s ease-out 0.2s forwards;
-    opacity: 0;
-    will-change: opacity;
 }
 
-.campaign-image img {
+.campaign-gallery-img {
     width: 100%;
     height: auto;
     display: block;
     animation: fadeIn 0.8s ease-in-out;
-    transition: transform 0.6s ease-in-out;
+    transition: opacity 0.6s ease-in-out;
 }
 
-.campaign-image:hover img {
-    transform: scale(1.02);
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.4);
+    color: var(--color-white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    transition: all 0.4s ease-in-out;
+    z-index: 10;
+}
+
+.gallery-prev {
+    left: 12px;
+}
+
+.gallery-next {
+    right: 12px;
+}
+
+.gallery-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(201, 169, 97, 0.8);
+    color: var(--color-gold);
+}
+
+.gallery-nav svg {
+    width: 20px;
+    height: 20px;
+}
+
+.gallery-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(201, 169, 97, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    padding: 0;
+}
+
+.indicator.active {
+    background: var(--color-gold);
+    width: 24px;
+    border-radius: 4px;
+}
+
+.indicator:hover {
+    background: rgba(201, 169, 97, 0.6);
 }
 
 .campaign-footer {

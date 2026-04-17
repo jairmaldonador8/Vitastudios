@@ -693,48 +693,55 @@ const campaignsData = {
         id: 1,
         name: 'Doctor Wilber',
         category: 'Profesional de Salud',
-        image: 'campañas/Doctor Wilber.jpg'
+        folder: 'campañas/Doctor Wilber',
+        images: ['Doctor Wilber.jpg']
     },
     2: {
         id: 2,
         name: 'Rosa de Oro',
         category: 'E-commerce',
-        image: 'campañas/Rosa de Oro.gif'
+        folder: 'campañas/Rosa de Oro',
+        images: ['Rosa de Oro.gif']
     },
     3: {
         id: 3,
         name: 'Renace',
         category: 'Bienestar',
-        image: 'campañas/Renace.gif'
+        folder: 'campañas/Renace',
+        images: ['Renace.gif']
     },
     4: {
         id: 4,
         name: 'Hinaitu',
         category: 'Consultoría',
-        image: 'campañas/HINAITU.gif'
+        folder: 'campañas/HINAITU',
+        images: ['HINAITU.gif']
     },
     5: {
         id: 5,
         name: 'Dra. Vannia',
         category: 'Profesional de Salud',
-        image: 'campañas/Doctora Vannia Maldonado.png'
+        folder: 'campañas/Doctora Vannia Maldonado',
+        images: ['Doctora Vannia Maldonado.png']
     },
     6: {
         id: 6,
         name: 'Dr. José Luis',
         category: 'Profesional de Salud',
-        image: 'campañas/Doctor Jose Luis vivas.png'
+        folder: 'campañas/Doctor Jose Luis vivas',
+        images: ['Doctor Jose Luis vivas.png']
     },
     7: {
         id: 7,
         name: 'Dra. Karen',
         category: 'Profesional de Salud',
-        image: 'campañas/Doctora Karen Astuñague.gif'
+        folder: 'campañas/Doctora Karen Astuñague',
+        images: ['Doctora Karen Astuñague.gif']
     }
 };
 
 /**
- * CampaignModal - Gestiona la apertura y cierre de modal con campañas
+ * CampaignModal - Gestiona galería de campaña con carousel interior
  */
 class CampaignModal {
     constructor() {
@@ -743,6 +750,8 @@ class CampaignModal {
         this.campaignBody = document.getElementById('campaign-body');
         this.closeBtn = this.modal?.querySelector('.modal-close');
         this.isOpen = false;
+        this.currentImageIndex = 0;
+        this.currentCampaign = null;
 
         this.init();
     }
@@ -752,17 +761,18 @@ class CampaignModal {
 
         this.closeBtn?.addEventListener('click', () => this.close());
 
-        // Click en background para cerrar
         this.modal?.addEventListener('click', (e) => {
             if (e.target === this.modal) this.close();
         });
 
-        // Keyboard: ESC para cerrar
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen) this.close();
+            if (this.isOpen) {
+                if (e.key === 'Escape') this.close();
+                if (e.key === 'ArrowLeft') this.prevImage();
+                if (e.key === 'ArrowRight') this.nextImage();
+            }
         });
 
-        // Listener para abrir campaña
         document.addEventListener('openCampaign', (e) => {
             this.open(e.detail.caseId);
         });
@@ -773,37 +783,115 @@ class CampaignModal {
         if (!campaign || this.isOpen) return;
 
         this.isOpen = true;
+        this.currentCampaign = campaign;
+        this.currentImageIndex = 0;
 
-        // Cargar contenido de campaña
+        this.render();
+
+        this.modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.body.style.overscrollBehavior = 'contain';
+
+        requestAnimationFrame(() => {
+            this.modalContent.scrollTop = 0;
+        });
+    }
+
+    render() {
+        const campaign = this.currentCampaign;
+        const imageCount = campaign.images.length;
+        const currentImage = campaign.images[this.currentImageIndex];
+        const imagePath = `${campaign.folder}/${currentImage}`;
+
+        const hasMultiple = imageCount > 1;
+
         this.campaignBody.innerHTML = `
             <div class="campaign-header">
                 <h2 class="campaign-title">${campaign.name}</h2>
                 <p class="campaign-category">${campaign.category}</p>
             </div>
 
-            <div class="campaign-image">
-                <img src="${campaign.image}" alt="${campaign.name}" loading="lazy" decoding="async">
+            <div class="campaign-gallery">
+                <div class="campaign-image-wrapper">
+                    <img
+                        src="${imagePath}"
+                        alt="${campaign.name}"
+                        loading="lazy"
+                        decoding="async"
+                        class="campaign-gallery-img"
+                    >
+                    ${hasMultiple ? `
+                        <button class="gallery-nav gallery-prev" aria-label="Imagen anterior">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="gallery-nav gallery-next" aria-label="Siguiente imagen">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    ` : ''}
+                </div>
+
+                ${hasMultiple ? `
+                    <div class="gallery-indicators">
+                        ${campaign.images.map((_, idx) => `
+                            <button
+                                class="indicator ${idx === this.currentImageIndex ? 'active' : ''}"
+                                data-index="${idx}"
+                                aria-label="Ir a imagen ${idx + 1}"
+                            ></button>
+                        `).join('')}
+                    </div>
+                ` : ''}
             </div>
 
             <div class="campaign-footer">
-                <p>Campaña de branding completa • ${campaign.name}</p>
+                <p>${hasMultiple ? `${this.currentImageIndex + 1} de ${imageCount} • ` : ''}Campaña de branding • ${campaign.name}</p>
             </div>
         `;
 
-        // Mostrar modal con transición smooth
-        this.modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        document.body.style.overscrollBehavior = 'contain';
+        if (hasMultiple) {
+            this.attachGalleryListeners();
+        }
+    }
 
-        // Prevenir jank: usar requestAnimationFrame
-        requestAnimationFrame(() => {
-            this.modalContent.scrollTop = 0;
+    attachGalleryListeners() {
+        const prevBtn = this.campaignBody.querySelector('.gallery-prev');
+        const nextBtn = this.campaignBody.querySelector('.gallery-next');
+        const indicators = this.campaignBody.querySelectorAll('.indicator');
+
+        prevBtn?.addEventListener('click', () => this.prevImage());
+        nextBtn?.addEventListener('click', () => this.nextImage());
+
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                this.currentImageIndex = parseInt(indicator.dataset.index);
+                this.render();
+            });
         });
+    }
+
+    prevImage() {
+        if (!this.currentCampaign) return;
+        const imageCount = this.currentCampaign.images.length;
+        this.currentImageIndex = (this.currentImageIndex - 1 + imageCount) % imageCount;
+        this.render();
+    }
+
+    nextImage() {
+        if (!this.currentCampaign) return;
+        const imageCount = this.currentCampaign.images.length;
+        this.currentImageIndex = (this.currentImageIndex + 1) % imageCount;
+        this.render();
     }
 
     close() {
         if (!this.isOpen) return;
         this.isOpen = false;
+        this.currentCampaign = null;
+        this.currentImageIndex = 0;
 
         this.modal.classList.remove('open');
         document.body.style.overflow = '';
