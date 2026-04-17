@@ -686,6 +686,126 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * Datos de campañas
+ */
+const campaignsData = {
+    1: {
+        id: 1,
+        name: 'Doctor Wilber',
+        category: 'Profesional de Salud',
+        image: 'campañas/01-doctor-wilber.jpg'
+    },
+    2: {
+        id: 2,
+        name: 'Rosa de Oro',
+        category: 'E-commerce',
+        image: 'campañas/02-rosa-de-oro.gif'
+    },
+    3: {
+        id: 3,
+        name: 'Renace',
+        category: 'Bienestar',
+        image: 'campañas/03-renace.gif'
+    },
+    4: {
+        id: 4,
+        name: 'Hinaitu',
+        category: 'Consultoría',
+        image: 'campañas/04-hinaitu.gif'
+    },
+    5: {
+        id: 5,
+        name: 'Dra. Vannia',
+        category: 'Profesional de Salud',
+        image: 'campañas/05-doctora-vannia.png'
+    },
+    6: {
+        id: 6,
+        name: 'Dr. José Luis',
+        category: 'Profesional de Salud',
+        image: 'campañas/06-doctor-jose-luis.png'
+    },
+    7: {
+        id: 7,
+        name: 'Dra. Karen',
+        category: 'Profesional de Salud',
+        image: 'campañas/07-doctora-karen.gif'
+    }
+};
+
+/**
+ * CampaignModal - Gestiona la apertura y cierre de modal con campañas
+ */
+class CampaignModal {
+    constructor() {
+        this.modal = document.getElementById('campaign-modal');
+        this.modalContent = this.modal?.querySelector('.modal-content');
+        this.campaignBody = document.getElementById('campaign-body');
+        this.closeBtn = this.modal?.querySelector('.modal-close');
+
+        this.init();
+    }
+
+    init() {
+        if (!this.modal || !this.campaignBody) return;
+
+        // Click en botón cerrar
+        this.closeBtn?.addEventListener('click', () => this.close());
+
+        // Click en el fondo del modal
+        this.modal?.addEventListener('click', (e) => {
+            if (e.target === this.modal) this.close();
+        });
+
+        // Keyboard: ESC para cerrar
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.close();
+        });
+
+        // Listener para cuando se abre campaña
+        document.addEventListener('openCampaign', (e) => {
+            this.open(e.detail.caseId);
+        });
+    }
+
+    open(caseId) {
+        const campaign = campaignsData[caseId];
+        if (!campaign) return;
+
+        // Cargar contenido de campaña
+        this.campaignBody.innerHTML = `
+            <div class="campaign-header reveal">
+                <h2 class="campaign-title">${campaign.name}</h2>
+                <p class="campaign-category">${campaign.category}</p>
+            </div>
+
+            <div class="campaign-image reveal">
+                <img src="${campaign.image}" alt="${campaign.name}" loading="lazy">
+            </div>
+
+            <div class="campaign-footer">
+                <p style="text-align: center; color: rgba(255,255,255,0.6); margin-top: var(--spacing-2xl);">
+                    Campaña de branding completa • ${campaign.name}
+                </p>
+            </div>
+        `;
+
+        this.modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        // Trigger scroll reveal
+        setTimeout(() => {
+            new ScrollReveal();
+        }, 100);
+    }
+
+    close() {
+        this.modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+/**
  * CasosCarousel - Carousel para casos de éxito con navegación por flechas
  */
 class CasosCarousel {
@@ -716,22 +836,6 @@ class CasosCarousel {
             if (e.key === 'ArrowRight') this.next();
         });
 
-        // Modal close
-        const modalClose = document.querySelector('#campaign-modal .modal-close');
-        const modal = document.getElementById('campaign-modal');
-
-        if (modalClose) {
-            modalClose.addEventListener('click', () => this.closeModal());
-        }
-
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    this.closeModal();
-                }
-            });
-        }
-
         this.updateSlide();
     }
 
@@ -753,33 +857,11 @@ class CasosCarousel {
 
     openCampaign(e) {
         const slide = e.currentTarget.closest('.carousel-slide');
-        const caseId = slide?.dataset.caseId;
+        const caseId = parseInt(slide?.dataset.caseId);
 
         if (caseId) {
-            // Emit event para abrir modal con campaña
             const event = new CustomEvent('openCampaign', { detail: { caseId } });
             document.dispatchEvent(event);
-
-            // Mostrar modal (preparado para integración)
-            const modal = document.getElementById('campaign-modal');
-            const modalBody = document.getElementById('campaign-body');
-
-            if (modal && modalBody) {
-                // Aquí se integrará con los archivos de campaña
-                modalBody.innerHTML = `<p>Campaña para caso #${caseId} - Proximamente...</p>`;
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-
-            console.log('Opening campaign for case:', caseId);
-        }
-    }
-
-    closeModal() {
-        const modal = document.getElementById('campaign-modal');
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
         }
     }
 }
@@ -788,5 +870,8 @@ class CasosCarousel {
 document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.carousel-container')) {
         new CasosCarousel();
+    }
+    if (document.getElementById('campaign-modal')) {
+        new CampaignModal();
     }
 });

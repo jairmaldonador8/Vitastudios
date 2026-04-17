@@ -1538,3 +1538,131 @@ footer p {
         gap: var(--spacing-lg);
     }
 }
+
+/* CAMPAIGN MODAL - MEJORADO */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.4s ease-in-out;
+    overflow-y: auto;
+    padding: var(--spacing-2xl) 0;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--color-bg);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    padding: var(--spacing-2xl);
+    animation: slideUp 0.5s ease-out;
+}
+
+.modal-close {
+    position: fixed;
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+    background: rgba(201, 169, 97, 0.15);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    color: var(--color-gold);
+    width: 48px;
+    height: 48px;
+    font-size: 32px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all var(--transition-default);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.modal-close:hover {
+    background: rgba(201, 169, 97, 0.3);
+    color: var(--color-terra);
+    border-color: rgba(201, 169, 97, 0.6);
+}
+
+/* Campaign Content */
+.campaign-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.campaign-title {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-white);
+}
+
+.campaign-category {
+    font-size: 13px;
+    color: var(--color-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.campaign-image {
+    width: 100%;
+    max-width: 100%;
+    margin: var(--spacing-2xl) 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(201, 169, 97, 0.15);
+}
+
+.campaign-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.campaign-footer {
+    text-align: center;
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+        padding: var(--spacing-lg);
+    }
+
+    .modal-close {
+        top: var(--spacing-lg);
+        right: var(--spacing-lg);
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+
+    .campaign-title {
+        font-size: 36px;
+    }
+
+    .campaign-image {
+        margin: var(--spacing-lg) 0;
+    }
+}
