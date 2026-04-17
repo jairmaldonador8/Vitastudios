@@ -1,466 +1,186 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
-<title>Paquete Presencia - VITA Studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;font-weight:400;overflow-x:hidden;background:#000000;cursor:none}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:#000000}
-::-webkit-scrollbar-thumb{background:#C4503A;border-radius:4px}
-a{color:inherit;text-decoration:none}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paquete Presencia | VITA Studios</title>
 
-:root{
-  --bg:#000000;
-  --bg2:#0A0A0A;
-  --bg3:#111111;
-  --white:#F4F4F0;
-  --terra:#C4503A;
-  --terra2:#E06B52;
-  --blue:#C4503A;
-  --blue2:#E06B52;
-  --muted:#6B7280;
-  --border:rgba(255,255,255,0.07);
-  --border2:rgba(255,255,255,0.12);
-}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-/* CUSTOM CURSOR */
-#cursor-dot{width:6px;height:6px;background:var(--terra);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .1s ease,background .3s;transform:translate(-50%,-50%);mix-blend-mode:difference}
-#cursor-ring{width:28px;height:28px;border:1px solid var(--terra2);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s cubic-bezier(.25,.46,.45,.94),width .3s,height .3s,opacity .3s,border-color .3s;opacity:.4;mix-blend-mode:difference}
-.cursor-hover #cursor-dot{transform:translate(-50%,-50%) scale(2);background:#fff}
-.cursor-hover #cursor-ring{width:44px;height:44px;border-color:#fff;opacity:.3}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s cubic-bezier(.16,1,.3,1);background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo img{height:36px;width:auto;object-fit:contain}
-.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
-.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,244,240,.5);transition:color .2s;position:relative}
-.nav-links a:hover{color:var(--white)}
-.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra2);transition:all .25s;padding:10px 0}
-.back-btn:hover{gap:12px;color:var(--terra)}
-
-/* HERO SECTION */
-.pkg-hero{min-height:100vh;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 60px 80px;position:relative;overflow:hidden;text-align:center}
-.pkg-hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(196,80,58,.12) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.pkg-hero-content{position:relative;z-index:2}
-.pkg-eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--terra2);margin-bottom:20px}
-.pkg-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;letter-spacing:.02em;color:var(--white);margin-bottom:20px}
-.pkg-subtitle{font-size:clamp(1rem,2vw,1.3rem);color:var(--muted);max-width:600px;margin:0 auto 40px;line-height:1.8}
-.pkg-price-section{text-align:center}
-.pkg-price-original{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--muted);text-decoration:line-through;letter-spacing:.05em;margin-bottom:8px;opacity:.7}
-.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--terra2);font-weight:700;letter-spacing:.05em}
-.pkg-discount-badge{display:inline-block;background:rgba(196,80,58,.15);border:1px solid rgba(196,80,58,.3);color:var(--terra2);padding:8px 16px;border-radius:4px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:12px;animation:pulse 2s ease-in-out infinite}
-
-@keyframes pulse{0%,100%{opacity:.8}50%{opacity:1}}
-
-.april-countdown{font-size:.9rem;color:var(--terra2);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:24px;min-height:24px}
-.pkg-cta-group{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:60px}
-.pkg-cta-centered{max-width:100%;display:flex;justify-content:center}
-.pkg-cta-centered .pkg-btn{width:auto;max-width:400px}
-.pkg-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all .3s cubic-bezier(.16,1,.3,1);border:none}
-.pkg-btn-primary{background:var(--terra2);color:#fff}
-.pkg-btn-primary:hover{background:var(--terra);transform:translateY(-4px);box-shadow:0 16px 48px rgba(196,80,58,.35)}
-.pkg-btn-secondary{border:2px solid var(--terra2);color:var(--terra2);background:transparent}
-.pkg-btn-secondary:hover{background:var(--terra2);color:#fff;transform:translateY(-4px)}
-
-/* SECTIONS */
-.pkg-section{padding:120px 60px;border-bottom:1px solid var(--border)}
-.pkg-section:nth-child(even){background:var(--bg2)}
-.section-header{margin-bottom:60px}
-.section-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(196,80,58,.1);line-height:1;margin-bottom:10px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:.9;color:var(--white);margin-bottom:20px}
-.section-title em{font-style:normal;color:var(--terra2)}
-.section-intro{font-size:.95rem;line-height:1.85;color:#9CA3AF;max-width:700px}
-
-/* GENERAL INFO */
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:40px}
-.info-card{padding:32px;background:rgba(196,80,58,.05);border:1px solid rgba(196,80,58,.1);border-radius:6px;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.info-card:hover{border-color:rgba(196,80,58,.3);background:rgba(196,80,58,.08);transform:translateY(-8px);box-shadow:0 16px 40px rgba(196,80,58,.15)}
-.info-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--terra2);margin-bottom:12px}
-.info-card p{font-size:.85rem;color:#D1D5DB;line-height:1.8}
-
-/* STRUCTURE */
-.structure-timeline{display:grid;gap:40px;margin-top:50px}
-.timeline-step{display:grid;grid-template-columns:100px 1fr;gap:30px;align-items:start}
-.timeline-number{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(196,80,58,.1);line-height:1}
-.timeline-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);margin-bottom:12px}
-.timeline-content p{font-size:.9rem;color:#D1D5DB;line-height:1.8;margin-bottom:15px}
-.timeline-content ul{list-style:none;padding-left:20px}
-.timeline-content li{font-size:.85rem;color:var(--muted);padding:.5rem 0 .5rem 20px;position:relative;margin:.4rem 0}
-.timeline-content li::before{content:'→';position:absolute;left:0;top:0;color:var(--terra2);font-weight:600}
-
-/* STRATEGY */
-.strategy-pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;margin-top:50px}
-.strategy-card{padding:40px;background:rgba(196,80,58,.04);border-left:4px solid var(--terra2);transition:all .4s cubic-bezier(.16,1,.3,1)}
-.strategy-card:hover{background:rgba(196,80,58,.08);transform:translateY(-6px);box-shadow:0 12px 32px rgba(196,80,58,.1)}
-.strategy-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--terra2);margin-bottom:16px}
-.strategy-card p{font-size:.85rem;color:#D1D5DB;line-height:1.8}
-
-/* INCLUDES */
-.includes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:50px}
-.includes-col h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--terra2);margin-bottom:24px}
-.includes-list{list-style:none}
-.includes-list li{font-size:.9rem;color:#D1D5DB;padding:12px 0;padding-left:24px;border-bottom:1px solid rgba(255,255,255,.05);position:relative}
-.includes-list li::before{content:'✓';position:absolute;left:0;color:var(--terra2);font-weight:bold}
-.includes-list li:last-child{border-bottom:none}
-
-/* IDEAL FOR */
-.ideal-content{margin-top:40px;padding:40px;background:rgba(196,80,58,.05);border-left:4px solid var(--terra2);border-radius:4px}
-.ideal-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);margin-bottom:20px}
-.ideal-list{list-style:none}
-.ideal-list li{font-size:.9rem;color:#D1D5DB;padding:10px 0;padding-left:24px;position:relative}
-.ideal-list li::before{content:'•';position:absolute;left:0;color:var(--terra2)}
-
-/* CTA */
-.pkg-final-cta{padding:80px 60px;background:var(--bg2);text-align:center;border-top:1px solid var(--border)}
-.pkg-final-cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--white);margin-bottom:30px}
-.pkg-final-cta p{font-size:.95rem;color:var(--muted);max-width:600px;margin:0 auto 40px;line-height:1.8}
-
-/* FOOTER */
-footer{background:var(--bg2);padding:60px;border-top:1px solid var(--border);text-align:center}
-footer span{font-size:.7rem;color:var(--muted);letter-spacing:.08em}
-footer a{color:var(--terra2);transition:color .2s}
-footer a:hover{color:var(--terra)}
-
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.reveal.visible{opacity:1;transform:none}
-
-/* STAGGER ANIMATIONS */
-.info-grid > div{opacity:0;transform:translateY(32px);animation:staggerIn .6s cubic-bezier(.16,1,.3,1) both}
-.info-grid > div:nth-child(1){animation-delay:.1s}
-.info-grid > div:nth-child(2){animation-delay:.2s}
-.info-grid > div:nth-child(3){animation-delay:.3s}
-.info-grid > div:nth-child(4){animation-delay:.4s}
-
-.timeline-step{opacity:0;transform:translateY(32px);animation:staggerIn .7s cubic-bezier(.16,1,.3,1) both}
-.timeline-step:nth-child(1){animation-delay:.1s}
-.timeline-step:nth-child(2){animation-delay:.3s}
-.timeline-step:nth-child(3){animation-delay:.5s}
-
-.strategy-card{opacity:0;transform:translateY(32px);animation:staggerIn .6s cubic-bezier(.16,1,.3,1) both}
-.strategy-card:nth-child(1){animation-delay:.1s}
-.strategy-card:nth-child(2){animation-delay:.2s}
-.strategy-card:nth-child(3){animation-delay:.3s}
-.strategy-card:nth-child(4){animation-delay:.4s}
-
-.includes-col{opacity:0;transform:translateX(-32px);animation:slideInLeft .7s cubic-bezier(.16,1,.3,1) both}
-.includes-col:nth-child(2){transform:translateX(32px);animation:slideInRight .7s cubic-bezier(.16,1,.3,1) both}
-.includes-col:nth-child(1){animation-delay:.2s}
-.includes-col:nth-child(2){animation-delay:.3s}
-
-@keyframes staggerIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
-@keyframes slideInLeft{from{opacity:0;transform:translateX(-32px)}to{opacity:1;transform:none}}
-@keyframes slideInRight{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:none}}
-
-/* RESPONSIVE MOBILE */
-@media (max-width:768px){
-  body{overflow-x:hidden!important}
-  .pkg-hero{padding:100px 24px 60px}
-  .pkg-section{padding:80px 24px}
-  .pkg-final-cta{padding:60px 24px}
-  footer{padding:40px 24px}
-  .pkg-title{font-size:clamp(2.2rem,5vw,3.5rem)}
-  .section-num{font-size:clamp(2.2rem,4vw,3.5rem)}
-  .timeline-number{font-size:clamp(1.8rem,4vw,2.5rem)}
-  .includes-grid{grid-template-columns:1fr}
-  .timeline-step{grid-template-columns:1fr;gap:8px}
-  h1{font-size:clamp(2.5rem,7vw,4rem)}
-  h2{font-size:clamp(1.8rem,5vw,2.8rem)}
-}
-
-@media (max-width:480px){
-  body{overflow-x:hidden!important}
-  .pkg-hero{padding:80px 16px 40px}
-  .pkg-section{padding:60px 16px}
-  .pkg-final-cta{padding:40px 16px}
-  footer{padding:30px 16px}
-  .pkg-eyebrow{font-size:.55rem}
-  .pkg-title{font-size:clamp(1.8rem,5vw,3rem)}
-  .section-num{font-size:clamp(1.8rem,4vw,2.5rem)}
-  h1{font-size:clamp(2rem,6vw,3rem)}
-  h2{font-size:clamp(1.4rem,4vw,2.2rem)}
-}
-</style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="VITA STUDIOS">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">INICIO</a></li>
+                    <li><a href="index.html#servicios" class="nav-link">SERVICIOS</a></li>
+                    <li><a href="index.html#casos" class="nav-link">CASOS</a></li>
+                    <li><a href="index.html#contacto" class="nav-link">CONTACTO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="hero-headline reveal">Paquete Presencia</h1>
+            <p class="hero-subheadline reveal">Acompañamiento total. Estamos ahí contigo en cada momento.</p>
+        </div>
+    </section>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <a href="index.html"><img src="logo.png" alt="Vita Studio" style="height: 45px; width: auto; object-fit: contain;"></a>
-  </div>
-  <a href="vita_productions.html" class="back-btn">← Volver</a>
-</nav>
+    <div class="divider"></div>
 
-<!-- HERO -->
-<section class="pkg-hero">
-  <div class="pkg-hero-glow"></div>
-  <div class="pkg-hero-content">
-    <div class="pkg-eyebrow">Paquete de colaboración</div>
-    <h1 class="pkg-title">Acompañamiento<br><em>Total</em></h1>
-    <p class="pkg-subtitle">Estamos ahí contigo en cada momento. Diseñado para artistas listos para lanzarse con todo, que necesitan un equipo presente en cada parte del proceso.</p>
-    <div class="pkg-price-section">
-      <div class="pkg-price-original">$20,000/mes</div>
-      <div class="pkg-price">$10,000 / mes</div>
-      <div class="pkg-discount-badge">Descuento especial Abril ⏰</div>
-    </div>
-    <div id="aprilCounter" class="april-countdown"></div>
+    <!-- MAIN CONTENT -->
+    <section class="page-content">
+        <div class="container">
+            <!-- INFORMACIÓN GENERAL -->
+            <section class="content-section reveal">
+                <h2>Información General</h2>
+                <p>Todo lo que necesitas saber sobre el paquete Presencia y por qué es el investment más completo para artistas en crecimiento.</p>
 
-    <div class="pkg-cta-group pkg-cta-centered">
-      <a href="agendar-sesion.html" class="pkg-btn pkg-btn-primary">Agendar sesión</a>
-    </div>
-  </div>
-</section>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Dedicación</h3>
+                        <p>Equipo dedicado 100% a tu proyecto. No compartimos atención — tu marca es nuestra prioridad durante toda la colaboración.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Frecuencia</h3>
+                        <p>4 skits cinematográficos al mes + presencia física en eventos + cobertura completa + estrategia integrada.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Cobertura</h3>
+                        <p>Estamos presentes en sesiones, eventos y momentos clave. Capturamos contenido auténtico en vivo, no solo estudios.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Relación</h3>
+                        <p>Sesiones estratégicas quincenales + reportes semanales. Comunicación constante y toma de decisiones colaborativa.</p>
+                    </div>
+                </div>
+            </section>
 
-<!-- SECCION 1: INFORMACIÓN GENERAL -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">01</div>
-    <h2 class="section-title">Información<br><em>General</em></h2>
-    <p class="section-intro">Todo lo que necesitas saber sobre el paquete Presencia y por qué es el investment más completo para artistas en crecimiento.</p>
-  </div>
-  <div class="info-grid">
-    <div class="info-card">
-      <h3>Dedicación</h3>
-      <p>Equipo dedicado 100% a tu proyecto. No compartimos atención — tu marca es nuestra prioridad durante toda la colaboración.</p>
-    </div>
-    <div class="info-card">
-      <h3>Frecuencia</h3>
-      <p>4 skits cinematográficos al mes + presencia física en eventos + cobertura completa + estrategia integrada.</p>
-    </div>
-    <div class="info-card">
-      <h3>Cobertura</h3>
-      <p>Estamos presentes en sesiones, eventos y momentos clave. Capturamos contenido auténtico en vivo, no solo estudios.</p>
-    </div>
-    <div class="info-card">
-      <h3>Relación</h3>
-      <p>Sesiones estratégicas quincenales + reportes semanales. Comunicación constante y toma de decisiones colaborativa.</p>
-    </div>
-  </div>
-</section>
+            <!-- ESTRUCTURA -->
+            <section class="content-section reveal">
+                <h2>Estructura del Lanzamiento</h2>
+                <p>Un proceso integral de lanzamiento donde construimos tu marca de forma holística desde el primer día.</p>
 
-<!-- SECCION 2: ESTRUCTURA DEL LANZAMIENTO -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">02</div>
-    <h2 class="section-title">Estructura del<br><em>Lanzamiento</em></h2>
-    <p class="section-intro">Un proceso integral de lanzamiento donde construimos tu marca de forma holística desde el primer día.</p>
-  </div>
-  <div class="structure-timeline">
-    <div class="timeline-step">
-      <div class="timeline-number">I</div>
-      <div class="timeline-content">
-        <h3>Lanzamiento Completo de Marca</h3>
-        <p>No empezamos pequeño — hacemos un lanzamiento integral de tu marca personal con presencia desde el día 1:</p>
-        <ul>
-          <li>Sesiones de descubrimiento profundo (3-4 sesiones)</li>
-          <li>Definición completa del ADN de tu marca</li>
-          <li>Identidad visual unificada en todas plataformas</li>
-          <li>Estrategia de posicionamiento de largo plazo</li>
-          <li>Calendario editorial del primer trimestre</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-number">II</div>
-      <div class="timeline-content">
-        <h3>Producción en Campo</h3>
-        <p>Estamos físicamente presentes en cada momento importante, capturando contenido auténtico:</p>
-        <ul>
-          <li>4 skits cinematográficos al mes (grabaciones en locación)</li>
-          <li>Presencia en sesiones de estudio, ensayos, shows</li>
-          <li>Cobertura completa de eventos y presentaciones</li>
-          <li>Dirección creativa en tiempo real</li>
-          <li>Contenido espontáneo en vivo (stories, reels behind-the-scenes)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-number">III</div>
-      <div class="timeline-content">
-        <h3>Gestión Activa & Crecimiento</h3>
-        <p>Publicamos, monitoreamos, enganchamos y escalamos:</p>
-        <ul>
-          <li>Publicación estratégica según calendario</li>
-          <li>Gestión activa de comentarios y comunidad</li>
-          <li>Análisis semanal de audiencia y comportamiento</li>
-          <li>Ajustes estratégicos quincenales</li>
-          <li>Coordinación de colaboraciones y eventos</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>I. Lanzamiento Completo de Marca</h3>
+                        <p>No empezamos pequeño — hacemos un lanzamiento integral de tu marca personal con presencia desde el día 1:</p>
+                        <ul>
+                            <li>Sesiones de descubrimiento profundo (3-4 sesiones)</li>
+                            <li>Definición completa del ADN de tu marca</li>
+                            <li>Identidad visual unificada en todas plataformas</li>
+                            <li>Estrategia de posicionamiento de largo plazo</li>
+                            <li>Calendario editorial del primer trimestre</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>II. Producción en Campo</h3>
+                        <p>Estamos físicamente presentes en cada momento importante, capturando contenido auténtico:</p>
+                        <ul>
+                            <li>4 skits cinematográficos al mes (grabaciones en locación)</li>
+                            <li>Presencia en sesiones de estudio, ensayos, shows</li>
+                            <li>Cobertura completa de eventos y presentaciones</li>
+                            <li>Dirección creativa en tiempo real</li>
+                            <li>Contenido espontáneo en vivo (stories, reels behind-the-scenes)</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>III. Gestión Activa & Crecimiento</h3>
+                        <p>Publicamos, monitoreamos, enganchamos y escalamos:</p>
+                        <ul>
+                            <li>Publicación estratégica según calendario</li>
+                            <li>Gestión activa de comentarios y comunidad</li>
+                            <li>Análisis semanal de audiencia y comportamiento</li>
+                            <li>Ajustes estratégicos quincenales</li>
+                            <li>Coordinación de colaboraciones y eventos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<!-- SECCION 3: ESTRATEGIA -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">03</div>
-    <h2 class="section-title">Nuestra<br><em>Estrategia</em></h2>
-    <p class="section-intro">El enfoque 360° que convierte tu arte en un movimiento de marca.</p>
-  </div>
-  <div class="strategy-pillars">
-    <div class="strategy-card">
-      <h3>Presencia Real</h3>
-      <p>No solo producimos contenido — estamos contigo. Esto permite capturar momentos genuinos y construir una marca auténtica que responda en tiempo real.</p>
-    </div>
-    <div class="strategy-card">
-      <h3>Narrativa Integrada</h3>
-      <p>Tus skits, tus eventos, tus historias personales, tu comunidad — todo forma parte de un arco narrativo único. No es contenido aislado, es una saga.</p>
-    </div>
-    <div class="strategy-card">
-      <h3>Eventos como Estrategia</h3>
-      <p>Coordinamos 2 eventos mensuales que actúan como contenido generator. Cada evento produce semanas de material digital de alto valor.</p>
-    </div>
-    <div class="strategy-card">
-      <h3>Crecimiento Acelerado</h3>
-      <p>Con presencia constante, contenido de calidad y gestión activa, tu audiencia crece rápido. Pero más importante: crece de forma cualitativa, no solo números.</p>
-    </div>
-  </div>
-</section>
+            <!-- LO QUE INCLUYE -->
+            <section class="content-section reveal">
+                <h2>Lo Que Incluye</h2>
+                <p>Todo lo que está cubierto en tu paquete mensual de acompañamiento total.</p>
 
-<!-- SECCION 4: LO QUE INCLUYE -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">04</div>
-    <h2 class="section-title">Lo Que<br><em>Incluye</em></h2>
-    <p class="section-intro">Todo lo que está cubierto en tu paquete mensual de acompañamiento total.</p>
-  </div>
-  <div class="includes-grid">
-    <div class="includes-col">
-      <h3>En Campo (Producción)</h3>
-      <ul class="includes-list">
-        <li>4 skits cinematográficos al mes</li>
-        <li>Presencia física en sesiones</li>
-        <li>Cobertura completa de eventos</li>
-        <li>Dirección creativa en producción</li>
-        <li>Contenido espontáneo en vivo</li>
-        <li>Behind-the-scenes y stories</li>
-        <li>Fotografía de alta calidad</li>
-        <li>Edición y post-producción profesional</li>
-      </ul>
-    </div>
-    <div class="includes-col">
-      <h3>Estrategia & Gestión</h3>
-      <ul class="includes-list">
-        <li>Lanzamiento de marca completo</li>
-        <li>2 eventos coordinados al mes</li>
-        <li>Gestión activa de comunidad</li>
-        <li>Análisis de audiencia semanal</li>
-        <li>Sesión estratégica quincenal 1:1</li>
-        <li>Calendario editorial trimestral</li>
-        <li>Copys, textos y estrategia de hashtags</li>
-        <li>Reporte de métricas y growth tracking</li>
-      </ul>
-    </div>
-  </div>
-</section>
+                <div class="two-column">
+                    <div>
+                        <h3>En Campo (Producción)</h3>
+                        <ul>
+                            <li>4 skits cinematográficos al mes</li>
+                            <li>Presencia física en sesiones</li>
+                            <li>Cobertura completa de eventos</li>
+                            <li>Dirección creativa en producción</li>
+                            <li>Contenido espontáneo en vivo</li>
+                            <li>Behind-the-scenes y stories</li>
+                            <li>Fotografía de alta calidad</li>
+                            <li>Edición y post-producción profesional</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Estrategia & Gestión</h3>
+                        <ul>
+                            <li>Lanzamiento de marca completo</li>
+                            <li>2 eventos coordinados al mes</li>
+                            <li>Gestión activa de comunidad</li>
+                            <li>Análisis de audiencia semanal</li>
+                            <li>Sesión estratégica quincenal 1:1</li>
+                            <li>Calendario editorial trimestral</li>
+                            <li>Copys, textos y estrategia de hashtags</li>
+                            <li>Reporte de métricas y growth tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<!-- SECCION 5: IDEAL PARA -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">05</div>
-    <h2 class="section-title">Ideal<br><em>Para</em></h2>
-    <p class="section-intro">Este es el paquete para artistas que entienden que su marca vale más que sus presupuestos anteriores.</p>
-  </div>
-  <div class="ideal-content">
-    <h3>El Artista Perfecto para Presencia</h3>
-    <ul class="ideal-list">
-      <li>Ya tienes cierto nivel pero necesitas estructura profesional</li>
-      <li>Estás listo para crecer agresivamente y escalar tu marca</li>
-      <li>Quieres un equipo real a tu lado, no solo freelancers</li>
-      <li>Necesitas capturar momentos auténticos en tiempo real</li>
-      <li>Planeas hacer eventos y quieres que generen contenido</li>
-      <li>Buscas construir una comunidad sólida, no solo followers</li>
-      <li>Entiendes que tu marca es tu mayor activo a largo plazo</li>
-      <li>Estás dispuesto a invertir en tu crecimiento porque ves el ROI</li>
-    </ul>
-  </div>
-</section>
+            <!-- IDEAL PARA -->
+            <section class="content-section reveal">
+                <h2>Ideal Para</h2>
+                <p>Este es el paquete para artistas que entienden que su marca vale más que sus presupuestos anteriores.</p>
 
-<!-- CTA FINAL -->
-<section class="pkg-final-cta reveal">
-  <h2>¿Es Presencia lo que necesitas?</h2>
-  <p>Si esta propuesta resuena contigo, significa que estás listo para el siguiente nivel. Tenemos muy pocos slots disponibles cada mes porque la dedicación que ofrecemos es limitada por naturaleza.</p>
-  <a href="agendar-sesion.html" class="pkg-btn pkg-btn-primary">Agendar sesión de consulta</a>
-</section>
+                <div class="ideal-box">
+                    <h3>El Artista Perfecto para Presencia</h3>
+                    <ul>
+                        <li>Ya tienes cierto nivel pero necesitas estructura profesional</li>
+                        <li>Estás listo para crecer agresivamente y escalar tu marca</li>
+                        <li>Quieres un equipo real a tu lado, no solo freelancers</li>
+                        <li>Necesitas capturar momentos auténticos en tiempo real</li>
+                        <li>Planeas hacer eventos y quieres que generen contenido</li>
+                        <li>Buscas construir una comunidad sólida, no solo followers</li>
+                        <li>Entiendes que tu marca es tu mayor activo a largo plazo</li>
+                        <li>Estás dispuesto a invertir en tu crecimiento porque ves el ROI</li>
+                    </ul>
+                </div>
+            </section>
 
-<!-- FOOTER -->
-<footer class="reveal">
-  <div style="margin-bottom:20px">
-    <span>© 2026 VITA Studio Productions</span> <br>
-    <span>Estrategia · Contenido · Eventos</span>
-  </div>
-  <a href="index.html">Volver al inicio</a>
-</footer>
+            <!-- CTA -->
+            <section class="content-section cta-section reveal">
+                <h2>¿Es Presencia lo que necesitas?</h2>
+                <p>Si esta propuesta resuena contigo, significa que estás listo para el siguiente nivel. Tenemos muy pocos slots disponibles cada mes porque la dedicación que ofrecemos es limitada por naturaleza.</p>
+                <a href="agendar-sesion.html" class="btn btn-primary">Agendar sesión de consulta</a>
+            </section>
+        </div>
+    </section>
 
-<script>
-// Custom cursor
-const dot = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
+    <div class="divider"></div>
 
-document.addEventListener('mousemove', (e) => {
-  dot.style.left = e.clientX + 'px';
-  dot.style.top = e.clientY + 'px';
-  ring.style.left = e.clientX + 'px';
-  ring.style.top = e.clientY + 'px';
-});
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 VITA STUDIOS. CRECIMIENTO PERSONALIZADO.</p>
+    </footer>
 
-document.addEventListener('mousedown', () => {
-  document.body.classList.add('cursor-hover');
-});
-
-document.addEventListener('mouseup', () => {
-  document.body.classList.remove('cursor-hover');
-});
-
-// Reveal on scroll
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// April countdown
-function updateAprilCountdown() {
-  const now = new Date();
-  const currentYear = now.getFullYear();
-  const aprilEnd = new Date(currentYear, 3, 30, 23, 59, 59); // Abril 30
-
-  // Si abril ya pasó, mostrar nada o mensaje
-  if (now > aprilEnd) {
-    document.getElementById('aprilCounter').innerHTML = '';
-    return;
-  }
-
-  const diff = aprilEnd - now;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-  const counter = document.getElementById('aprilCounter');
-  if (counter) {
-    counter.innerHTML = `⏳ Descuento válido por: ${days}d ${hours}h ${minutes}m`;
-  }
-}
-
-updateAprilCountdown();
-setInterval(updateAprilCountdown, 60000); // Actualizar cada minuto
-</script>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

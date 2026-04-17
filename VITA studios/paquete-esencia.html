@@ -1,464 +1,184 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
-<title>Paquete Esencia - VITA Studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;font-weight:400;overflow-x:hidden;background:#000000;cursor:none}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:#000000}
-::-webkit-scrollbar-thumb{background:#C4503A;border-radius:4px}
-a{color:inherit;text-decoration:none}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paquete Esencia | VITA Studios</title>
 
-:root{
-  --bg:#000000;
-  --bg2:#0A0A0A;
-  --bg3:#111111;
-  --white:#F4F4F0;
-  --terra:#C4503A;
-  --terra2:#E06B52;
-  --blue:#C4503A;
-  --blue2:#E06B52;
-  --muted:#6B7280;
-  --border:rgba(255,255,255,0.07);
-  --border2:rgba(255,255,255,0.12);
-}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-/* CUSTOM CURSOR */
-#cursor-dot{width:6px;height:6px;background:var(--terra);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .1s ease,background .3s;transform:translate(-50%,-50%);mix-blend-mode:difference}
-#cursor-ring{width:28px;height:28px;border:1px solid var(--terra2);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s cubic-bezier(.25,.46,.45,.94),width .3s,height .3s,opacity .3s,border-color .3s;opacity:.4;mix-blend-mode:difference}
-.cursor-hover #cursor-dot{transform:translate(-50%,-50%) scale(2);background:#fff}
-.cursor-hover #cursor-ring{width:44px;height:44px;border-color:#fff;opacity:.3}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s cubic-bezier(.16,1,.3,1);background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo img{height:36px;width:auto;object-fit:contain}
-.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
-.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,244,240,.5);transition:color .2s;position:relative}
-.nav-links a:hover{color:var(--white)}
-.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);transition:all .25s;padding:10px 0}
-.back-btn:hover{gap:12px;color:var(--terra2)}
-
-/* HERO SECTION */
-.pkg-hero{min-height:100vh;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 60px 80px;position:relative;overflow:hidden;text-align:center}
-.pkg-hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(196,80,58,.1) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.pkg-hero-content{position:relative;z-index:2}
-.pkg-eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--terra);margin-bottom:20px}
-.pkg-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;letter-spacing:.02em;color:var(--white);margin-bottom:20px}
-.pkg-subtitle{font-size:clamp(1rem,2vw,1.3rem);color:var(--muted);max-width:600px;margin:0 auto 40px;line-height:1.8}
-.pkg-price-section{text-align:center}
-.pkg-price-original{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--muted);text-decoration:line-through;letter-spacing:.05em;margin-bottom:8px;opacity:.7}
-.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--terra);font-weight:700;letter-spacing:.05em}
-.pkg-discount-badge{display:inline-block;background:rgba(196,80,58,.15);border:1px solid rgba(196,80,58,.3);color:var(--terra);padding:8px 16px;border-radius:4px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:12px;animation:pulse 2s ease-in-out infinite}
-
-@keyframes pulse{0%,100%{opacity:.8}50%{opacity:1}}
-
-.april-countdown{font-size:.9rem;color:var(--terra);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:24px;min-height:24px}
-.pkg-cta-group{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:60px}
-.pkg-cta-centered{max-width:100%;display:flex;justify-content:center}
-.pkg-cta-centered .pkg-btn{width:auto;max-width:400px}
-.pkg-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all .3s cubic-bezier(.16,1,.3,1);border:none}
-.pkg-btn-primary{background:var(--terra);color:#fff}
-.pkg-btn-primary:hover{background:var(--terra2);transform:translateY(-4px);box-shadow:0 16px 48px rgba(196,80,58,.35)}
-.pkg-btn-secondary{border:2px solid var(--terra);color:var(--terra);background:transparent}
-.pkg-btn-secondary:hover{background:var(--terra);color:#fff;transform:translateY(-4px)}
-
-/* SECTIONS */
-.pkg-section{padding:120px 60px;border-bottom:1px solid var(--border)}
-.pkg-section:nth-child(even){background:var(--bg2)}
-.section-header{margin-bottom:60px}
-.section-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(196,80,58,.1);line-height:1;margin-bottom:10px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:.9;color:var(--white);margin-bottom:20px}
-.section-title em{font-style:normal;color:var(--terra)}
-.section-intro{font-size:.95rem;line-height:1.85;color:#9CA3AF;max-width:700px}
-
-/* GENERAL INFO */
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:40px}
-.info-card{padding:32px;background:rgba(196,80,58,.05);border:1px solid rgba(196,80,58,.1);border-radius:6px;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.info-card:hover{border-color:rgba(196,80,58,.3);background:rgba(196,80,58,.08);transform:translateY(-8px);box-shadow:0 16px 40px rgba(196,80,58,.15)}
-.info-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--terra);margin-bottom:12px}
-.info-card p{font-size:.85rem;color:#D1D5DB;line-height:1.8}
-
-/* STRUCTURE */
-.structure-timeline{display:grid;gap:40px;margin-top:50px}
-.timeline-step{display:grid;grid-template-columns:100px 1fr;gap:30px;align-items:start}
-.timeline-number{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(196,80,58,.1);line-height:1}
-.timeline-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);margin-bottom:12px}
-.timeline-content p{font-size:.9rem;color:#D1D5DB;line-height:1.8;margin-bottom:15px}
-.timeline-content ul{list-style:none;padding-left:20px}
-.timeline-content li{font-size:.85rem;color:var(--muted);padding:.5rem 0 .5rem 20px;position:relative;margin:.4rem 0}
-.timeline-content li::before{content:'→';position:absolute;left:0;top:0;color:var(--terra);font-weight:600}
-
-/* STRATEGY */
-.strategy-pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;margin-top:50px}
-.strategy-card{padding:40px;background:rgba(196,80,58,.04);border-left:4px solid var(--terra);transition:all .4s cubic-bezier(.16,1,.3,1)}
-.strategy-card:hover{background:rgba(196,80,58,.08);transform:translateY(-6px);box-shadow:0 12px 32px rgba(196,80,58,.1)}
-.strategy-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--terra);margin-bottom:16px}
-.strategy-card p{font-size:.85rem;color:#D1D5DB;line-height:1.8}
-
-/* INCLUDES */
-.includes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:50px}
-.includes-col h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--terra);margin-bottom:24px}
-.includes-list{list-style:none}
-.includes-list li{font-size:.9rem;color:#D1D5DB;padding:12px 0;padding-left:24px;border-bottom:1px solid rgba(255,255,255,.05);position:relative}
-.includes-list li::before{content:'✓';position:absolute;left:0;color:var(--terra);font-weight:bold}
-.includes-list li:last-child{border-bottom:none}
-
-/* IDEAL FOR */
-.ideal-content{margin-top:40px;padding:40px;background:rgba(196,80,58,.05);border-left:4px solid var(--terra);border-radius:4px}
-.ideal-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);margin-bottom:20px}
-.ideal-list{list-style:none}
-.ideal-list li{font-size:.9rem;color:#D1D5DB;padding:10px 0;padding-left:24px;position:relative}
-.ideal-list li::before{content:'•';position:absolute;left:0;color:var(--terra)}
-
-/* CTA */
-.pkg-final-cta{padding:80px 60px;background:var(--bg2);text-align:center;border-top:1px solid var(--border)}
-.pkg-final-cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--white);margin-bottom:30px}
-.pkg-final-cta p{font-size:.95rem;color:var(--muted);max-width:600px;margin:0 auto 40px;line-height:1.8}
-
-/* FOOTER */
-footer{background:var(--bg2);padding:60px;border-top:1px solid var(--border);text-align:center}
-footer span{font-size:.7rem;color:var(--muted);letter-spacing:.08em}
-footer a{color:var(--terra);transition:color .2s}
-footer a:hover{color:var(--terra2)}
-
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.reveal.visible{opacity:1;transform:none}
-
-/* STAGGER ANIMATIONS */
-.info-grid > div{opacity:0;transform:translateY(32px);animation:staggerIn .6s cubic-bezier(.16,1,.3,1) both}
-.info-grid > div:nth-child(1){animation-delay:.1s}
-.info-grid > div:nth-child(2){animation-delay:.2s}
-.info-grid > div:nth-child(3){animation-delay:.3s}
-.info-grid > div:nth-child(4){animation-delay:.4s}
-
-.timeline-step{opacity:0;transform:translateY(32px);animation:staggerIn .7s cubic-bezier(.16,1,.3,1) both}
-.timeline-step:nth-child(1){animation-delay:.1s}
-.timeline-step:nth-child(2){animation-delay:.3s}
-.timeline-step:nth-child(3){animation-delay:.5s}
-
-.strategy-card{opacity:0;transform:translateY(32px);animation:staggerIn .6s cubic-bezier(.16,1,.3,1) both}
-.strategy-card:nth-child(1){animation-delay:.1s}
-.strategy-card:nth-child(2){animation-delay:.2s}
-.strategy-card:nth-child(3){animation-delay:.3s}
-.strategy-card:nth-child(4){animation-delay:.4s}
-
-.includes-col{opacity:0;transform:translateX(-32px);animation:slideInLeft .7s cubic-bezier(.16,1,.3,1) both}
-.includes-col:nth-child(2){transform:translateX(32px);animation:slideInRight .7s cubic-bezier(.16,1,.3,1) both}
-.includes-col:nth-child(1){animation-delay:.2s}
-.includes-col:nth-child(2){animation-delay:.3s}
-
-@keyframes staggerIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
-@keyframes slideInLeft{from{opacity:0;transform:translateX(-32px)}to{opacity:1;transform:none}}
-@keyframes slideInRight{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:none}}
-
-/* RESPONSIVE MOBILE */
-@media (max-width:768px){
-  body{overflow-x:hidden!important}
-  .pkg-hero{padding:100px 24px 60px}
-  .pkg-section{padding:80px 24px}
-  .pkg-final-cta{padding:60px 24px}
-  footer{padding:40px 24px}
-  .pkg-title{font-size:clamp(2.2rem,5vw,3.5rem)}
-  .section-num{font-size:clamp(2.2rem,4vw,3.5rem)}
-  .timeline-number{font-size:clamp(1.8rem,4vw,2.5rem)}
-  .includes-grid{grid-template-columns:1fr}
-  .timeline-step{grid-template-columns:1fr;gap:8px}
-  h1{font-size:clamp(2.5rem,7vw,4rem)}
-  h2{font-size:clamp(1.8rem,5vw,2.8rem)}
-}
-
-@media (max-width:480px){
-  body{overflow-x:hidden!important}
-  .pkg-hero{padding:80px 16px 40px}
-  .pkg-section{padding:60px 16px}
-  .pkg-final-cta{padding:40px 16px}
-  footer{padding:30px 16px}
-  .pkg-eyebrow{font-size:.55rem}
-  .pkg-title{font-size:clamp(1.8rem,5vw,3rem)}
-  .section-num{font-size:clamp(1.8rem,4vw,2.5rem)}
-  h1{font-size:clamp(2rem,6vw,3rem)}
-  h2{font-size:clamp(1.4rem,4vw,2.2rem)}
-}
-</style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="VITA STUDIOS">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">INICIO</a></li>
+                    <li><a href="index.html#servicios" class="nav-link">SERVICIOS</a></li>
+                    <li><a href="index.html#casos" class="nav-link">CASOS</a></li>
+                    <li><a href="index.html#contacto" class="nav-link">CONTACTO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="hero-headline reveal">Paquete Esencia</h1>
+            <p class="hero-subheadline reveal">Automatiza tu presencia digital. Tu marca trabaja mientras tú creas.</p>
+        </div>
+    </section>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <a href="index.html"><img src="logo.png" alt="Vita Studio" style="height: 45px; width: auto; object-fit: contain;"></a>
-  </div>
-  <a href="vita_productions.html" class="back-btn">← Volver</a>
-</nav>
+    <div class="divider"></div>
 
-<!-- HERO -->
-<section class="pkg-hero">
-  <div class="pkg-hero-glow"></div>
-  <div class="pkg-hero-content">
-    <div class="pkg-eyebrow">Paquete de colaboración</div>
-    <h1 class="pkg-title">Automatiza tu<br><em>Presencia Digital</em></h1>
-    <p class="pkg-subtitle">Tu marca trabaja mientras tú creas. Diseñado para artistas en etapa inicial que quieren construir presencia sólida con el mínimo de fricción operativa.</p>
-    <div class="pkg-price-section">
-      <div class="pkg-price-original">$10,000/mes</div>
-      <div class="pkg-price">$5,000 / mes</div>
-      <div class="pkg-discount-badge">Descuento especial Abril ⏰</div>
-    </div>
-    <div id="aprilCounter" class="april-countdown"></div>
+    <!-- MAIN CONTENT -->
+    <section class="page-content">
+        <div class="container">
+            <!-- INFORMACIÓN GENERAL -->
+            <section class="content-section reveal">
+                <h2>Información General</h2>
+                <p>Todo lo que necesitas saber sobre el paquete Esencia y cómo funciona para tu marca.</p>
 
-    <div class="pkg-cta-group pkg-cta-centered">
-      <a href="agendar-sesion.html" class="pkg-btn pkg-btn-primary">Agendar sesión</a>
-    </div>
-  </div>
-</section>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Duración</h3>
+                        <p>Plan mensual recurrente. Flexible y sin compromiso a largo plazo. Cancela cuando lo necesites.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Frecuencia</h3>
+                        <p>2 skits cinematográficos al mes + calendario editorial completo + estrategia de contenido.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Entrega</h3>
+                        <p>Contenido completamente listo para publicar. No requiere edición ni ajustes adicionales de tu parte.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Comunicación</h3>
+                        <p>Sesiones estratégicas mensuales + reportes de métricas. Estamos en contacto permanente.</p>
+                    </div>
+                </div>
+            </section>
 
-<!-- SECCION 1: INFORMACIÓN GENERAL -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">01</div>
-    <h2 class="section-title">Información<br><em>General</em></h2>
-    <p class="section-intro">Todo lo que necesitas saber sobre el paquete Esencia y cómo funciona para tu marca.</p>
-  </div>
-  <div class="info-grid">
-    <div class="info-card">
-      <h3>Duración</h3>
-      <p>Plan mensual recurrente. Flexible y sin compromiso a largo plazo. Cancela cuando lo necesites.</p>
-    </div>
-    <div class="info-card">
-      <h3>Frecuencia</h3>
-      <p>2 skits cinematográficos al mes + calendario editorial completo + estrategia de contenido.</p>
-    </div>
-    <div class="info-card">
-      <h3>Entrega</h3>
-      <p>Contenido completamente listo para publicar. No requiere edición ni ajustes adicionales de tu parte.</p>
-    </div>
-    <div class="info-card">
-      <h3>Comunicación</h3>
-      <p>Sesiones estratégicas mensuales + reportes de métricas. Estamos en contacto permanente.</p>
-    </div>
-  </div>
-</section>
+            <!-- ESTRUCTURA -->
+            <section class="content-section reveal">
+                <h2>Estructura del Lanzamiento</h2>
+                <p>Tres fases cuidadosamente diseñadas para construir tu marca personal desde cero.</p>
 
-<!-- SECCION 2: ESTRUCTURA DEL LANZAMIENTO -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">02</div>
-    <h2 class="section-title">Estructura del<br><em>Lanzamiento</em></h2>
-    <p class="section-intro">Tres fases cuidadosamente diseñadas para construir tu marca personal desde cero.</p>
-  </div>
-  <div class="structure-timeline">
-    <div class="timeline-step">
-      <div class="timeline-number">I</div>
-      <div class="timeline-content">
-        <h3>Descubrimiento & ADN de Marca</h3>
-        <p>Comenzamos por entender quién eres, cuál es tu historia única y qué te diferencia. En esta fase definimos:</p>
-        <ul>
-          <li>Tu historia personal como artista</li>
-          <li>Propuesta de valor única</li>
-          <li>Estética visual y tono de comunicación</li>
-          <li>Perfil de audiencia objetivo</li>
-          <li>Canales prioritarios de distribución</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-number">II</div>
-      <div class="timeline-content">
-        <h3>Producción & Preparación</h3>
-        <p>Con la base definida, creamos tu primer mes de contenido listo para publicar:</p>
-        <ul>
-          <li>2 skits cinematográficos (stories visuales sobre tu arte)</li>
-          <li>Calendario editorial mensual completo</li>
-          <li>Copys y textos para cada publicación</li>
-          <li>Templates de stories reutilizables</li>
-          <li>Estrategia de hashtags y horarios óptimos</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-number">III</div>
-      <div class="timeline-content">
-        <h3>Lanzamiento & Optimización</h3>
-        <p>Publicamos, monitoreamos y optimizamos en tiempo real:</p>
-        <ul>
-          <li>Publicación según calendario planificado</li>
-          <li>Seguimiento de métricas semana a semana</li>
-          <li>Ajustes estratégicos basados en datos</li>
-          <li>Sesión estratégica mensual de revisión</li>
-          <li>Plan mejorado para el siguiente mes</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>I. Descubrimiento & ADN de Marca</h3>
+                        <p>Comenzamos por entender quién eres, cuál es tu historia única y qué te diferencia. En esta fase definimos:</p>
+                        <ul>
+                            <li>Tu historia personal como artista</li>
+                            <li>Propuesta de valor única</li>
+                            <li>Estética visual y tono de comunicación</li>
+                            <li>Perfil de audiencia objetivo</li>
+                            <li>Canales prioritarios de distribución</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>II. Producción & Preparación</h3>
+                        <p>Con la base definida, creamos tu primer mes de contenido listo para publicar:</p>
+                        <ul>
+                            <li>2 skits cinematográficos (stories visuales sobre tu arte)</li>
+                            <li>Calendario editorial mensual completo</li>
+                            <li>Copys y textos para cada publicación</li>
+                            <li>Templates de stories reutilizables</li>
+                            <li>Estrategia de hashtags y horarios óptimos</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>III. Lanzamiento & Optimización</h3>
+                        <p>Publicamos, monitoreamos y optimizamos en tiempo real:</p>
+                        <ul>
+                            <li>Publicación según calendario planificado</li>
+                            <li>Seguimiento de métricas semana a semana</li>
+                            <li>Ajustes estratégicos basados en datos</li>
+                            <li>Sesión estratégica mensual de revisión</li>
+                            <li>Plan mejorado para el siguiente mes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<!-- SECCION 3: ESTRATEGIA -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">03</div>
-    <h2 class="section-title">Nuestra<br><em>Estrategia</em></h2>
-    <p class="section-intro">El enfoque metodológico detrás de cada decisión creativa y estratégica.</p>
-  </div>
-  <div class="strategy-pillars">
-    <div class="strategy-card">
-      <h3>Automatización Inteligente</h3>
-      <p>Creamos un sistema donde el contenido se produce una vez pero trabaja en múltiples plataformas. Maximizamos ROI sin duplicar esfuerzo.</p>
-    </div>
-    <div class="strategy-card">
-      <h3>Narrativa Coherente</h3>
-      <p>Todo lo que publicamos cuenta una historia sobre quién eres. No es contenido random — es una estrategia visual y narrativa unificada.</p>
-    </div>
-    <div class="strategy-card">
-      <h3>Datos Primero</h3>
-      <p>Cada mes analizamos qué funcionó y qué no. Ajustamos la estrategia basados en datos reales de tu audiencia, no en intuición.</p>
-    </div>
-    <div class="strategy-card">
-      <h3>Consistencia</h3>
-      <p>La clave para crecer en redes es estar presente sin agotarse. Automáticamente mantienes una presencia constante mientras creas tu arte.</p>
-    </div>
-  </div>
-</section>
+            <!-- LO QUE INCLUYE -->
+            <section class="content-section reveal">
+                <h2>Lo Que Incluye</h2>
+                <p>Detalles completos de todo lo que está cubierto en tu paquete mensual.</p>
 
-<!-- SECCION 4: LO QUE INCLUYE -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">04</div>
-    <h2 class="section-title">Lo Que<br><em>Incluye</em></h2>
-    <p class="section-intro">Detalles completos de todo lo que está cubierto en tu paquete mensual.</p>
-  </div>
-  <div class="includes-grid">
-    <div class="includes-col">
-      <h3>Producción</h3>
-      <ul class="includes-list">
-        <li>2 skits cinematográficos al mes</li>
-        <li>Concepto y dirección creativa</li>
-        <li>Grabación en locaciones</li>
-        <li>Edición profesional</li>
-        <li>Color grading y sonido</li>
-        <li>Archivos listos para publicar</li>
-      </ul>
-    </div>
-    <div class="includes-col">
-      <h3>Estrategia & Contenido</h3>
-      <ul class="includes-list">
-        <li>Calendario editorial mensual</li>
-        <li>Copys y textos para cada post</li>
-        <li>Templates de stories reutilizables</li>
-        <li>Estrategia de hashtags</li>
-        <li>Horarios óptimos de publicación</li>
-        <li>Reporte de métricas mensual</li>
-        <li>Sesión estratégica mensual 1:1</li>
-        <li>Ajustes y optimizaciones</li>
-      </ul>
-    </div>
-  </div>
-</section>
+                <div class="two-column">
+                    <div>
+                        <h3>Producción</h3>
+                        <ul>
+                            <li>2 skits cinematográficos al mes</li>
+                            <li>Concepto y dirección creativa</li>
+                            <li>Grabación en locaciones</li>
+                            <li>Edición profesional</li>
+                            <li>Color grading y sonido</li>
+                            <li>Archivos listos para publicar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Estrategia & Contenido</h3>
+                        <ul>
+                            <li>Calendario editorial mensual</li>
+                            <li>Copys y textos para cada post</li>
+                            <li>Templates de stories reutilizables</li>
+                            <li>Estrategia de hashtags</li>
+                            <li>Horarios óptimos de publicación</li>
+                            <li>Reporte de métricas mensual</li>
+                            <li>Sesión estratégica mensual 1:1</li>
+                            <li>Ajustes y optimizaciones</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<!-- SECCION 5: IDEAL PARA -->
-<section class="pkg-section reveal">
-  <div class="section-header">
-    <div class="section-num">05</div>
-    <h2 class="section-title">Ideal<br><em>Para</em></h2>
-    <p class="section-intro">Este paquete está diseñado específicamente para artistas que encajan en este perfil.</p>
-  </div>
-  <div class="ideal-content">
-    <h3>El Artista Perfecto para Esencia</h3>
-    <ul class="ideal-list">
-      <li>Eres artista emergente o en crecimiento</li>
-      <li>Tienes talento pero poca presencia digital</li>
-      <li>Quieres crecer pero no tienes tiempo para gestionar redes</li>
-      <li>Prefieres enfocarte en crear tu arte, no en contenido</li>
-      <li>Necesitas una estrategia clara pero presupuesto limitado</li>
-      <li>Buscas automatización sin perder autenticidad</li>
-      <li>Quieres resultados medibles y sostenibles</li>
-      <li>Estás listo para invertir en tu marca pero necesitas un plan claro</li>
-    </ul>
-  </div>
-</section>
+            <!-- IDEAL PARA -->
+            <section class="content-section reveal">
+                <h2>Ideal Para</h2>
+                <p>Este paquete está diseñado específicamente para artistas que encajan en este perfil.</p>
 
-<!-- CTA FINAL -->
-<section class="pkg-final-cta reveal">
-  <h2>¿Es Esencia lo que necesitas?</h2>
-  <p>Si esta propuesta resuena contigo, estamos listos para empezar. Tenemos slots limitados cada mes para garantizar la mejor calidad en cada proyecto.</p>
-  <a href="agendar-sesion.html" class="pkg-btn pkg-btn-primary">Agendar sesión de consulta</a>
-</section>
+                <div class="ideal-box">
+                    <h3>El Artista Perfecto para Esencia</h3>
+                    <ul>
+                        <li>Eres artista emergente o en crecimiento</li>
+                        <li>Tienes talento pero poca presencia digital</li>
+                        <li>Quieres crecer pero no tienes tiempo para gestionar redes</li>
+                        <li>Prefieres enfocarte en crear tu arte, no en contenido</li>
+                        <li>Necesitas una estrategia clara pero presupuesto limitado</li>
+                        <li>Buscas automatización sin perder autenticidad</li>
+                        <li>Quieres resultados medibles y sostenibles</li>
+                        <li>Estás listo para invertir en tu marca pero necesitas un plan claro</li>
+                    </ul>
+                </div>
+            </section>
 
-<!-- FOOTER -->
-<footer class="reveal">
-  <div style="margin-bottom:20px">
-    <span>© 2026 VITA Studio Productions</span> <br>
-    <span>Estrategia · Contenido · Eventos</span>
-  </div>
-  <a href="index.html">Volver al inicio</a>
-</footer>
+            <!-- CTA -->
+            <section class="content-section cta-section reveal">
+                <h2>¿Es Esencia lo que necesitas?</h2>
+                <p>Si esta propuesta resuena contigo, estamos listos para empezar. Tenemos slots limitados cada mes para garantizar la mejor calidad en cada proyecto.</p>
+                <a href="agendar-sesion.html" class="btn btn-primary">Agendar sesión de consulta</a>
+            </section>
+        </div>
+    </section>
 
-<script>
-// Custom cursor
-const dot = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
+    <div class="divider"></div>
 
-document.addEventListener('mousemove', (e) => {
-  dot.style.left = e.clientX + 'px';
-  dot.style.top = e.clientY + 'px';
-  ring.style.left = e.clientX + 'px';
-  ring.style.top = e.clientY + 'px';
-});
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 VITA STUDIOS. CRECIMIENTO PERSONALIZADO.</p>
+    </footer>
 
-document.addEventListener('mousedown', () => {
-  document.body.classList.add('cursor-hover');
-});
-
-document.addEventListener('mouseup', () => {
-  document.body.classList.remove('cursor-hover');
-});
-
-// Reveal on scroll
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// April countdown
-function updateAprilCountdown() {
-  const now = new Date();
-  const currentYear = now.getFullYear();
-  const aprilEnd = new Date(currentYear, 3, 30, 23, 59, 59); // Abril 30
-
-  // Si abril ya pasó, mostrar nada o mensaje
-  if (now > aprilEnd) {
-    document.getElementById('aprilCounter').innerHTML = '';
-    return;
-  }
-
-  const diff = aprilEnd - now;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-  const counter = document.getElementById('aprilCounter');
-  if (counter) {
-    counter.innerHTML = `⏳ Descuento válido por: ${days}d ${hours}h ${minutes}m`;
-  }
-}
-
-updateAprilCountdown();
-setInterval(updateAprilCountdown, 60000); // Actualizar cada minuto
-</script>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

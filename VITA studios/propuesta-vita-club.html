@@ -1,1173 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
-<title>VITA Studio — Propuesta de Contenido</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #000000;
-    --bg2: #0A0A0A;
-    --bg3: #111111;
-    --white: #F4F4F0;
-    --muted: #6B7280;
-    --terra: #C4503A;
-    --terra2: #E06B52;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --red-muted: #a85454;
-    --green-muted: #6b9a6b;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA Club | VITA Studios</title>
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* Cursor */
-  #cursor-dot {
-    width: 6px; height: 6px; background: var(--terra);
-    border-radius: 50%; position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9999;
-    transition: transform .1s ease, background .3s;
-    transform: translate(-50%, -50%); mix-blend-mode: difference;
-  }
-  #cursor-ring {
-    width: 28px; height: 28px; border: 1px solid var(--terra2);
-    border-radius: 50%; position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform .18s cubic-bezier(.25,.46,.45,.94), width .3s, height .3s, opacity .3s, border-color .3s;
-    opacity: .4; mix-blend-mode: difference;
-  }
-  .cursor-hover #cursor-dot {
-    transform: translate(-50%, -50%) scale(2);
-    background: #fff;
-  }
-  .cursor-hover #cursor-ring {
-    width: 44px; height: 44px;
-    border-color: #fff; opacity: .3;
-  }
-  .cursor-text-active #cursor-dot {
-    opacity: 0;
-  }
-  .cursor-text-active #cursor-ring {
-    width: 50px; height: 50px;
-    opacity: .1; border-color: var(--terra);
-  }
-
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-
-  /* ── Navigation ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    padding: 24px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    transition: all .4s cubic-bezier(.16,1,.3,1);
-  }
-  nav img { height: 36px; background: transparent !important; }
-  .nav-back {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em;
-    text-transform: uppercase; color: rgba(244,244,240,.5);
-    text-decoration: none; border: 1px solid rgba(255,255,255,0.12);
-    padding: 8px 16px; border-radius: 2px; transition: all .22s;
-    font-family: 'Outfit', sans-serif;
-  }
-  .nav-back:hover { color: #F4F4F0; border-color: #C4503A; }
-  nav .nav-tag {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--terra);
-    font-weight: 400;
-  }
-
-  /* ── Hero ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    padding: 120px 40px 80px;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 80px;
-    background: linear-gradient(to bottom, var(--terra), transparent);
-  }
-  .hero-label {
-    font-size: 11px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--terra);
-    margin-bottom: 40px;
-    font-weight: 400;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.2s;
-  }
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 300;
-    font-size: clamp(2.8rem, 6vw, 5.5rem);
-    line-height: 1.1;
-    letter-spacing: 0.02em;
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.4s;
-  }
-  .hero h1 em { font-style: normal; color: var(--terra); }
-  .hero-sub {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 500px;
-    line-height: 1.8;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.6s;
-  }
-
-  /* ── Sections ── */
-  section { padding: 100px 0; }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--terra);
-    margin-bottom: 16px;
-    font-weight: 400;
-  }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 300;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.15;
-    margin-bottom: 20px;
-  }
-  .section-desc {
-    color: var(--muted);
-    font-size: 15px;
-    max-width: 520px;
-    margin-bottom: 60px;
-  }
-
-  /* ── Divider ── */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
-    position: relative;
-  }
-  .divider::before {
-    content: '';
-    position: absolute;
-    top: -3px; left: 50%;
-    transform: translateX(-50%);
-    width: 7px; height: 7px;
-    background: var(--terra);
-    border-radius: 50%;
-  }
-
-  /* ── Service Cards ── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .service-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 44px 32px;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--terra), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .service-card:hover {
-    background: var(--bg3);
-    border-color: var(--border2);
-    transform: translateY(-4px);
-  }
-  .service-card:hover::before { opacity: 1; }
-  .service-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    font-weight: 300;
-    color: var(--terra);
-    opacity: 0.3;
-    line-height: 1;
-    margin-bottom: 24px;
-  }
-  .service-card h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    font-weight: 400;
-    margin-bottom: 14px;
-    letter-spacing: 0.5px;
-  }
-  .service-card p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* ── About / Sobre Nosotros ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .about-text p {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 24px;
-  }
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .stat-item {
-    padding: 32px 24px;
-    border: 1px solid var(--border);
-    background: var(--bg2);
-    text-align: center;
-    transition: all 0.4s ease;
-  }
-  .stat-item:hover {
-    border-color: var(--terra);
-    transform: translateY(-3px);
-  }
-  .stat-big {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    font-weight: 300;
-    color: var(--terra);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* ── Comparativo ── */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 60px 1fr;
-    gap: 0;
-    align-items: stretch;
-  }
-  .compare-col {
-    padding: 44px 36px;
-    border: 1px solid var(--border);
-    background: var(--bg2);
-  }
-  .compare-col.before {
-    border-right: none;
-  }
-  .compare-col.after {
-    border-left: none;
-  }
-  .compare-vs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg);
-    z-index: 2;
-  }
-  .compare-vs span {
-    width: 48px; height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--terra);
-    border-radius: 50%;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    font-style: italic;
-    color: var(--terra);
-    letter-spacing: 1px;
-  }
-  .compare-col h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    font-weight: 400;
-    margin-bottom: 28px;
-  }
-  .compare-col.before h3 { color: var(--red-muted); }
-  .compare-col.after h3 { color: var(--green-muted); }
-  .compare-list {
-    list-style: none;
-    padding: 0;
-  }
-  .compare-list li {
-    font-size: 14px;
-    color: var(--muted);
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    line-height: 1.5;
-  }
-  .compare-list li:last-child { border-bottom: none; }
-  .compare-list li .icon {
-    flex-shrink: 0;
-    margin-top: 2px;
-    font-size: 14px;
-  }
-  .compare-col.before .icon { color: var(--red-muted); }
-  .compare-col.after .icon { color: var(--green-muted); }
-
-  /* ── Calendar ── */
-  .calendar-wrapper {
-    border: 1px solid var(--border);
-    background: var(--bg2);
-    overflow: hidden;
-  }
-  .calendar-header {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-  }
-  .calendar-header span {
-    padding: 16px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--terra);
-    text-align: center;
-    font-weight: 400;
-  }
-  .calendar-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-bottom: 1px solid var(--border);
-  }
-  .calendar-row:last-child { border-bottom: none; }
-  .calendar-cell {
-    padding: 24px 20px;
-    text-align: center;
-    border-right: 1px solid var(--border);
-    position: relative;
-  }
-  .calendar-cell:last-child { border-right: none; }
-  .calendar-week {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0.5;
-    margin-bottom: 10px;
-  }
-  .calendar-cell .event {
-    font-size: 13px;
-    color: var(--white);
-    margin-bottom: 4px;
-    font-weight: 400;
-  }
-  .calendar-cell .event-sub {
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .calendar-cell.highlight {
-    background: rgba(200, 169, 126, 0.06);
-  }
-  .calendar-cell.highlight .event {
-    color: var(--terra);
-  }
-  .cal-dot {
-    display: inline-block;
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    margin-right: 6px;
-    position: relative;
-    top: -1px;
-  }
-  .cal-dot.gold { background: var(--terra); }
-  .cal-dot.white { background: var(--muted); }
-  .cal-dot.green { background: var(--green-muted); }
-
-  .calendar-legend {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    padding: 20px;
-    border-top: 1px solid var(--border);
-    background: var(--bg);
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  /* ── KPIs ── */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .kpi-card {
-    padding: 36px 24px;
-    border: 1px solid var(--border);
-    background: var(--bg2);
-    text-align: center;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .kpi-card:hover {
-    border-color: var(--terra);
-    transform: translateY(-3px);
-  }
-  .kpi-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--terra), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .kpi-card:hover::after { opacity: 1; }
-  .kpi-icon {
-    font-size: 28px;
-    margin-bottom: 18px;
-    opacity: 0.7;
-  }
-  .kpi-card h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    margin-bottom: 10px;
-  }
-  .kpi-card p {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* ── Process / Timeline ── */
-  .process-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px 60px;
-  }
-  .process-step {
-    padding: 36px 0;
-    border-top: 1px solid var(--border);
-    position: relative;
-  }
-  .process-step::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 0;
-    width: 40px; height: 1px;
-    background: var(--terra);
-  }
-  .step-num {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--terra);
-    margin-bottom: 16px;
-    font-weight: 400;
-  }
-  .process-step h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 12px;
-  }
-  .process-step p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* ── Entregables ── */
-  .deliverables {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .deliverable-item {
-    text-align: center;
-    padding: 50px 30px;
-    border: 1px solid var(--border);
-    background: var(--bg2);
-    transition: all 0.4s ease;
-  }
-  .deliverable-item:hover {
-    border-color: var(--terra);
-    transform: translateY(-4px);
-  }
-  .deliverable-big {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
-    font-weight: 300;
-    color: var(--terra);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .deliverable-label {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-  .deliverable-desc {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 16px;
-    line-height: 1.6;
-    opacity: 0.7;
-  }
-
-  /* ── Plataformas ── */
-  .platforms {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-top: 60px;
-  }
-  .platform { text-align: center; }
-  .platform-icon {
-    width: 56px; height: 56px;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 14px;
-    transition: border-color 0.3s ease;
-  }
-  .platform:hover .platform-icon { border-color: var(--terra); }
-  .platform-icon svg { width: 24px; height: 24px; fill: var(--white); opacity: 0.8; }
-  .platform span {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* ── Pricing ── */
-  .pricing-box {
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 70px 50px;
-    border: 1px solid var(--border);
-    background: var(--bg2);
-    position: relative;
-  }
-  .pricing-box::before,
-  .pricing-box::after {
-    content: '';
-    position: absolute;
-    width: 60px; height: 60px;
-    border-color: var(--terra);
-    border-style: solid;
-    opacity: 0.3;
-  }
-  .pricing-box::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
-  .pricing-box::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
-  .price-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 5vw, 4.5rem);
-    font-weight: 300;
-    color: var(--terra);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .price-period {
-    font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 40px;
-  }
-  .price-original {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    color: var(--muted);
-    text-decoration: line-through;
-    letter-spacing: .05em;
-    margin-bottom: 8px;
-    opacity: .7;
-  }
-  .price-badge {
-    display: inline-block;
-    background: rgba(196,80,58,.15);
-    border: 1px solid rgba(196,80,58,.3);
-    color: var(--terra);
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: .7rem;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    margin-top: 12px;
-    margin-bottom: 16px;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  .april-countdown-creator {
-    font-size: .9rem;
-    color: var(--terra);
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    min-height: 24px;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: .8; }
-    50% { opacity: 1; }
-  }
-  .price-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    margin-top: 40px;
-  }
-  .price-split-item { background: var(--bg2); padding: 28px 20px; }
-  .price-split-item .amount {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 4px;
-  }
-  .price-split-item .date {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* ── CTA ── */
-  .cta-section { text-align: center; padding: 120px 40px; }
-  .cta-section h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 300;
-    margin-bottom: 20px;
-  }
-  .cta-section h2 em { color: var(--terra); font-style: italic; }
-  .cta-section p { color: var(--muted); margin-bottom: 40px; font-size: 15px; }
-  .cta-button {
-    display: inline-block;
-    padding: 16px 52px;
-    background: var(--terra);
-    color: var(--bg);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    font-family: 'Outfit', sans-serif;
-  }
-  .cta-button:hover { background: var(--terra2); transform: translateY(-2px); }
-
-  /* ── Footer ── */
-  footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); }
-  footer img { height: 22px; opacity: 0.5; margin-bottom: 16px; }
-  footer p { font-size: 12px; color: var(--muted); letter-spacing: 2px; }
-
-  /* ── Animations ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── Responsive ── */
-  @media (max-width: 768px) {
-    .container { padding: 0 24px; }
-    nav { padding: 20px 24px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .process-grid { grid-template-columns: 1fr; gap: 0; }
-    .deliverables { grid-template-columns: 1fr; }
-    .pricing-box { padding: 50px 30px; }
-    .platforms { gap: 40px; }
-    section { padding: 70px 0; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .compare-grid { grid-template-columns: 1fr; }
-    .compare-vs { padding: 16px; }
-    .compare-col.before { border-right: 1px solid var(--border); border-bottom: none; }
-    .compare-col.after { border-left: 1px solid var(--border); border-top: none; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-    .calendar-header, .calendar-row { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 480px) {
-    body { overflow-x: hidden !important; }
-    .container { padding: 0 16px !important; max-width: 100% !important; }
-    nav { padding: 16px 16px !important; width: 100vw !important; }
-    section { padding: 30px 0 !important; }
-    .hero { padding: 80px 16px 40px !important; }
-    h1 { font-size: clamp(1.6rem, 4vw, 2.2rem) !important; }
-    h2 { font-size: clamp(1.1rem, 3vw, 1.6rem) !important; }
-    .hero-sub { font-size: 0.8rem !important; }
-    .section-label { font-size: 10px !important; margin-bottom: 12px !important; }
-    .section-title { font-size: clamp(0.95rem, 3vw, 1.4rem) !important; margin-bottom: 16px !important; }
-    .section-desc { font-size: 13px !important; margin-bottom: 40px !important; }
-    .pricing-box { padding: 30px 16px !important; }
-    .kpi-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
-    .kpi-card { padding: 20px 16px !important; }
-    .kpi-icon { font-size: 22px !important; margin-bottom: 12px !important; }
-    .kpi-card h4 { font-size: 13px !important; }
-    .deliverables { grid-template-columns: 1fr !important; gap: 16px !important; }
-    .deliverable-item { padding: 30px 16px !important; }
-    .deliverable-big { font-size: 40px !important; margin-bottom: 6px !important; }
-    .deliverable-label { font-size: 11px !important; }
-    .deliverable-desc { font-size: 11px !important; margin-top: 12px !important; }
-    .calendar-header, .calendar-row { grid-template-columns: 1fr !important; }
-    .platforms { gap: 24px !important; flex-direction: column !important; }
-    .about-grid { gap: 24px !important; }
-    .about-text p { font-size: 13px !important; margin-bottom: 16px !important; line-height: 1.6 !important; }
-    .about-stats { gap: 12px !important; }
-    .stat-item { padding: 16px 12px !important; }
-    .stat-big { font-size: 28px !important; margin-bottom: 4px !important; }
-    .stat-label { font-size: 10px !important; }
-  }
-
-.logo-text{font-family:'Bebas Neue',sans-serif;letter-spacing:.14em;color:#F4F4F0;display:inline-block;background:transparent}
-</style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
-
-<!-- Navigation -->
-<nav>
-  <div style="display:flex;align-items:center;gap:20px">
-    <a href="index.html" style="font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,244,240,.35);text-decoration:none;display:flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,0.1);padding:6px 14px;border-radius:2px;transition:all .2s" onmouseover="this.style.color='#F4F4F0';this.style.borderColor='rgba(196,80,58,0.5)'" onmouseout="this.style.color='rgba(244,244,240,.35)';this.style.borderColor='rgba(255,255,255,0.1)'">← Inicio</a>
-    <img src="logo.png" alt="Vita Studio" style="height: 45px; width: auto; object-fit: contain;">
-  </div>
-  <span class="nav-tag">Propuesta Creativa</span>
-</nav>
-
-<!-- Hero -->
-<section class="hero">
-  <p class="hero-label">Propuesta de Contenido Mensual</p>
-  <h1>Creamos contenido<br>que <em>conecta</em></h1>
-  <p class="hero-sub">Una propuesta integral de producción audiovisual diseñada para potenciar tu presencia digital con contenido estratégico y de alta calidad.</p>
-</section>
-
-<div class="container">
-
-  <div class="divider"></div>
-
-  <!-- ════════ SOBRE NOSOTROS ════════ -->
-  <section class="reveal">
-    <p class="section-label">01 — Sobre Nosotros</p>
-    <h2 class="section-title">¿Por qué<br><em style="color:var(--terra);font-style:italic;">VITA Studio</em>?</h2>
-
-    <div class="about-grid">
-      <div class="about-text">
-        <p>Somos un equipo creativo especializado en producción de contenido para redes sociales. Entendemos que cada marca tiene una historia única, y nuestro trabajo es contarla de forma auténtica, visual y estratégica.</p>
-        <p>No solo grabamos y editamos — creamos piezas que generan resultados reales: más alcance, más conexión con tu audiencia y más presencia de marca.</p>
-        <p>Trabajamos con un enfoque basado en datos y tendencias actuales para que cada contenido cumpla un propósito claro dentro de tu estrategia digital.</p>
-      </div>
-      <div class="about-stats" style="grid-template-columns: repeat(3, 1fr);">
-        <div class="stat-item">
-          <div class="stat-big">100+</div>
-          <div class="stat-label">Videos Producidos</div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="VITA STUDIOS">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">INICIO</a></li>
+                    <li><a href="index.html#servicios" class="nav-link">SERVICIOS</a></li>
+                    <li><a href="index.html#casos" class="nav-link">CASOS</a></li>
+                    <li><a href="index.html#contacto" class="nav-link">CONTACTO</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="stat-item">
-          <div class="stat-big">1M+</div>
-          <div class="stat-label">Vistas Generadas</div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="hero-headline reveal">VITA Club</h1>
+            <p class="hero-subheadline reveal">Una comunidad de artistas creando, creciendo y conectando juntos.</p>
         </div>
-        <div class="stat-item">
-          <div class="stat-big">98%</div>
-          <div class="stat-label">Retención</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- MAIN CONTENT -->
+    <section class="page-content">
+        <div class="container">
+            <!-- PROPUESTA -->
+            <section class="content-section reveal">
+                <h2>¿Qué es VITA Club?</h2>
+                <p>Un espacio exclusivo donde artistas emergentes se reúnen para compartir ideas, colaborar en proyectos y crear contenido juntos. No es una escuela ni una agencia — es una comunidad.</p>
+            </section>
+
+            <!-- PILARES -->
+            <section class="content-section reveal">
+                <h2>Los Tres Pilares</h2>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Comunidad</h3>
+                        <p>Acceso a una red de artistas, productores y creadores. Conexiones reales que generan colaboraciones, amistades y oportunidades de negocio auténticas.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Recursos</h3>
+                        <p>Acceso a infraestructura: estudio de grabación, equipo de producción, locaciones para eventos, herramientas digitales y templates de diseño.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Mentoría</h3>
+                        <p>Sesiones regulares con creadores experimentados. Recibe feedback en tiempo real sobre tu obra, tu estrategia de marca y tu dirección artística.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LO QUE INCLUYE -->
+            <section class="content-section reveal">
+                <h2>Membresía Incluye</h2>
+
+                <div class="two-column">
+                    <div>
+                        <h3>Acceso</h3>
+                        <ul>
+                            <li>Grupo privado de Discord de la comunidad</li>
+                            <li>Acceso al estudio de grabación (10 horas/mes)</li>
+                            <li>Biblioteca de templates y recursos diseño</li>
+                            <li>Webinars mensuales sobre estrategia y crecimiento</li>
+                            <li>Directorio de profesionales y servicios</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Sesiones & Eventos</h3>
+                        <ul>
+                            <li>2 sesiones de mentoría 1:1 al mes</li>
+                            <li>Reunión mensual de creadores (en vivo)</li>
+                            <li>Acceso prioritario a eventos y showcases</li>
+                            <li>Colaboración en proyectos conjuntos</li>
+                            <li>Oportunidades de visibilidad en plataforma</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IDEAL PARA -->
+            <section class="content-section reveal">
+                <h2>Ideal Para</h2>
+
+                <div class="ideal-box">
+                    <h3>Quiénes se benefician más</h3>
+                    <ul>
+                        <li>Artistas que quieren una comunidad de pares</li>
+                        <li>Creadores que buscan feedback y mentoría regular</li>
+                        <li>Personas que necesitan acceso a recursos y equipo</li>
+                        <li>Artistas que ven valor en las colaboraciones</li>
+                        <li>Quienes buscan crecer de forma sostenible y auténtica</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- PRECIOS -->
+            <section class="content-section reveal">
+                <h2>Planes de Membresía</h2>
+
+                <div class="info-grid">
+                    <div class="pricing-card">
+                        <h3>Starter</h3>
+                        <p class="price">$500/mes</p>
+                        <ul>
+                            <li>Acceso a comunidad Discord</li>
+                            <li>1 sesión de mentoría/mes</li>
+                            <li>Acceso a webinars</li>
+                            <li>Directorio de servicios</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Pro</h3>
+                        <p class="price">$1,200/mes</p>
+                        <ul>
+                            <li>Todo incluido en Starter</li>
+                            <li>5 horas estudio/mes</li>
+                            <li>2 sesiones de mentoría/mes</li>
+                            <li>Reuniones mensuales presenciales</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Founder</h3>
+                        <p class="price">$2,500/mes</p>
+                        <ul>
+                            <li>Todo incluido en Pro</li>
+                            <li>10 horas estudio/mes</li>
+                            <li>4 sesiones de mentoría/mes</li>
+                            <li>Prioridad en proyectos y eventos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="content-section cta-section reveal">
+                <h2>¿Listo para unirte a VITA Club?</h2>
+                <p>Aún hay espacios disponibles. La comunidad crece mejor cuando cada miembro suma valor genuino.</p>
+                <a href="agendar-sesion.html" class="btn btn-primary">Agendar sesión de presentación</a>
+            </section>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- ════════ COMPARATIVO ════════ -->
-  <section class="reveal">
-    <p class="section-label">02 — El Impacto</p>
-    <h2 class="section-title">Sin contenido vs.<br>con <em style="color:var(--terra);font-style:italic;">VITA Studio</em></h2>
-    <p class="section-desc">La diferencia entre tener presencia digital y simplemente existir en redes.</p>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 VITA STUDIOS. CRECIMIENTO PERSONALIZADO.</p>
+    </footer>
 
-    <div class="compare-grid">
-      <div class="compare-col before">
-        <h3>Sin Contenido</h3>
-        <ul class="compare-list">
-          <li><span class="icon">✗</span> Publicaciones inconsistentes y sin estrategia</li>
-          <li><span class="icon">✗</span> Contenido grabado con celular sin dirección</li>
-          <li><span class="icon">✗</span> Alcance orgánico estancado o en caída</li>
-          <li><span class="icon">✗</span> Imagen de marca poco profesional</li>
-          <li><span class="icon">✗</span> Sin métricas ni seguimiento de resultados</li>
-          <li><span class="icon">✗</span> Tu competencia se lleva a tu audiencia</li>
-        </ul>
-      </div>
-      <div class="compare-vs">
-        <span>vs</span>
-      </div>
-      <div class="compare-col after">
-        <h3>Con VITA Studio</h3>
-        <ul class="compare-list">
-          <li><span class="icon">✓</span> 12 contenidos mensuales planeados estratégicamente</li>
-          <li><span class="icon">✓</span> Producción profesional con edición completa</li>
-          <li><span class="icon">✓</span> Mayor alcance y engagement en tus plataformas</li>
-          <li><span class="icon">✓</span> Imagen de marca sólida y coherente</li>
-          <li><span class="icon">✓</span> Reporte mensual con métricas y análisis</li>
-          <li><span class="icon">✓</span> Posicionamiento frente a tu competencia</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ════════ SERVICIOS ════════ -->
-  <section class="reveal">
-    <p class="section-label">03 — Servicios</p>
-    <h2 class="section-title">¿Qué incluye<br>esta propuesta?</h2>
-    <p class="section-desc">Un ecosistema completo de producción de contenido, desde la conceptualización hasta la entrega final, optimizado para resultados.</p>
-
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-number">01</div>
-        <h3>Producción Audiovisual</h3>
-        <p>Grabación profesional de videos cortos optimizados para formato vertical. Cada pieza pensada para captar la atención en los primeros segundos.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-number">02</div>
-        <h3>Edición Completa</h3>
-        <p>Post-producción integral que incluye corte, color, textos, transiciones y audio. Contenido listo para publicar sin preocupaciones.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-number">03</div>
-        <h3>Estrategia de Contenido</h3>
-        <p>Planificación mensual con enfoque estratégico. Cada contenido tiene un propósito claro alineado a tus objetivos de marca.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ════════ PROCESO ════════ -->
-  <section class="reveal">
-    <p class="section-label">04 — Proceso</p>
-    <h2 class="section-title">¿Cómo<br>trabajamos?</h2>
-    <p class="section-desc">Un flujo de trabajo eficiente y organizado que garantiza contenido de calidad, entregado a tiempo, cada mes.</p>
-
-    <div class="process-grid">
-      <div class="process-step">
-        <p class="step-num">PASO 01</p>
-        <h3>Planeación Estratégica</h3>
-        <p>Definimos juntos los temas, conceptos y objetivos de los 12 contenidos del mes. Todo alineado a tu marca y audiencia.</p>
-      </div>
-      <div class="process-step">
-        <p class="step-num">PASO 02</p>
-        <h3>Sesión de Grabación 1</h3>
-        <p>Primera sesión quincenal donde producimos la mitad del contenido. Dirección creativa incluida para obtener el mejor resultado.</p>
-      </div>
-      <div class="process-step">
-        <p class="step-num">PASO 03</p>
-        <h3>Sesión de Grabación 2</h3>
-        <p>Segunda sesión del mes para completar los contenidos restantes. Flexibilidad para ajustar según los resultados obtenidos.</p>
-      </div>
-      <div class="process-step">
-        <p class="step-num">PASO 04</p>
-        <h3>Edición y Entrega</h3>
-        <p>Post-producción completa de cada pieza. Entrega de contenidos listos para publicar con revisiones incluidas.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ════════ CALENDARIO ════════ -->
-  <section class="reveal">
-    <p class="section-label">05 — Calendario</p>
-    <h2 class="section-title">Cronograma<br>mensual</h2>
-    <p class="section-desc">Así se distribuye el trabajo a lo largo del mes. Cada semana tiene actividades claras para mantener el flujo de producción.</p>
-
-    <div class="calendar-wrapper">
-      <div class="calendar-header">
-        <span>Semana 1</span>
-        <span>Semana 2</span>
-        <span>Semana 3</span>
-        <span>Semana 4</span>
-      </div>
-      <div class="calendar-row">
-        <div class="calendar-cell highlight">
-          <p class="event"><span class="cal-dot gold"></span>Pago 1 — $2,500</p>
-          <p class="event-sub">Día 1 del mes</p>
-        </div>
-        <div class="calendar-cell">
-          <p class="event"><span class="cal-dot white"></span>Edición Batch 1</p>
-          <p class="event-sub">Entrega de 6 videos editados</p>
-        </div>
-        <div class="calendar-cell highlight">
-          <p class="event"><span class="cal-dot gold"></span>Pago 2 — $2,500</p>
-          <p class="event-sub">Día 15 del mes</p>
-        </div>
-        <div class="calendar-cell">
-          <p class="event"><span class="cal-dot white"></span>Edición Batch 2</p>
-          <p class="event-sub">Entrega de últimos 6 videos</p>
-        </div>
-      </div>
-      <div class="calendar-row">
-        <div class="calendar-cell">
-          <p class="event"><span class="cal-dot white"></span>Planeación + Grabación 1</p>
-          <p class="event-sub">Conceptos, guiones y sesión de 6 contenidos</p>
-        </div>
-        <div class="calendar-cell">
-          <p class="event"><span class="cal-dot white"></span>Publicación Continua</p>
-          <p class="event-sub">3 contenidos por semana</p>
-        </div>
-        <div class="calendar-cell">
-          <p class="event"><span class="cal-dot white"></span>Sesión de Grabación 2</p>
-          <p class="event-sub">6 contenidos grabados</p>
-        </div>
-        <div class="calendar-cell">
-          <p class="event"><span class="cal-dot green"></span>Reporte Mensual</p>
-          <p class="event-sub">Presentación de resultados</p>
-        </div>
-      </div>
-      <div class="calendar-legend">
-        <div class="legend-item"><span class="cal-dot gold"></span> Pagos</div>
-        <div class="legend-item"><span class="cal-dot white"></span> Producción</div>
-        <div class="legend-item"><span class="cal-dot green"></span> Resultados</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ════════ ENTREGABLES ════════ -->
-  <section class="reveal">
-    <p class="section-label">06 — Entregables</p>
-    <h2 class="section-title">Lo que recibes<br>cada mes</h2>
-    <p class="section-desc">Resultados tangibles, medibles y consistentes. Todo lo que necesitas para mantener tu presencia digital activa.</p>
-
-    <div class="deliverables">
-      <div class="deliverable-item">
-        <div class="deliverable-big">12</div>
-        <div class="deliverable-label">Contenidos</div>
-        <p class="deliverable-desc">Videos cortos grabados y editados profesionalmente, listos para publicar.</p>
-      </div>
-      <div class="deliverable-item">
-        <div class="deliverable-big">2</div>
-        <div class="deliverable-label">Sesiones</div>
-        <p class="deliverable-desc">Sesiones de grabación quincenales con dirección creativa incluida.</p>
-      </div>
-      <div class="deliverable-item">
-        <div class="deliverable-big">1</div>
-        <div class="deliverable-label">Reporte</div>
-        <p class="deliverable-desc">Presentación mensual de resultados obtenidos y análisis de métricas.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ════════ KPIs ════════ -->
-  <section class="reveal">
-    <p class="section-label">07 — Métricas</p>
-    <h2 class="section-title">Lo que vamos<br>a medir</h2>
-    <p class="section-desc">Nos enfocamos en métricas que importan. Cada mes analizamos estos indicadores para optimizar tu estrategia.</p>
-
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-icon">◎</div>
-        <h4>Alcance</h4>
-        <p>Cuentas únicas que ven tu contenido. Mide qué tan lejos llega tu marca.</p>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">♡</div>
-        <h4>Engagement</h4>
-        <p>Likes, comentarios, compartidos y guardados. La interacción real con tu audiencia.</p>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">▶</div>
-        <h4>Reproducciones</h4>
-        <p>Vistas totales de tus videos. Indica el interés que genera tu contenido.</p>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">↗</div>
-        <h4>Crecimiento</h4>
-        <p>Nuevos seguidores mensuales. El indicador más claro de tu crecimiento orgánico.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ════════ PLATAFORMAS ════════ -->
-  <section class="reveal" style="text-align: center;">
-    <p class="section-label">08 — Plataformas</p>
-    <h2 class="section-title">Donde vive<br>tu contenido</h2>
-    <p class="section-desc" style="margin: 0 auto 40px;">Contenido optimizado específicamente para cada plataforma, maximizando el alcance y la interacción.</p>
-
-    <div class="platforms">
-      <div class="platform">
-        <div class="platform-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </div>
-        <span>Instagram Reels</span>
-      </div>
-      <div class="platform">
-        <div class="platform-icon">
-          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.26 6.26 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.81a8.23 8.23 0 0 0 4.78 1.52V6.87a4.85 4.85 0 0 1-1.02-.18z"/></svg>
-        </div>
-        <span>TikTok</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ════════ INVERSIÓN ════════ -->
-  <section class="reveal">
-    <p class="section-label" style="text-align: center;">09 — Inversión</p>
-    <h2 class="section-title" style="text-align: center;">Tu inversión<br>mensual</h2>
-    <p class="section-desc" style="text-align: center; margin: 0 auto 60px;">Una inversión accesible con pagos divididos para tu comodidad. Sin sorpresas, sin costos ocultos.</p>
-
-    <div class="pricing-box">
-      <div class="price-original">$10,000</div>
-      <div class="price-main">$5,000</div>
-      <div class="price-badge">Descuento especial Abril ⏰</div>
-      <div class="price-period">pesos · mensuales</div>
-      <div id="aprilCounterCreator" class="april-countdown-creator"></div>
-      <p style="font-size: 14px; color: var(--muted); line-height: 1.7;">Incluye los 12 contenidos, las 2 sesiones de grabación, edición completa y la presentación de resultados mensual.</p>
-      <div class="price-split">
-        <div class="price-split-item">
-          <div class="amount">$2,500</div>
-          <div class="date">Pago el día 1</div>
-        </div>
-        <div class="price-split-item">
-          <div class="amount">$2,500</div>
-          <div class="date">Pago el día 15</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<!-- CTA -->
-<section class="cta-section reveal">
-  <div class="container">
-    <h2>¿Listo para llevar tu contenido<br>al siguiente <em>nivel</em>?</h2>
-    <p>Comencemos a crear juntos.</p>
-    <a href="agendar-sesion.html" class="cta-button">Agendar reunión</a>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <img src="logo.png" alt="Vita Studio" style="height: 32px; width: auto; object-fit: contain;">
-  <p>&copy; 2026 VITA Studio · Todos los derechos reservados</p>
-</footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // April countdown for creator package
-  function updateAprilCountdownCreator() {
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    const aprilEnd = new Date(currentYear, 3, 30, 23, 59, 59); // Abril 30
-
-    // Si abril ya pasó, mostrar nada
-    if (now > aprilEnd) {
-      document.getElementById('aprilCounterCreator').innerHTML = '';
-      return;
-    }
-
-    const diff = aprilEnd - now;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-    const counter = document.getElementById('aprilCounterCreator');
-    if (counter) {
-      counter.innerHTML = `⏳ Descuento válido por: ${days}d ${hours}h ${minutes}m`;
-    }
-  }
-
-  updateAprilCountdownCreator();
-  setInterval(updateAprilCountdownCreator, 60000); // Actualizar cada minuto
-
-  // Interactive cursor
-  const interactiveEls = document.querySelectorAll('a, button, input, textarea, [role="button"]');
-  interactiveEls.forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-  });
-
-  const textInputs = document.querySelectorAll('input, textarea, [contenteditable]');
-  textInputs.forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text-active'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text-active'));
-  });
-</script>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
