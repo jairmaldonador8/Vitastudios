@@ -742,6 +742,7 @@ class CampaignModal {
         this.modalContent = this.modal?.querySelector('.modal-content');
         this.campaignBody = document.getElementById('campaign-body');
         this.closeBtn = this.modal?.querySelector('.modal-close');
+        this.isOpen = false;
 
         this.init();
     }
@@ -749,20 +750,19 @@ class CampaignModal {
     init() {
         if (!this.modal || !this.campaignBody) return;
 
-        // Click en botón cerrar
         this.closeBtn?.addEventListener('click', () => this.close());
 
-        // Click en el fondo del modal
+        // Click en background para cerrar
         this.modal?.addEventListener('click', (e) => {
             if (e.target === this.modal) this.close();
         });
 
         // Keyboard: ESC para cerrar
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') this.close();
+            if (e.key === 'Escape' && this.isOpen) this.close();
         });
 
-        // Listener para cuando se abre campaña
+        // Listener para abrir campaña
         document.addEventListener('openCampaign', (e) => {
             this.open(e.detail.caseId);
         });
@@ -770,38 +770,44 @@ class CampaignModal {
 
     open(caseId) {
         const campaign = campaignsData[caseId];
-        if (!campaign) return;
+        if (!campaign || this.isOpen) return;
+
+        this.isOpen = true;
 
         // Cargar contenido de campaña
         this.campaignBody.innerHTML = `
-            <div class="campaign-header reveal">
+            <div class="campaign-header">
                 <h2 class="campaign-title">${campaign.name}</h2>
                 <p class="campaign-category">${campaign.category}</p>
             </div>
 
-            <div class="campaign-image reveal">
-                <img src="${campaign.image}" alt="${campaign.name}" loading="lazy">
+            <div class="campaign-image">
+                <img src="${campaign.image}" alt="${campaign.name}" loading="lazy" decoding="async">
             </div>
 
             <div class="campaign-footer">
-                <p style="text-align: center; color: rgba(255,255,255,0.6); margin-top: var(--spacing-2xl);">
-                    Campaña de branding completa • ${campaign.name}
-                </p>
+                <p>Campaña de branding completa • ${campaign.name}</p>
             </div>
         `;
 
-        this.modal.style.display = 'flex';
+        // Mostrar modal con transición smooth
+        this.modal.classList.add('open');
         document.body.style.overflow = 'hidden';
+        document.body.style.overscrollBehavior = 'contain';
 
-        // Trigger scroll reveal
-        setTimeout(() => {
-            new ScrollReveal();
-        }, 100);
+        // Prevenir jank: usar requestAnimationFrame
+        requestAnimationFrame(() => {
+            this.modalContent.scrollTop = 0;
+        });
     }
 
     close() {
-        this.modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        if (!this.isOpen) return;
+        this.isOpen = false;
+
+        this.modal.classList.remove('open');
+        document.body.style.overflow = '';
+        document.body.style.overscrollBehavior = '';
     }
 }
 
@@ -851,8 +857,17 @@ class CasosCarousel {
 
     updateSlide() {
         const offset = -this.currentIndex * 100;
-        this.track.style.transform = `translateX(${offset}%)`;
+
+        // Usar transform con translateZ para GPU acceleration
+        this.track.style.transform = `translateX(${offset}%) translateZ(0)`;
+        this.track.style.willChange = 'transform';
+
         this.currentSlide.textContent = this.currentIndex + 1;
+
+        // Remover will-change después de animación
+        this.track.addEventListener('transitionend', () => {
+            this.track.style.willChange = 'auto';
+        }, { once: true });
     }
 
     openCampaign(e) {
