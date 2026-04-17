@@ -200,5 +200,84 @@
     </div>
 </section>
 
+<section id="contacto" class="contacto">
+    <div class="container">
+        <h2 class="section-title">Agenda tu Consulta</h2>
+        <p class="section-subtitle">Responderé en máximo 24 horas</p>
+
+        <form class="contact-form" id="contactForm" method="POST" action="https://api.staticforms.com/submit">
+            <input type="hidden" name="accessKey" value="YOUR_STATICFORMS_KEY">
+            <input type="hidden" name="redirectUrl" value="https://vitastudios.com?success=true">
+            <input type="hidden" id="trackField" name="track" value="neutral">
+
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="tu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="+56 9 xxxx xxxx">
+            </div>
+
+            <div class="form-group">
+                <label for="servicio">Servicio de Interés</label>
+                <select id="servicio" name="servicio" required>
+                    <option value="">Selecciona un servicio</option>
+                    <option value="optimizacion">Optimización con IA</option>
+                    <option value="consultoria">Consultoría Estratégica</option>
+                    <option value="ambos">Ambos Servicios</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Cuéntame tu desafío</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿Cuál es tu principal desafío o meta?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Enviar Consulta</button>
+
+            <div class="form-feedback" id="formFeedback"></div>
+        </form>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <div class="footer-section">
+            <h4>VITA Studios</h4>
+            <p>Crecimiento y optimización para tu negocio.</p>
+        </div>
+
+        <div class="footer-section">
+            <h4>Enlaces</h4>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#casos">Casos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Redes</h4>
+            <ul>
+                <li><a href="https://instagram.com/vitastudios" target="_blank">Instagram</a></li>
+                <li><a href="https://linkedin.com/company/vitastudios" target="_blank">LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 VITA Studios. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
