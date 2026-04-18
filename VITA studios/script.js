@@ -1067,6 +1067,27 @@ class LeadPopup {
   }
 }
 
+/**
+ * FAQ - Manages FAQ collapsible items
+ */
+class FAQ {
+    constructor() {
+        this.items = document.querySelectorAll('.faq-item');
+        this.init();
+    }
+
+    init() {
+        this.items.forEach(item => {
+            const button = item.querySelector('.faq-question');
+            button?.addEventListener('click', () => this.toggle(item));
+        });
+    }
+
+    toggle(item) {
+        item.classList.toggle('active');
+    }
+}
+
 // Initialize carousel when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.carousel-container')) {
@@ -1074,6 +1095,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (document.getElementById('campaign-modal')) {
         new CampaignModal();
+    }
+    if (document.querySelector('.faq-item')) {
+        new FAQ();
     }
     new LeadPopup();
 });
