@@ -53,7 +53,65 @@ function splitTextIntoWords(selector) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// 4. Hero Entrance Animation
+// 4. Loader Animation (Intro Cinematográfico)
+// ─────────────────────────────────────────────────────────────────────────
+
+function initLoaderAnimation() {
+  const loader = document.getElementById('loader');
+  const loaderLogo = document.querySelector('.loader-logo');
+  const loaderDivider = document.querySelector('.loader-divider');
+  const loaderText = document.querySelector('.loader-text');
+  const whatsappFloat = document.getElementById('whatsapp-float');
+
+  const tl = gsap.timeline();
+
+  // Logo fade-in + scale
+  tl.from(loaderLogo, {
+    opacity: 0,
+    scale: 0.95,
+    duration: 1,
+    ease: 'expo.out',
+  }, 0);
+
+  // Divider scaleX
+  tl.from(loaderDivider, {
+    scaleX: 0,
+    opacity: 0,
+    duration: 0.6,
+    ease: 'power2.out',
+    transformOrigin: 'center',
+  }, 0.3);
+
+  // Text fade-in
+  tl.from(loaderText, {
+    opacity: 0,
+    y: 20,
+    duration: 0.5,
+    ease: 'power2.out',
+  }, 0.6);
+
+  // Pausa
+  tl.to({}, { duration: 0.8 });
+
+  // Panel sube (clip-path slide up)
+  tl.to(loader, {
+    clipPath: 'inset(0 0 100% 0)',
+    duration: 0.8,
+    ease: 'power4.inOut',
+    onComplete: () => {
+      loader.style.display = 'none';
+      // Show WhatsApp button
+      whatsappFloat.classList.add('visible');
+      // Trigger hero animations
+      initHeroAnimation();
+    },
+  }, '-=0.2');
+
+  return tl;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// 4.5. Hero Entrance Animation
 // ─────────────────────────────────────────────────────────────────────────
 
 function initHeroAnimation() {
@@ -67,7 +125,7 @@ function initHeroAnimation() {
     duration: 1.2,
     stagger: 0.06,
     ease: 'expo.out',
-    delay: 0.3,
+    delay: 0.2,
   });
 
   gsap.from('.hero-subheadline', {
@@ -75,7 +133,7 @@ function initHeroAnimation() {
     y: 40,
     duration: 1,
     ease: 'expo.out',
-    delay: 0.8,
+    delay: 0.6,
   });
 
   gsap.from('.hero-cta', {
@@ -83,7 +141,7 @@ function initHeroAnimation() {
     scale: 0.9,
     duration: 0.8,
     ease: 'back.out',
-    delay: 1.2,
+    delay: 1,
   });
 }
 
@@ -278,17 +336,22 @@ function initDividers() {
 document.addEventListener('DOMContentLoaded', () => {
   // Small delay to ensure everything is ready
   setTimeout(() => {
-    initHeroAnimation();
-    initSectionHeadings();
-    initServiceCards();
-    initPortfolioCards();
-    initStatsCounter();
-    initFounderSection();
-    initContactForm();
-    initDividers();
+    // Start loader animation first
+    initLoaderAnimation();
 
-    // Refresh ScrollTrigger to calculate positions
-    ScrollTrigger.refresh();
+    // Rest of animations are triggered after loader completes
+    setTimeout(() => {
+      initSectionHeadings();
+      initServiceCards();
+      initPortfolioCards();
+      initStatsCounter();
+      initFounderSection();
+      initContactForm();
+      initDividers();
+
+      // Refresh ScrollTrigger to calculate positions
+      ScrollTrigger.refresh();
+    }, 3500); // Wait for loader to complete (~3.5s)
   }, 100);
 });
 

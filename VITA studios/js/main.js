@@ -83,12 +83,13 @@ class CustomCursor {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// 2. Navbar Scroll Behavior
+// 2. Navbar Scroll Behavior + WhatsApp Float Handler
 // ─────────────────────────────────────────────────────────────────────────
 
 class NavbarScroll {
   constructor() {
     this.nav = document.querySelector('nav');
+    this.whatsappFloat = document.getElementById('whatsapp-float');
     this.lastScrollY = 0;
     this.ticking = false;
 
@@ -113,6 +114,17 @@ class NavbarScroll {
       this.nav.classList.add('scrolled');
     } else {
       this.nav.classList.remove('scrolled');
+    }
+
+    // Hide WhatsApp float button when in contact section
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+      const contactRect = contactSection.getBoundingClientRect();
+      if (contactRect.top < window.innerHeight * 0.5) {
+        this.whatsappFloat.classList.add('hidden');
+      } else {
+        this.whatsappFloat.classList.remove('hidden');
+      }
     }
 
     this.ticking = false;

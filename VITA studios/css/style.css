@@ -93,7 +93,118 @@ body::before {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */
-/* 3. Typography */
+/* 3. Loader / Splash Screen */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  clip-path: inset(0 0 0 0);
+}
+
+.loader-logo {
+  width: 240px;
+  height: auto;
+  margin-bottom: var(--spacing-xl);
+  opacity: 0;
+}
+
+.loader-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--color-gold);
+  margin-bottom: var(--spacing-xl);
+  opacity: 0;
+}
+
+.loader-text {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  opacity: 0;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* 3.5. Floating WhatsApp Button */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+#whatsapp-float {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 998;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(201, 169, 110, 0.3);
+  transition: all var(--transition-fast);
+  opacity: 0;
+  transform: scale(0);
+  animation: floatPulse 3s ease-in-out infinite;
+}
+
+#whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(201, 169, 110, 0.5);
+}
+
+#whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--color-bg);
+}
+
+#whatsapp-float.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#whatsapp-float.hidden {
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+}
+
+@keyframes floatPulse {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1) translateY(-8px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* 4. Typography */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
 h1,
@@ -353,6 +464,24 @@ nav.scrolled {
   background: var(--color-text);
   color: var(--color-bg);
   transform: translateY(-3px);
+}
+
+.hero-contact-hint {
+  margin-top: var(--spacing-lg);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 1.8s forwards;
+}
+
+.hero-contact-hint a {
+  color: var(--color-gold);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.hero-contact-hint a:hover {
+  color: var(--color-text);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */
