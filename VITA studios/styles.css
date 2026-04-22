@@ -1,11 +1,11 @@
 :root {
-  --color-cream: #FFF8F3;
-  --color-cream-dark: #F5EBE0;
-  --color-terracota: #C85A3A;
-  --color-terracota-dark: #A84A2A;
-  --color-text: #2d2d2d;
-  --color-text-light: #5a5a5a;
-  --color-border: #E8D5C4;
+  --color-cream: #1A1A1A;
+  --color-cream-dark: #252525;
+  --color-terracota: #FF7A3D;
+  --color-terracota-dark: #E85C1F;
+  --color-text: #FFFFFF;
+  --color-text-light: #D4AF87;
+  --color-border: #333333;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --spacing-sm: 1rem;
@@ -399,7 +399,7 @@ a:hover {
 }
 
 .service-card {
-  background: white;
+  background: var(--color-cream-dark);
   padding: var(--spacing-2xl);
   border-radius: 8px;
   border: 1px solid var(--color-border);
@@ -433,7 +433,6 @@ a:hover {
 /* CASOS */
 .casos {
   padding: var(--spacing-3xl) 0;
-  background: white;
 }
 
 .portfolio-grid {
@@ -498,7 +497,7 @@ a:hover {
 
 .why-card {
   padding: var(--spacing-2xl);
-  background: white;
+  background: var(--color-cream-dark);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   transition: all var(--transition);
@@ -565,7 +564,6 @@ a:hover {
 /* FOUNDER */
 .founder {
   padding: var(--spacing-3xl) 0;
-  background: white;
 }
 
 .founder-content {
@@ -636,7 +634,7 @@ a:hover {
 }
 
 .contact-form {
-  background: white;
+  background: var(--color-cream-dark);
   padding: var(--spacing-2xl);
   border-radius: 8px;
   border: 1px solid var(--color-border);
@@ -662,6 +660,8 @@ a:hover {
   font-family: var(--font-sans);
   font-size: 14px;
   transition: border-color var(--transition);
+  background: var(--color-cream);
+  color: var(--color-text);
 }
 
 .form-group input:focus,
@@ -694,10 +694,11 @@ a:hover {
 
 /* FOOTER */
 .footer {
-  background: var(--color-text);
-  color: white;
+  background: var(--color-cream-dark);
+  color: var(--color-text);
   padding: var(--spacing-2xl) 0;
   text-align: center;
+  border-top: 1px solid var(--color-border);
 }
 
 .footer p {
@@ -713,7 +714,7 @@ a:hover {
 }
 
 .footer-links a {
-  color: white;
+  color: var(--color-text);
 }
 
 .footer-links a:hover {
@@ -726,7 +727,7 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.9);
-  background: white;
+  background: var(--color-cream-dark);
   border-radius: 12px;
   padding: var(--spacing-2xl);
   max-width: 500px;
@@ -735,6 +736,7 @@ a:hover {
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition);
+  border: 1px solid var(--color-border);
 }
 
 .modal.active {
