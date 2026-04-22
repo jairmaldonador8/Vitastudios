@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo de Animaciones - VITA Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FFF8F3;
+    }
+
+    .demo-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 248, 243, 0.95);
+      border-bottom: 1px solid #E8D5C4;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 1000;
+    }
+
+    .demo-nav button {
+      padding: 10px 20px;
+      border: 1px solid #C85A3A;
+      background: white;
+      color: #C85A3A;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .demo-nav button.active {
+      background: #C85A3A;
+      color: white;
+    }
+
+    .demo-nav button:hover {
+      transform: translateY(-2px);
+    }
+
+    .demo-section {
+      display: none;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    .demo-section.active {
+      display: block;
+    }
+
+    .demo-header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #F5EBE0, #FFF8F3);
+    }
+
+    .demo-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #2d2d2d;
+      margin-bottom: 10px;
+    }
+
+    .demo-header p {
+      font-size: 16px;
+      color: #5a5a5a;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       DEMO A: PARALLAX SUTIL
+       ════════════════════════════════════════════════════════════ */
+
+    .parallax-demo .hero-section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax-demo .parallax-bg {
+      position: absolute;
+      width: 100%;
+      height: 120%;
+      background: linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 100%);
+      top: 0;
+    }
+
+    .parallax-demo .parallax-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: #2d2d2d;
+    }
+
+    .parallax-demo h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+
+    .parallax-demo .card {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      border: 1px solid #E8D5C4;
+      margin: 40px 20px;
+      max-width: 400px;
+      text-align: left;
+    }
+
+    .parallax-demo .card h3 {
+      color: #C85A3A;
+      margin-bottom: 10px;
+    }
+
+    .parallax-demo .cards-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       DEMO B: ELEMENTOS QUE APARECEN
+       ════════════════════════════════════════════════════════════ */
+
+    .fade-demo .content-section {
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .fade-demo h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #2d2d2d;
+      margin-bottom: 30px;
+    }
+
+    .fade-demo .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .fade-demo .card {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      border: 1px solid #E8D5C4;
+      opacity: 0;
+    }
+
+    .fade-demo .card h3 {
+      font-size: 20px;
+      color: #C85A3A;
+      margin-bottom: 15px;
+    }
+
+    .fade-demo .card p {
+      color: #5a5a5a;
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       DEMO C: BACKGROUND DINÁMICO
+       ════════════════════════════════════════════════════════════ */
+
+    .gradient-demo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gradient-demo .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%);
+      z-index: -1;
+    }
+
+    .gradient-demo .content {
+      padding: 100px 40px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .gradient-demo h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #2d2d2d;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .gradient-demo .info-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(200, 90, 58, 0.1);
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    .gradient-demo .info-card p {
+      color: #5a5a5a;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       DEMO D: COMBINACIÓN
+       ════════════════════════════════════════════════════════════ */
+
+    .combo-demo {
+      position: relative;
+    }
+
+    .combo-demo .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .combo-demo .hero-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 100%);
+    }
+
+    .combo-demo .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: #2d2d2d;
+    }
+
+    .combo-demo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      margin-bottom: 20px;
+      opacity: 0;
+    }
+
+    .combo-demo .subtitle {
+      font-size: 18px;
+      color: #5a5a5a;
+      opacity: 0;
+      margin-bottom: 30px;
+    }
+
+    .combo-demo .card {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      border: 1px solid #E8D5C4;
+      margin: 60px 20px;
+      max-width: 400px;
+      opacity: 0;
+    }
+
+    .combo-demo .cards-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .demo-info {
+      background: #C85A3A;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-nav">
+    <button class="demo-btn active" data-demo="parallax">A) Parallax</button>
+    <button class="demo-btn" data-demo="fade">B) Fade In</button>
+    <button class="demo-btn" data-demo="gradient">C) Background</button>
+    <button class="demo-btn" data-demo="combo">D) Combo</button>
+  </div>
+
+  <!-- DEMO A: PARALLAX -->
+  <div id="parallax" class="demo-section active parallax-demo">
+    <div class="demo-header">
+      <h1>A) Parallax Sutil</h1>
+      <p>Fondo se mueve lento mientras scrolleas, contenido se mueve rápido. Premium y smooth.</p>
+    </div>
+
+    <div class="hero-section">
+      <div class="parallax-bg"></div>
+      <div class="parallax-content">
+        <h2>Transforma tu marca</h2>
+      </div>
+    </div>
+
+    <div class="parallax-content" style="padding: 60px 40px; text-align: center;">
+      <div class="cards-container">
+        <div class="card">
+          <h3>🎨 Branding</h3>
+          <p>Identidad visual que conecta con tu audiencia.</p>
+        </div>
+        <div class="card">
+          <h3>💻 Web</h3>
+          <p>Diseño profesional convertidor.</p>
+        </div>
+        <div class="card">
+          <h3>⚡ IA</h3>
+          <p>Optimización inteligente de procesos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-info">
+      📌 Efecto: El fondo se queda atrás mientras scrolleas, creando profundidad
+    </div>
+  </div>
+
+  <!-- DEMO B: FADE IN -->
+  <div id="fade" class="demo-section fade-demo">
+    <div class="demo-header">
+      <h1>B) Elementos que Aparecen</h1>
+      <p>Cards se animan conforme llegan a viewport. Limpio y elegante.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Nuestros Servicios</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>🎨 Branding Personal</h3>
+          <p>Desarrollamos tu identidad visual. Estrategia clara para diferenciarte.</p>
+        </div>
+        <div class="card">
+          <h3>💻 Páginas Web</h3>
+          <p>Sitios profesionales convertidores optimizados para captar clientes.</p>
+        </div>
+        <div class="card">
+          <h3>⚡ Optimización IA</h3>
+          <p>Automatización y mejora inteligente de campañas y procesos.</p>
+        </div>
+        <div class="card">
+          <h3>🎯 Consultoría</h3>
+          <p>Diagnóstico personalizado e identificación de oportunidades de crecimiento.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Más Servicios</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>📊 Estrategia</h3>
+          <p>Plan tangible para escalar tu negocio.</p>
+        </div>
+        <div class="card">
+          <h3>🚀 Growth</h3>
+          <p>Crecimiento sostenible basado en datos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-info">
+      📌 Efecto: Cada card aparece suavemente al entrar en pantalla (fade + slide)
+    </div>
+  </div>
+
+  <!-- DEMO C: BACKGROUND DINÁMICO -->
+  <div id="gradient" class="demo-section gradient-demo">
+    <div class="gradient-bg"></div>
+
+    <div class="demo-header" style="position: relative; z-index: 10;">
+      <h1>C) Background Dinámico</h1>
+      <p>Gradientes cambian suavemente conforme scrolleas. Atmospheric.</p>
+    </div>
+
+    <div class="content">
+      <h2>Sección 1: Servicios</h2>
+      <div class="info-card">
+        <p>Los servicios se mueven sobre un fondo que cambia de color gradualmente. Crea profundidad sin distraer.</p>
+      </div>
+
+      <h2 style="margin-top: 100px;">Sección 2: Casos</h2>
+      <div class="info-card">
+        <p>El background continúa evolucionando. El contenido permanece limpio mientras el fondo crea movimiento.</p>
+      </div>
+
+      <h2 style="margin-top: 100px;">Sección 3: CTA</h2>
+      <div class="info-card">
+        <p>Los gradientes responden al scroll, creando una experiencia cohesiva y premium.</p>
+      </div>
+    </div>
+
+    <div class="demo-info">
+      📌 Efecto: Colores del fondo cambian conforme scrolleas (muy sutil, no distrae)
+    </div>
+  </div>
+
+  <!-- DEMO D: COMBO -->
+  <div id="combo" class="demo-section combo-demo">
+    <div class="demo-header">
+      <h1>D) Combinación Smart</h1>
+      <p>Parallax + Fade In + Background dinámico. Todo junto, sin abrumar.</p>
+    </div>
+
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1>¿Listo para transformar tu marca?</h1>
+        <p class="subtitle">Estrategia de branding + diseño web + optimización IA</p>
+      </div>
+    </div>
+
+    <div class="content" style="padding: 100px 40px; text-align: center;">
+      <h2>Nuestros Servicios</h2>
+      <div class="cards-container">
+        <div class="card">
+          <h3>🎨 Branding</h3>
+          <p>Identidad visual que impacta.</p>
+        </div>
+        <div class="card">
+          <h3>💻 Web</h3>
+          <p>Sitios que convierten.</p>
+        </div>
+        <div class="card">
+          <h3>⚡ IA</h3>
+          <p>Procesos inteligentes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-info">
+      📌 Efecto: Todo junto - parallax en hero, fade in de cards, background sutil en movimiento. RECOMENDADO ✨
+    </div>
+  </div>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Demo Navigation
+    document.querySelectorAll('.demo-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const demo = btn.dataset.demo;
+
+        document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.demo-section').forEach(s => s.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(demo).classList.add('active');
+
+        // Trigger animations for new demo
+        animateDemo(demo);
+      });
+    });
+
+    function animateDemo(demo) {
+      // Kill all existing animations
+      gsap.killTweensOf('*');
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+      if (demo === 'parallax') {
+        animateParallax();
+      } else if (demo === 'fade') {
+        animateFade();
+      } else if (demo === 'gradient') {
+        animateGradient();
+      } else if (demo === 'combo') {
+        animateCombo();
+      }
+    }
+
+    // A) PARALLAX
+    function animateParallax() {
+      const parallaxBg = document.querySelector('.parallax-demo .parallax-bg');
+
+      gsap.to(parallaxBg, {
+        scrollTrigger: {
+          trigger: '.parallax-demo',
+          scrub: 1,
+        },
+        y: -100,
+        ease: 'none'
+      });
+    }
+
+    // B) FADE IN
+    function animateFade() {
+      const cards = document.querySelectorAll('.fade-demo .card');
+
+      cards.forEach((card, index) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: index * 0.1,
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 80%',
+              end: 'top 50%',
+              scrub: false,
+            }
+          }
+        );
+      });
+    }
+
+    // C) GRADIENT BACKGROUND
+    function animateGradient() {
+      const gradientBg = document.querySelector('.gradient-demo .gradient-bg');
+      const colors = [
+        'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)',
+        'linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 50%, #F5EBE0 100%)',
+        'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)'
+      ];
+
+      gsap.to(gradientBg, {
+        backgroundImage: colors[1],
+        scrollTrigger: {
+          trigger: '.gradient-demo',
+          scrub: 2,
+          onUpdate: (self) => {
+            // Smooth color transition
+            const progress = self.progress;
+            if (progress < 0.5) {
+              gradientBg.style.opacity = 0.8 + progress * 0.4;
+            }
+          }
+        }
+      });
+    }
+
+    // D) COMBO
+    function animateCombo() {
+      const h1 = document.querySelector('.combo-demo h1');
+      const subtitle = document.querySelector('.combo-demo .subtitle');
+      const heroBg = document.querySelector('.combo-demo .hero-bg');
+      const cards = document.querySelectorAll('.combo-demo .card');
+
+      // Parallax hero
+      gsap.to(heroBg, {
+        scrollTrigger: {
+          trigger: '.combo-demo .hero',
+          scrub: 1,
+        },
+        y: -50,
+        ease: 'none'
+      });
+
+      // Hero text animations
+      gsap.fromTo([h1, subtitle],
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, stagger: 0.2, delay: 0.3 }
+      );
+
+      // Cards fade in
+      cards.forEach((card, index) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: index * 0.15,
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 80%',
+              scrub: false,
+            }
+          }
+        );
+      });
+    }
+
+    // Animate first demo on load
+    animateDemo('parallax');
+  </script>
+
+</body>
+</html>

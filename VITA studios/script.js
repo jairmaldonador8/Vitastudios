@@ -1,4 +1,324 @@
+// ════════════════════════════════════════════════════════════
+// GSAP + ScrollTrigger Animations
+// ════════════════════════════════════════════════════════════
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero Parallax
+function initHeroParallax() {
+  const heroVisual = document.querySelector('.visual-placeholder');
+  if (heroVisual) {
+    gsap.to(heroVisual, {
+      y: -50,
+      scrollTrigger: {
+        trigger: '#hero',
+        scrub: 1,
+        start: 'top top',
+        end: 'bottom top',
+      },
+    });
+  }
+}
+
+// Floating Shapes Animation
+function animateFloatingShapes() {
+  gsap.to('.shape-1', {
+    y: -20,
+    duration: 6,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut',
+  });
+  gsap.to('.shape-2', {
+    y: 20,
+    duration: 8,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut',
+    delay: 1,
+  });
+  gsap.to('.shape-3', {
+    y: -15,
+    duration: 7,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut',
+    delay: 2,
+  });
+}
+
+// Section Titles Animation
+function animateSectionTitles() {
+  const titles = document.querySelectorAll('.section-title');
+  titles.forEach((title) => {
+    gsap.fromTo(
+      title,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 80%',
+          end: 'top 50%',
+        },
+      }
+    );
+  });
+}
+
+// Section Subtitles Animation
+function animateSectionSubtitles() {
+  const subtitles = document.querySelectorAll('.section-subtitle');
+  subtitles.forEach((subtitle) => {
+    gsap.fromTo(
+      subtitle,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        delay: 0.1,
+        scrollTrigger: {
+          trigger: subtitle,
+          start: 'top 80%',
+        },
+      }
+    );
+  });
+}
+
+// Service Cards Animation
+function animateServiceCards() {
+  const cards = document.querySelectorAll('.service-card');
+  cards.forEach((card, index) => {
+    gsap.fromTo(
+      card,
+      { opacity: 0, y: 40, scale: 0.98 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+        },
+      }
+    );
+
+    // Hover effect
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        y: -4,
+        duration: 0.3,
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.3,
+      });
+    });
+  });
+}
+
+// Portfolio Cards Animation
+function animatePortfolioCards() {
+  const cards = document.querySelectorAll('.portfolio-card');
+  cards.forEach((card, index) => {
+    gsap.fromTo(
+      card,
+      { opacity: 0, y: 50, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        delay: index * 0.12,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+        },
+      }
+    );
+
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        y: -8,
+        duration: 0.3,
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.3,
+      });
+    });
+  });
+}
+
+// Why Cards Animation
+function animateWhyCards() {
+  const cards = document.querySelectorAll('.why-card');
+  cards.forEach((card, index) => {
+    gsap.fromTo(
+      card,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: index * 0.08,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+        },
+      }
+    );
+
+    const number = card.querySelector('.why-number');
+    if (number) {
+      gsap.fromTo(
+        number,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.4,
+          delay: index * 0.08,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+          },
+        }
+      );
+    }
+  });
+}
+
+// CTA Box Animation
+function animateCtaBox() {
+  const ctaBox = document.querySelector('.cta-box');
+  if (ctaBox) {
+    const h2 = ctaBox.querySelector('h2');
+    const p = ctaBox.querySelector('p');
+    const button = ctaBox.querySelector('.cta-primary');
+
+    gsap.fromTo(h2, { opacity: 0, y: 30 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      scrollTrigger: {
+        trigger: ctaBox,
+        start: 'top 80%',
+      },
+    });
+
+    gsap.fromTo(p, { opacity: 0, y: 20 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: ctaBox,
+        start: 'top 80%',
+      },
+    });
+
+    gsap.fromTo(button, { opacity: 0, scale: 0.95 }, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+      delay: 0.2,
+      scrollTrigger: {
+        trigger: ctaBox,
+        start: 'top 80%',
+      },
+    });
+  }
+}
+
+// Founder Section Animation
+function animateFounderSection() {
+  const founderImage = document.querySelector('.image-placeholder');
+  const founderText = document.querySelector('.founder-text');
+
+  if (founderImage) {
+    gsap.fromTo(founderImage, { opacity: 0, x: -40 }, {
+      opacity: 1,
+      x: 0,
+      duration: 0.7,
+      scrollTrigger: {
+        trigger: '.founder',
+        start: 'top 80%',
+      },
+    });
+  }
+
+  if (founderText) {
+    gsap.fromTo(founderText, { opacity: 0, x: 40 }, {
+      opacity: 1,
+      x: 0,
+      duration: 0.7,
+      scrollTrigger: {
+        trigger: '.founder',
+        start: 'top 80%',
+      },
+    });
+  }
+}
+
+// Contact Form Animation
+function animateContactForm() {
+  const contactForm = document.querySelector('.contact-form');
+  const contactInfo = document.querySelector('.contact-info');
+
+  if (contactForm) {
+    gsap.fromTo(contactForm, { opacity: 0, y: 40 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      scrollTrigger: {
+        trigger: '.contacto',
+        start: 'top 80%',
+      },
+    });
+  }
+
+  if (contactInfo) {
+    gsap.fromTo(contactInfo, { opacity: 0, y: 40 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: '.contacto',
+        start: 'top 80%',
+      },
+    });
+  }
+}
+
+// Initialize all animations
+function initAnimations() {
+  initHeroParallax();
+  animateFloatingShapes();
+  animateSectionTitles();
+  animateSectionSubtitles();
+  animateServiceCards();
+  animatePortfolioCards();
+  animateWhyCards();
+  animateCtaBox();
+  animateFounderSection();
+  animateContactForm();
+}
+
+// ════════════════════════════════════════════════════════════
 // Mobile Navigation
+// ════════════════════════════════════════════════════════════
+
 const navToggle = document.getElementById('nav-toggle');
 const navMobile = document.getElementById('nav-mobile');
 
@@ -14,7 +334,10 @@ document.querySelectorAll('.nav-mobile .nav-link').forEach(link => {
   });
 });
 
+// ════════════════════════════════════════════════════════════
 // Booking Modal
+// ════════════════════════════════════════════════════════════
+
 const bookingModal = document.getElementById('booking-modal');
 const modalOverlay = document.getElementById('modal-overlay');
 const modalClose = document.getElementById('modal-close');
@@ -41,7 +364,10 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// ════════════════════════════════════════════════════════════
 // Forms
+// ════════════════════════════════════════════════════════════
+
 const contactForm = document.getElementById('contact-form');
 const bookingForm = document.getElementById('booking-form');
 
@@ -91,7 +417,10 @@ function handleBookingForm(e) {
   alert('Tu solicitud ha sido enviada a WhatsApp. Te contactaremos pronto.');
 }
 
-// Smooth scroll
+// ════════════════════════════════════════════════════════════
+// Smooth Scroll
+// ════════════════════════════════════════════════════════════
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
@@ -104,3 +433,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ════════════════════════════════════════════════════════════
+// Initialize on DOM Ready
+// ════════════════════════════════════════════════════════════
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAnimations);
+} else {
+  initAnimations();
+}
