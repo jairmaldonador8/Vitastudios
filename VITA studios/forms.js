@@ -1,5 +1,5 @@
 /**
- * Form Handler for VITA Studios Diagnostic Form
+ * Form Handler for VITA Studio Diagnostic Form
  * Handles form submission, validation, and lead storage
  */
 

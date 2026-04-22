@@ -1,4 +1,4 @@
-# VITA Studios Refactoring Changelog
+# VITA Studio Refactoring Changelog
 
 ## Version 2.0 - 2026-04-08
 
