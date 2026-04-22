@@ -3,345 +3,369 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VITA Studio | Crecimiento Personalizado</title>
+  <title>VITA Studio | Agencia de Branding Personal</title>
+  <meta name="description" content="Transforma tu marca con estrategia de branding, diseño web y optimización con IA. Consultoría personalizada para tu crecimiento.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       LOADER / SPLASH SCREEN
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <div id="loader">
-    <img src="logo.png" alt="VITA Studio" class="loader-logo">
-    <div class="loader-divider"></div>
-    <p class="loader-text">VITA Studio</p>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       FLOATING WHATSAPP BUTTON
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <a id="whatsapp-float" href="https://wa.me/528181782508?text=Hola%20VITA%20Studio,%20me%20interesa%20conocer%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer" aria-label="Contáctanos por WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.912 0-3.784.731-5.16 2.04C5.898 9.712 5.12 11.567 5.12 13.56c0 1.92.574 3.78 1.665 5.368l-1.77 5.368 5.508-1.777c1.554.846 3.31 1.291 5.105 1.291 4.901 0 8.89-3.888 8.89-8.673 0-2.341-.898-4.54-2.531-6.162-1.633-1.622-3.8-2.515-6.102-2.515"/>
-    </svg>
-  </a>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       CUSTOM CURSOR
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       NAVBAR
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <nav>
-    <div class="nav-container">
-      <div class="nav-logo">VITA Studio</div>
-      <button class="nav-toggle" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
-        <li><a href="#contacto" class="nav-link">Contacto</a></li>
-      </ul>
+  <!-- ════════════════════════════════════════════════════════════
+       HEADER / NAVIGATION
+       ════════════════════════════════════════════════════════════ -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">VITA Studio</div>
+        <nav class="nav-desktop">
+          <a href="#servicios" class="nav-link">Servicios</a>
+          <a href="#casos" class="nav-link">Casos</a>
+          <a href="#contacto" class="nav-link">Contacto</a>
+        </nav>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <!-- Mobile Nav -->
+      <nav class="nav-mobile" id="nav-mobile">
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#casos" class="nav-link">Casos</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
+  <!-- ════════════════════════════════════════════════════════════
        HERO SECTION
-       ═══════════════════════════════════════════════════════════════════════ -->
+       ════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Transforma tu marca <br><span class="accent">en tu ventaja competitiva</span></h1>
+        <p class="hero-subtitle">Estrategia de branding, diseño web profesional y optimización con IA. Resultados reales para tu crecimiento.</p>
 
-  <section id="hero">
-    <div class="hero-content">
-      <h1 class="hero-headline">¿Listo para transformar tu marca?</h1>
-      <p class="hero-subheadline">Agenda una consulta. Sin rodeos, solo estrategia y resultados reales.</p>
-      <button class="hero-cta" aria-label="Agendar consulta gratis">Comenzar Ahora →</button>
-      <p class="hero-contact-hint">O escríbeme directamente por <a href="https://wa.me/528181782508" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+        <button class="cta-primary" id="cta-hero">
+          Agendar Consulta Gratis →
+        </button>
+
+        <p class="hero-hint">O contáctame por <a href="https://wa.me/528181782508" class="link-accent">WhatsApp</a></p>
+      </div>
+
+      <!-- Hero Visual Placeholder -->
+      <div class="hero-visual">
+        <div class="visual-placeholder">
+          <div class="shape shape-1"></div>
+          <div class="shape shape-2"></div>
+          <div class="shape shape-3"></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       SERVICES SECTION
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <section id="servicios">
+  <!-- ════════════════════════════════════════════════════════════
+       SERVICIOS SECTION
+       ════════════════════════════════════════════════════════════ -->
+  <section class="servicios" id="servicios">
     <div class="container">
-      <h2>Nuestros Servicios</h2>
+      <h2 class="section-title">Qué Hago</h2>
+      <p class="section-subtitle">Servicios integrales para transformar tu presencia</p>
+
       <div class="services-grid">
 
         <div class="service-card">
-          <div class="service-number">01</div>
-          <h3 class="service-title">Identidad de Marca</h3>
-          <p class="service-description">Desarrollamos identidades visuales y verbales que transmiten confianza y diferencia en mercados competitivos.</p>
+          <div class="service-icon">🎨</div>
+          <h3>Branding Personal</h3>
+          <p>Desarrollamos tu identidad visual y de marca. Estrategia clara para diferenciarte en tu mercado y construir credibilidad.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-number">02</div>
-          <h3 class="service-title">Contenido Audiovisual</h3>
-          <p class="service-description">Producciones premium: fotografía profesional, video corporativo y cinematic content que conecta con tu audiencia.</p>
+          <div class="service-icon">💻</div>
+          <h3>Páginas Web Profesionales</h3>
+          <p>Diseño y desarrollo de sitios web convertidores. Optimizados para captar clientes y convertir visitantes en ventas.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-number">03</div>
-          <h3 class="service-title">Estrategia Digital</h3>
-          <p class="service-description">Planificación de marketing, posicionamiento en redes y optimización de conversión para growth sostenible.</p>
+          <div class="service-icon">⚡</div>
+          <h3>Optimización con IA</h3>
+          <p>Automatización y mejora de procesos. Campañas inteligentes, copywriting optimizado y estrategias data-driven.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-number">04</div>
-          <h3 class="service-title">Gestión de Artistas</h3>
-          <p class="service-description">Transformamos talentos creativos en marcas personales reconocidas. Branding, contenido y monetización.</p>
+          <div class="service-icon">🎯</div>
+          <h3>Consultoría Estratégica</h3>
+          <p>Diagnóstico personalizado de tu negocio. Identifica oportunidades de crecimiento y crea un plan tangible para alcanzarlas.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       PORTFOLIO SECTION
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <section id="portafolio">
+  <!-- ════════════════════════════════════════════════════════════
+       CASOS DE ÉXITO SECTION
+       ════════════════════════════════════════════════════════════ -->
+  <section class="casos" id="casos">
     <div class="container">
-      <h2>Casos de Éxito</h2>
+      <h2 class="section-title">Casos de Éxito</h2>
+      <p class="section-subtitle">Resultados reales con clientes como tú</p>
+
       <div class="portfolio-grid">
 
-        <div class="portfolio-card" data-case-id="1">
-          <img src="casos/01-doctor-wilber.png" alt="Doctor Wilber">
-          <div class="portfolio-overlay">
-            <div class="portfolio-name">Doctor Wilber</div>
-            <div class="portfolio-category">Medicina Estética</div>
+        <!-- PLACEHOLDER 1 -->
+        <div class="portfolio-card">
+          <div class="portfolio-placeholder">
+            <div class="placeholder-icon">📊</div>
+            <p>Caso 1</p>
           </div>
+          <h3>Caso de Éxito 1</h3>
+          <p class="portfolio-meta">Categoría | Resultado destacado</p>
         </div>
 
-        <div class="portfolio-card" data-case-id="2">
-          <img src="casos/02-rosa-de-oro.png" alt="Rosa de Oro">
-          <div class="portfolio-overlay">
-            <div class="portfolio-name">Rosa de Oro</div>
-            <div class="portfolio-category">Joyería Artesanal</div>
+        <!-- PLACEHOLDER 2 -->
+        <div class="portfolio-card">
+          <div class="portfolio-placeholder">
+            <div class="placeholder-icon">📱</div>
+            <p>Caso 2</p>
           </div>
+          <h3>Caso de Éxito 2</h3>
+          <p class="portfolio-meta">Categoría | Resultado destacado</p>
         </div>
 
-        <div class="portfolio-card" data-case-id="3">
-          <img src="casos/03-renace.png" alt="Renace">
-          <div class="portfolio-overlay">
-            <div class="portfolio-name">Renace</div>
-            <div class="portfolio-category">Bienestar & Spa</div>
+        <!-- PLACEHOLDER 3 -->
+        <div class="portfolio-card">
+          <div class="portfolio-placeholder">
+            <div class="placeholder-icon">🚀</div>
+            <p>Caso 3</p>
           </div>
+          <h3>Caso de Éxito 3</h3>
+          <p class="portfolio-meta">Categoría | Resultado destacado</p>
         </div>
 
-        <div class="portfolio-card" data-case-id="4">
-          <img src="casos/04-hinaitu.png" alt="Hinaitu">
-          <div class="portfolio-overlay">
-            <div class="portfolio-name">Hinaitu</div>
-            <div class="portfolio-category">Producción Audiovisual</div>
+        <!-- PLACEHOLDER 4 -->
+        <div class="portfolio-card">
+          <div class="portfolio-placeholder">
+            <div class="placeholder-icon">✨</div>
+            <p>Caso 4</p>
           </div>
+          <h3>Caso de Éxito 4</h3>
+          <p class="portfolio-meta">Categoría | Resultado destacado</p>
         </div>
 
-        <div class="portfolio-card" data-case-id="5">
-          <img src="casos/05-doctora-vannia.png" alt="Dra. Vannia Maldonado">
-          <div class="portfolio-overlay">
-            <div class="portfolio-name">Dra. Vannia Maldonado</div>
-            <div class="portfolio-category">Personal Branding</div>
+        <!-- PLACEHOLDER 5 -->
+        <div class="portfolio-card">
+          <div class="portfolio-placeholder">
+            <div class="placeholder-icon">💼</div>
+            <p>Caso 5</p>
           </div>
+          <h3>Caso de Éxito 5</h3>
+          <p class="portfolio-meta">Categoría | Resultado destacado</p>
         </div>
 
-        <div class="portfolio-card" data-case-id="6">
-          <img src="casos/06-doctor-jose-luis.png" alt="Dr. José Luis Vivas">
-          <div class="portfolio-overlay">
-            <div class="portfolio-name">Dr. José Luis Vivas</div>
-            <div class="portfolio-category">Oncología</div>
+        <!-- PLACEHOLDER 6 -->
+        <div class="portfolio-card">
+          <div class="portfolio-placeholder">
+            <div class="placeholder-icon">🎯</div>
+            <p>Caso 6</p>
           </div>
-        </div>
-
-        <div class="portfolio-card" data-case-id="7">
-          <img src="casos/07-doctora-karen.png" alt="Dra. Karen Astuñague">
-          <div class="portfolio-overlay">
-            <div class="portfolio-name">Dra. Karen Astuñague</div>
-            <div class="portfolio-category">Dermatología</div>
-          </div>
+          <h3>Caso de Éxito 6</h3>
+          <p class="portfolio-meta">Categoría | Resultado destacado</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       RESULTS / STATS SECTION
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <section id="resultados">
+  <!-- ════════════════════════════════════════════════════════════
+       WHY SECTION - Por Qué Necesitas Mis Servicios
+       ════════════════════════════════════════════════════════════ -->
+  <section class="why" id="why">
     <div class="container">
-      <h2>Nuestro Impacto</h2>
-      <div class="stats-grid">
+      <h2 class="section-title">Por Qué Necesitas Mis Servicios</h2>
 
-        <div class="stat-item">
-          <div class="stat-number" data-value="150">0</div>
-          <div class="stat-label">Campañas Ejecutadas</div>
+      <div class="why-grid">
+
+        <div class="why-card">
+          <div class="why-number">01</div>
+          <h3>Tu marca no se ve profesional</h3>
+          <p>Sin identidad clara, pierdes credibilidad ante clientes potenciales. Construimos tu marca desde cero para que generes confianza.</p>
         </div>
 
-        <div class="stat-item">
-          <div class="stat-number" data-value="7">0</div>
-          <div class="stat-label">Clientes Activos</div>
+        <div class="why-card">
+          <div class="why-number">02</div>
+          <h3>No generas suficientes leads</h3>
+          <p>Tener presencia no es suficiente. Creamos sistemas que atraen y convierten clientes reales a tu negocio.</p>
         </div>
 
-        <div class="stat-item">
-          <div class="stat-number" data-value="300">0</div>
-          <div class="stat-label">% Crecimiento Promedio</div>
+        <div class="why-card">
+          <div class="why-number">03</div>
+          <h3>Tu web no convierte</h3>
+          <p>Un sitio bonito no vende. Diseñamos experiencias que guían a tu visitante hacia la decisión de compra o contacto.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-number">04</div>
+          <h3>Quieres crecer pero no sabes cómo</h3>
+          <p>Sin estrategia clara, el crecimiento es lento y costoso. Te damos un mapa claro para escalar tu negocio.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       FOUNDER SECTION
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <section id="founder">
+  <!-- ════════════════════════════════════════════════════════════
+       CTA SECTION - Call to Action Secundario
+       ════════════════════════════════════════════════════════════ -->
+  <section class="cta-section" id="cta-section">
     <div class="container">
-      <div class="founder-wrapper">
-        <div class="founder-photo-placeholder">
-          <!-- Foto placeholder — agregar imagen aquí después -->
-          <span>Foto Jair Maldonador</span>
+      <div class="cta-box">
+        <h2>¿Listo para transformar tu marca?</h2>
+        <p>Agenda una consulta personalizada. Sin compromiso, solo conversación estratégica.</p>
+        <button class="cta-primary large" id="cta-secondary">
+          Agendar Consulta Gratis →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOUNDER SECTION - Sobre Mí
+       ════════════════════════════════════════════════════════════ -->
+  <section class="founder" id="founder">
+    <div class="container">
+      <h2 class="section-title">Sobre Mí</h2>
+
+      <div class="founder-content">
+        <div class="founder-image">
+          <div class="image-placeholder">
+            <span>Foto</span>
+          </div>
         </div>
-        <div class="founder-content">
+
+        <div class="founder-text">
           <h3>Jair Maldonador</h3>
+          <p class="founder-title">Fundador, Estratega de Branding</p>
+
           <p class="founder-bio">
-            Fundador y estratega creativo de VITA Studio. Especializado en transformar negocios locales en marcas reconocidas a nivel LATAM. Con más de 150 campañas ejecutadas, ha ayudado a médicos, artistas y emprendedores a construir presencia digital premium y generar impacto real en sus mercados.
+            Especializado en transformar emprendedores, profesionales médicos y creadores de contenido en marcas reconocidas.
           </p>
-          <p class="founder-signature">«La confianza es el activo más valioso de cualquier marca.»</p>
+
+          <p class="founder-bio">
+            Con más de 150 campañas ejecutadas, he ayudado a doctores, negocios locales e inmobiliarias a construir presencia digital premium y generar impacto real en sus mercados.
+          </p>
+
+          <p class="founder-bio">
+            Mi enfoque: estrategia clara + diseño impactante + resultados medibles.
+          </p>
+
+          <p class="founder-quote">
+            <em>"La confianza es el activo más valioso de cualquier marca."</em>
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
+  <!-- ════════════════════════════════════════════════════════════
        CONTACT SECTION
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <section id="contacto">
+       ════════════════════════════════════════════════════════════ -->
+  <section class="contacto" id="contacto">
     <div class="container">
-      <h2>Iniciemos tu Transformación</h2>
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-subtitle">Agendar consulta o enviar mensaje</p>
+
       <div class="contact-wrapper">
-        <form id="contact-form" class="contact-form">
-          <div class="form-group">
-            <label class="form-label" for="name">Nombre Completo</label>
-            <input type="text" id="name" class="form-input" name="name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">Correo Electrónico</label>
-            <input type="email" id="email" class="form-input" name="email" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="message">Mensaje</label>
-            <textarea id="message" class="form-textarea" name="message" required></textarea>
-          </div>
-          <div class="contact-buttons">
-            <button type="submit" class="btn-submit">Enviar Mensaje</button>
-            <a href="https://wa.me/528181782508?text=Hola%20VITA%20Studio,%20me%20interesa%20conocer%20sobre%20sus%20servicios"
-               class="btn-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          </div>
-        </form>
+        <div class="contact-form">
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="cta-primary">Enviar Mensaje</button>
+          </form>
+        </div>
+
+        <div class="contact-info">
+          <h3>O contáctame directamente</h3>
+          <p>
+            <a href="https://wa.me/528181782508" class="link-accent">
+              💬 WhatsApp
+            </a>
+          </p>
+          <p>
+            <a href="mailto:hola@vitastudio.site" class="link-accent">
+              📧 Email
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
+  <!-- ════════════════════════════════════════════════════════════
        FOOTER
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <footer>
-    <div class="footer-content">
-      <p class="footer-text">© 2026 VITA Studio. Crecimiento Personalizado.</p>
-      <ul class="footer-socials">
-        <li><a href="https://instagram.com/vitastudio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-        <li><a href="https://linkedin.com/company/vitastudio" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href="mailto:hola@vitastudio.site">Email</a></li>
-      </ul>
+       ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 VITA Studio. Branding Personal &amp; Estrategia Digital.</p>
+      <div class="footer-links">
+        <a href="https://instagram.com/vitastudio" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linkedin.com/company/vitastudio" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       LEAD POPUP MODAL
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <div id="lead-popup">
-    <div class="popup-content">
-      <button class="popup-close" aria-label="Cerrar">&times;</button>
-      <h3 class="popup-title">Diagnóstico Gratis</h3>
-      <form class="popup-form" id="popup-form">
+  <!-- ════════════════════════════════════════════════════════════
+       BOOKING MODAL
+       ════════════════════════════════════════════════════════════ -->
+  <div class="modal" id="booking-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h2>Agendar Consulta</h2>
+      <form id="booking-form">
         <div class="form-group">
-          <label class="form-label" for="popup-name">Nombre</label>
-          <input type="text" id="popup-name" class="form-input" name="name" required>
+          <label for="booking-name">Nombre</label>
+          <input type="text" id="booking-name" name="name" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="popup-email">Correo</label>
-          <input type="email" id="popup-email" class="form-input" name="email" required>
+          <label for="booking-email">Correo</label>
+          <input type="email" id="booking-email" name="email" required>
         </div>
-        <button type="submit" class="btn-submit">Enviar</button>
+        <div class="form-group">
+          <label for="booking-phone">Teléfono</label>
+          <input type="tel" id="booking-phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="booking-message">Cuéntame sobre tu proyecto</label>
+          <textarea id="booking-message" name="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="cta-primary">Agendar Ahora</button>
       </form>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       CAMPAIGN MODAL
-       ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modal-overlay"></div>
 
-  <div id="campaign-modal">
-    <button class="modal-close" aria-label="Cerrar">&times;</button>
-    <div class="modal-content">
-      <!-- Cargado dinámicamente desde JS -->
-    </div>
-    <div class="modal-nav" style="display: none;">
-      <button class="modal-prev" aria-label="Anterior">❮</button>
-      <span class="modal-counter"></span>
-      <button class="modal-next" aria-label="Siguiente">❯</button>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       EXTERNAL LIBRARIES FROM CDN
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <!-- GSAP 3 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-  <!-- Lenis (Smooth Scroll) -->
-  <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@0.2.28/dist/lenis.min.js"></script>
-
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       MAIN APPLICATION SCRIPTS
-       ═══════════════════════════════════════════════════════════════════════ -->
-
-  <script src="js/animations.js"></script>
-  <script src="js/main.js"></script>
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 
 </body>
 </html>

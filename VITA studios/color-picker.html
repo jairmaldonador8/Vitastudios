@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paletas de Color - VITA Studio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 40px 20px;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 32px;
+      color: #333;
+    }
+
+    .palettes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .palette {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .palette:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .palette-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      height: 200px;
+    }
+
+    .color-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .color-box:hover {
+      opacity: 0.9;
+    }
+
+    .palette-info {
+      padding: 30px;
+    }
+
+    .palette-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .palette-colors {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .color-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .color-dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+
+    .palette-desc {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .palette-uses {
+      font-size: 12px;
+      color: #999;
+      font-style: italic;
+    }
+
+    .select-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .select-btn:hover {
+      background: #222;
+    }
+
+    .selected {
+      background: #4CAF50 !important;
+    }
+
+    .hero-sample {
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid #eee;
+    }
+
+    .hero-sample h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .hero-demo {
+      padding: 20px;
+      border-radius: 6px;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-demo h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .hero-demo p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+
+    .hero-demo button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Elige la Paleta de Color para VITA Studio</h1>
+
+    <div class="palettes">
+      <!-- Paleta 1: Blanco + Azul Eléctrico -->
+      <div class="palette" data-palette="1">
+        <div class="palette-preview">
+          <div class="color-box" style="background: #FFFFFF; color: #333; border: 1px solid #eee;">Blanco<br>#FFFFFF</div>
+          <div class="color-box" style="background: #F8F9FA;">Gris Claro<br>#F8F9FA</div>
+          <div class="color-box" style="background: #0066FF;">Azul<br>#0066FF</div>
+        </div>
+        <div class="palette-info">
+          <div class="palette-name">Blanco + Azul Eléctrico</div>
+          <div class="palette-desc">Limpio, moderno y tech. Perfectamente convertidor. Parece Stripe, Notion, Vercel.</div>
+          <div class="palette-colors">
+            <div class="color-item">
+              <div class="color-dot" style="background: #FFFFFF; border: 2px solid #ddd;"></div>
+              <span><strong>Fondo:</strong> Blanco puro (#FFFFFF)</span>
+            </div>
+            <div class="color-item">
+              <div class="color-dot" style="background: #0066FF;"></div>
+              <span><strong>Accent:</strong> Azul eléctrico (#0066FF)</span>
+            </div>
+            <div class="color-item">
+              <div class="color-dot" style="background: #1a1a1a;"></div>
+              <span><strong>Texto:</strong> Negro profundo (#1a1a1a)</span>
+            </div>
+          </div>
+          <div class="palette-uses">Botones, CTAs, links, highlights</div>
+
+          <div class="hero-sample">
+            <h3>Vista Previa</h3>
+            <div class="hero-demo" style="background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%); color: #1a1a1a; border: 1px solid #eee;">
+              <h2 style="color: #0066FF;">¿Listo para transformar tu marca?</h2>
+              <p>Estrategia y resultados reales, potenciado con IA.</p>
+              <button style="background: #0066FF; color: white;">Agendar Consulta →</button>
+            </div>
+          </div>
+
+          <button class="select-btn" onclick="selectPalette(1)">Seleccionar esta</button>
+        </div>
+      </div>
+
+      <!-- Paleta 2: Crema + Terracota -->
+      <div class="palette" data-palette="2">
+        <div class="palette-preview">
+          <div class="color-box" style="background: #FFF8F3; color: #333;">Crema<br>#FFF8F3</div>
+          <div class="color-box" style="background: #F5EBE0;">Beige<br>#F5EBE0</div>
+          <div class="color-box" style="background: #C85A3A;">Terracota<br>#C85A3A</div>
+        </div>
+        <div class="palette-info">
+          <div class="palette-name">Crema + Terracota</div>
+          <div class="palette-desc">Elegante, warm, aesthetic. Sofisticado sin ser frío. Muy premium.</div>
+          <div class="palette-colors">
+            <div class="color-item">
+              <div class="color-dot" style="background: #FFF8F3;"></div>
+              <span><strong>Fondo:</strong> Crema cálida (#FFF8F3)</span>
+            </div>
+            <div class="color-item">
+              <div class="color-dot" style="background: #C85A3A;"></div>
+              <span><strong>Accent:</strong> Terracota (#C85A3A)</span>
+            </div>
+            <div class="color-item">
+              <div class="color-dot" style="background: #2d2d2d;"></div>
+              <span><strong>Texto:</strong> Marrón oscuro (#2d2d2d)</span>
+            </div>
+          </div>
+          <div class="palette-uses">Lujoso, creativo, personal branding</div>
+
+          <div class="hero-sample">
+            <h3>Vista Previa</h3>
+            <div class="hero-demo" style="background: linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 100%); color: #2d2d2d; border: 1px solid #E8D5C4;">
+              <h2 style="color: #C85A3A;">¿Listo para transformar tu marca?</h2>
+              <p>Estrategia y resultados reales, potenciado con IA.</p>
+              <button style="background: #C85A3A; color: white;">Agendar Consulta →</button>
+            </div>
+          </div>
+
+          <button class="select-btn" onclick="selectPalette(2)">Seleccionar esta</button>
+        </div>
+      </div>
+
+      <!-- Paleta 3: Gris Claro + Negro Bold -->
+      <div class="palette" data-palette="3">
+        <div class="palette-preview">
+          <div class="color-box" style="background: #F3F3F3; color: #333;">Gris Claro<br>#F3F3F3</div>
+          <div class="color-box" style="background: #E8E8E8;">Gris Med<br>#E8E8E8</div>
+          <div class="color-box" style="background: #000000;">Negro<br>#000000</div>
+        </div>
+        <div class="palette-info">
+          <div class="palette-name">Gris Claro + Negro Bold</div>
+          <div class="palette-desc">Profesional extremo. Minimalista puro. Maximum credibility.</div>
+          <div class="palette-colors">
+            <div class="color-item">
+              <div class="color-dot" style="background: #F3F3F3;"></div>
+              <span><strong>Fondo:</strong> Gris muy claro (#F3F3F3)</span>
+            </div>
+            <div class="color-item">
+              <div class="color-dot" style="background: #000000;"></div>
+              <span><strong>Accent:</strong> Negro puro (#000000)</span>
+            </div>
+            <div class="color-item">
+              <div class="color-dot" style="background: #1a1a1a;"></div>
+              <span><strong>Texto:</strong> Negro muy oscuro (#1a1a1a)</span>
+            </div>
+          </div>
+          <div class="palette-uses">Consultores, abogados, finanzas, profesionales</div>
+
+          <div class="hero-sample">
+            <h3>Vista Previa</h3>
+            <div class="hero-demo" style="background: linear-gradient(135deg, #F3F3F3 0%, #E8E8E8 100%); color: #1a1a1a; border: 1px solid #ddd;">
+              <h2 style="color: #000000;">¿Listo para transformar tu marca?</h2>
+              <p>Estrategia y resultados reales, potenciado con IA.</p>
+              <button style="background: #000000; color: white;">Agendar Consulta →</button>
+            </div>
+          </div>
+
+          <button class="select-btn" onclick="selectPalette(3)">Seleccionar esta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectPalette(num) {
+      // Remove selected state from all buttons
+      document.querySelectorAll('.select-btn').forEach(btn => {
+        btn.classList.remove('selected');
+      });
+
+      // Add selected state to clicked button
+      event.target.classList.add('selected');
+
+      // Show selection in console and as alert
+      const names = {
+        1: 'Blanco + Azul Eléctrico',
+        2: 'Crema + Terracota',
+        3: 'Gris Claro + Negro Bold'
+      };
+
+      alert(`✅ Seleccionaste: ${names[num]}\n\nCopié los colores al portapapeles. Dile a Claude cuál elegiste.`);
+      console.log(`Paleta seleccionada: ${num} - ${names[num]}`);
+    }
+  </script>
+</body>
+</html>
