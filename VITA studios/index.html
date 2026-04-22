@@ -1,346 +1,326 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VITA Studio | Crecimiento Personalizado</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VITA Studio | Crecimiento Personalizado</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@100;300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <img src="logo.png" alt="VITA STUDIOS">
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#inicio" class="nav-link">INICIO</a></li>
-                    <li><a href="#servicios" class="nav-link">SERVICIOS</a></li>
-                    <li><a href="#casos" class="nav-link">CASOS</a></li>
-                    <li><a href="#contacto" class="nav-link">CONTACTO</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- HERO -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <div class="hero-logo">
-                <img src="logo.png" alt="VITA STUDIOS">
-            </div>
-            <div class="hero-subtitle">✦ Crecimiento Personalizado</div>
-            <h1 class="hero-headline">Lleva tu negocio al siguiente nivel</h1>
-            <p class="hero-subheadline">Estrategia, IA y Crecimiento Personalizado</p>
-            <button class="btn btn-primary" onclick="document.getElementById('lead-popup').classList.add('active'); document.body.style.overflow = 'hidden';">OBTENER DIAGNÓSTICO GRATIS</button>
-        </div>
-    </section>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       CUSTOM CURSOR
+       ═══════════════════════════════════════════════════════════════════════ -->
 
-    <div class="divider"></div>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
-    <!-- CHOOSE PATH -->
-    <section class="choose-path">
-        <div class="container">
-            <h2 class="section-title reveal">¿Cuál es tu camino?</h2>
-            <div class="paths reveal">
-                <div class="path-card">
-                    <h3 class="service-title">⚕️ Profesional de Salud</h3>
-                    <p class="service-description">Optimización digital, captación de pacientes y branding profesional para tu práctica.</p>
-                </div>
-                <div class="path-card">
-                    <h3 class="service-title">📈 Tengo un Negocio</h3>
-                    <p class="service-description">Estrategia de crecimiento, marketing digital y transformación con IA para tu empresa.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════════════════════════ -->
 
-    <div class="divider"></div>
-
-    <!-- SERVICES -->
-    <section id="servicios" class="services">
-        <div class="container">
-            <h2 class="section-title reveal">Nuestros Servicios</h2>
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <h3 class="service-title">Optimización Digital</h3>
-                    <p class="service-description">Sitios web de alto rendimiento, captación inteligente y presencia online profesional.</p>
-                    <button class="btn btn-secondary" onclick="document.getElementById('lead-popup').classList.add('active'); document.body.style.overflow = 'hidden';" style="margin-top: 16px;">Descubre Tu Oportunidad</button>
-                </div>
-                <div class="service-card reveal">
-                    <h3 class="service-title">Consultoría Estratégica</h3>
-                    <p class="service-description">Análisis personalizado, oportunidades de crecimiento y acompañamiento en transformación.</p>
-                    <button class="btn btn-secondary" onclick="document.getElementById('lead-popup').classList.add('active'); document.body.style.overflow = 'hidden';" style="margin-top: 16px;">Descubre Tu Oportunidad</button>
-                </div>
-                <div class="service-card reveal">
-                    <h3 class="service-title">Implementación IA</h3>
-                    <p class="service-description">Automatización de procesos, análisis inteligente y optimización con tecnología.</p>
-                    <button class="btn btn-secondary" onclick="document.getElementById('lead-popup').classList.add('active'); document.body.style.overflow = 'hidden';" style="margin-top: 16px;">Descubre Tu Oportunidad</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- CASOS DE ÉXITO / CAROUSEL -->
-    <section id="casos" class="casos">
-        <div class="container">
-            <h2 class="section-title reveal">Casos de Éxito</h2>
-            <p class="section-subtitle reveal">Clientes que transformaron su negocio con VITA Studio</p>
-
-            <div class="carousel-container reveal">
-                <!-- Carousel Content -->
-                <div class="carousel-wrapper">
-                    <div class="carousel-track">
-                        <!-- Caso 1 -->
-                        <div class="carousel-slide" data-case-id="1">
-                            <div class="caso-card clickable">
-                                <div class="caso-image-wrapper">
-                                    <img src="casos/01-doctor-wilber.png" alt="Doctor Wilber">
-                                    <div class="caso-overlay">
-                                        <h3 class="caso-name">Doctor Wilber</h3>
-                                        <p class="caso-category">Profesional de Salud</p>
-                                        <p class="caso-cta">Ver Campaña →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Caso 2 -->
-                        <div class="carousel-slide" data-case-id="2">
-                            <div class="caso-card clickable">
-                                <div class="caso-image-wrapper">
-                                    <img src="casos/02-rosa-de-oro.png" alt="Rosa de Oro">
-                                    <div class="caso-overlay">
-                                        <h3 class="caso-name">Rosa de Oro</h3>
-                                        <p class="caso-category">E-commerce</p>
-                                        <p class="caso-cta">Ver Campaña →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Caso 3 -->
-                        <div class="carousel-slide" data-case-id="3">
-                            <div class="caso-card clickable">
-                                <div class="caso-image-wrapper">
-                                    <img src="casos/03-renace.png" alt="Renace">
-                                    <div class="caso-overlay">
-                                        <h3 class="caso-name">Renace</h3>
-                                        <p class="caso-category">Bienestar</p>
-                                        <p class="caso-cta">Ver Campaña →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Caso 4 -->
-                        <div class="carousel-slide" data-case-id="4">
-                            <div class="caso-card clickable">
-                                <div class="caso-image-wrapper">
-                                    <img src="casos/04-hinaitu.png" alt="Hinaitu">
-                                    <div class="caso-overlay">
-                                        <h3 class="caso-name">Hinaitu</h3>
-                                        <p class="caso-category">Consultoría</p>
-                                        <p class="caso-cta">Ver Campaña →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Caso 5 -->
-                        <div class="carousel-slide" data-case-id="5">
-                            <div class="caso-card clickable">
-                                <div class="caso-image-wrapper">
-                                    <img src="casos/05-doctora-vannia.png" alt="Doctora Vannia">
-                                    <div class="caso-overlay">
-                                        <h3 class="caso-name">Dra. Vannia</h3>
-                                        <p class="caso-category">Profesional de Salud</p>
-                                        <p class="caso-cta">Ver Campaña →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Caso 6 -->
-                        <div class="carousel-slide" data-case-id="6">
-                            <div class="caso-card clickable">
-                                <div class="caso-image-wrapper">
-                                    <img src="casos/06-doctor-jose-luis.png" alt="Doctor José Luis">
-                                    <div class="caso-overlay">
-                                        <h3 class="caso-name">Dr. José Luis</h3>
-                                        <p class="caso-category">Profesional de Salud</p>
-                                        <p class="caso-cta">Ver Campaña →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Caso 7 -->
-                        <div class="carousel-slide" data-case-id="7">
-                            <div class="caso-card clickable">
-                                <div class="caso-image-wrapper">
-                                    <img src="casos/07-doctora-karen.png" alt="Doctora Karen">
-                                    <div class="caso-overlay">
-                                        <h3 class="caso-name">Dra. Karen</h3>
-                                        <p class="caso-category">Profesional de Salud</p>
-                                        <p class="caso-cta">Ver Campaña →</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Controls -->
-                <button class="carousel-prev" aria-label="Caso anterior">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
-                <button class="carousel-next" aria-label="Caso siguiente">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
-
-                <!-- Indicators -->
-                <div class="carousel-indicators">
-                    <span class="carousel-counter"><span id="current-slide">1</span> / 7</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- MODAL PARA CAMPAÑAS -->
-    <div id="campaign-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Cerrar">&times;</button>
-            <div id="campaign-body">
-                <!-- Las campañas se cargarán aquí -->
-            </div>
-        </div>
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">VITA Studio</div>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- LEAD MAGNET POPUP -->
-    <div id="lead-popup" class="lead-popup">
-        <div class="popup-content">
-            <button class="popup-close" aria-label="Cerrar">&times;</button>
-            <h3 class="popup-title">Obtén Tu Diagnóstico</h3>
-            <p class="popup-subtitle">5 minutos de preguntas estratégicas + análisis personalizado</p>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════════════════════════════════ -->
 
-            <form id="popup-form" class="form-section">
-                <div class="form-group">
-                    <input type="text" id="popup-name" placeholder="Tu nombre" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="popup-email" placeholder="tu@email.com" required>
-                </div>
-                <button type="submit" class="btn btn-primary form-submit">
-                    IR AL DIAGNÓSTICO COMPLETO
-                </button>
-                <p class="form-disclaimer">✓ Sin spam • ✓ Totalmente gratis</p>
-            </form>
-        </div>
+  <section id="hero">
+    <div class="hero-content">
+      <h1 class="hero-headline">Construimos marcas que generan confianza.</h1>
+      <p class="hero-subheadline">Estrategia, contenido audiovisual y crecimiento digital para empresas y profesionales en LATAM.</p>
+      <button class="hero-cta" aria-label="Agendar consulta gratis">Agendar Consulta Gratis</button>
     </div>
+  </section>
 
-    <div class="divider"></div>
+  <div class="section-divider"></div>
 
-    <!-- FAQ SECTION -->
-    <section id="faq" class="faq-section reveal">
-        <div class="container">
-            <h2>Preguntas Frecuentes</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Cuánto cuesta una consultoría?</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Los costos varían según el alcance y duración. Ofrecemos paquetes personalizados desde consultoría por horas hasta retainers mensuales. Obtén tu diagnóstico para saber qué es lo mejor para ti.</p>
-                    </div>
-                </div>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SERVICES SECTION
+       ═══════════════════════════════════════════════════════════════════════ -->
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Cuánto tiempo tarda ver resultados?</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Depende de la estrategia, pero muchos clientes ven resultados en 30-90 días. Algunos logran cambios significativos incluso en las primeras 2 semanas de implementación.</p>
-                    </div>
-                </div>
+  <section id="servicios">
+    <div class="container">
+      <h2>Nuestros Servicios</h2>
+      <div class="services-grid">
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Trabajas con empresas pequeñas?</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>¡Por supuesto! Especialmente con startups y profesionales independientes. Nuestro enfoque es adaptado a tu etapa de crecimiento y presupuesto.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Ofrecen garantía de resultados?</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Garantizamos nuestra dedicación y estrategia. Los resultados dependen de la implementación. Por eso incluimos acompañamiento y ajustes continuos.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Cómo funciona el diagnóstico?</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Completas un formulario de 5-7 preguntas sobre tu negocio. Nuestro equipo analiza tu información y te envía un reporte personalizado con estrategia + invitación a consulta.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Cuál es el próximo paso?</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Obtén tu diagnóstico gratis. Recibirás nuestro análisis detallado + una propuesta personalizada. Luego decides si quieres trabajar juntos.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="service-card">
+          <div class="service-number">01</div>
+          <h3 class="service-title">Identidad de Marca</h3>
+          <p class="service-description">Desarrollamos identidades visuales y verbales que transmiten confianza y diferencia en mercados competitivos.</p>
         </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 VITA STUDIOS. CRECIMIENTO PERSONALIZADO.</p>
-    </footer>
+        <div class="service-card">
+          <div class="service-number">02</div>
+          <h3 class="service-title">Contenido Audiovisual</h3>
+          <p class="service-description">Producciones premium: fotografía profesional, video corporativo y cinematic content que conecta con tu audiencia.</p>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="service-card">
+          <div class="service-number">03</div>
+          <h3 class="service-title">Estrategia Digital</h3>
+          <p class="service-description">Planificación de marketing, posicionamiento en redes y optimización de conversión para growth sostenible.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-number">04</div>
+          <h3 class="service-title">Gestión de Artistas</h3>
+          <p class="service-description">Transformamos talentos creativos en marcas personales reconocidas. Branding, contenido y monetización.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       PORTFOLIO SECTION
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <section id="portafolio">
+    <div class="container">
+      <h2>Casos de Éxito</h2>
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card" data-case-id="1">
+          <img src="casos/01-doctor-wilber.png" alt="Doctor Wilber">
+          <div class="portfolio-overlay">
+            <div class="portfolio-name">Doctor Wilber</div>
+            <div class="portfolio-category">Medicina Estética</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-case-id="2">
+          <img src="casos/02-rosa-de-oro.png" alt="Rosa de Oro">
+          <div class="portfolio-overlay">
+            <div class="portfolio-name">Rosa de Oro</div>
+            <div class="portfolio-category">Joyería Artesanal</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-case-id="3">
+          <img src="casos/03-renace.png" alt="Renace">
+          <div class="portfolio-overlay">
+            <div class="portfolio-name">Renace</div>
+            <div class="portfolio-category">Bienestar & Spa</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-case-id="4">
+          <img src="casos/04-hinaitu.png" alt="Hinaitu">
+          <div class="portfolio-overlay">
+            <div class="portfolio-name">Hinaitu</div>
+            <div class="portfolio-category">Producción Audiovisual</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-case-id="5">
+          <img src="casos/05-doctora-vannia.png" alt="Dra. Vannia Maldonado">
+          <div class="portfolio-overlay">
+            <div class="portfolio-name">Dra. Vannia Maldonado</div>
+            <div class="portfolio-category">Personal Branding</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-case-id="6">
+          <img src="casos/06-doctor-jose-luis.png" alt="Dr. José Luis Vivas">
+          <div class="portfolio-overlay">
+            <div class="portfolio-name">Dr. José Luis Vivas</div>
+            <div class="portfolio-category">Oncología</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-case-id="7">
+          <img src="casos/07-doctora-karen.png" alt="Dra. Karen Astuñague">
+          <div class="portfolio-overlay">
+            <div class="portfolio-name">Dra. Karen Astuñague</div>
+            <div class="portfolio-category">Dermatología</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       RESULTS / STATS SECTION
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <section id="resultados">
+    <div class="container">
+      <h2>Nuestro Impacto</h2>
+      <div class="stats-grid">
+
+        <div class="stat-item">
+          <div class="stat-number" data-value="150">0</div>
+          <div class="stat-label">Campañas Ejecutadas</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number" data-value="7">0</div>
+          <div class="stat-label">Clientes Activos</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number" data-value="300">0</div>
+          <div class="stat-label">% Crecimiento Promedio</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FOUNDER SECTION
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <section id="founder">
+    <div class="container">
+      <div class="founder-wrapper">
+        <div class="founder-photo-placeholder">
+          <!-- Foto placeholder — agregar imagen aquí después -->
+          <span>Foto Jair Maldonador</span>
+        </div>
+        <div class="founder-content">
+          <h3>Jair Maldonador</h3>
+          <p class="founder-bio">
+            Fundador y estratega creativo de VITA Studio. Especializado en transformar negocios locales en marcas reconocidas a nivel LATAM. Con más de 150 campañas ejecutadas, ha ayudado a médicos, artistas y emprendedores a construir presencia digital premium y generar impacto real en sus mercados.
+          </p>
+          <p class="founder-signature">«La confianza es el activo más valioso de cualquier marca.»</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       CONTACT SECTION
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <section id="contacto">
+    <div class="container">
+      <h2>Iniciemos tu Transformación</h2>
+      <div class="contact-wrapper">
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <label class="form-label" for="name">Nombre Completo</label>
+            <input type="text" id="name" class="form-input" name="name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Correo Electrónico</label>
+            <input type="email" id="email" class="form-input" name="email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Mensaje</label>
+            <textarea id="message" class="form-textarea" name="message" required></textarea>
+          </div>
+          <div class="contact-buttons">
+            <button type="submit" class="btn-submit">Enviar Mensaje</button>
+            <a href="https://wa.me/528181782508?text=Hola%20VITA%20Studio,%20me%20interesa%20conocer%20sobre%20sus%20servicios"
+               class="btn-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-text">© 2026 VITA Studio. Crecimiento Personalizado.</p>
+      <ul class="footer-socials">
+        <li><a href="https://instagram.com/vitastudio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="https://linkedin.com/company/vitastudio" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="mailto:hola@vitastudio.site">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LEAD POPUP MODAL
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <div id="lead-popup">
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Cerrar">&times;</button>
+      <h3 class="popup-title">Diagnóstico Gratis</h3>
+      <form class="popup-form" id="popup-form">
+        <div class="form-group">
+          <label class="form-label" for="popup-name">Nombre</label>
+          <input type="text" id="popup-name" class="form-input" name="name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="popup-email">Correo</label>
+          <input type="email" id="popup-email" class="form-input" name="email" required>
+        </div>
+        <button type="submit" class="btn-submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       CAMPAIGN MODAL
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <div id="campaign-modal">
+    <button class="modal-close" aria-label="Cerrar">&times;</button>
+    <div class="modal-content">
+      <!-- Cargado dinámicamente desde JS -->
+    </div>
+    <div class="modal-nav" style="display: none;">
+      <button class="modal-prev" aria-label="Anterior">❮</button>
+      <span class="modal-counter"></span>
+      <button class="modal-next" aria-label="Siguiente">❯</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       EXTERNAL LIBRARIES FROM CDN
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- GSAP 3 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis (Smooth Scroll) -->
+  <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@0.2.28/dist/lenis.min.js"></script>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       MAIN APPLICATION SCRIPTS
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+
 </body>
 </html>
