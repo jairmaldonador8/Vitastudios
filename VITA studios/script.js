@@ -18,15 +18,15 @@ function initAnimatedBackground() {
 
   // Paper Design Shader Parameters
   const config = {
-    colorBack: 'hsl(0, 0%, 0%)',           // Negro puro
-    softness: 0.76,
-    intensity: 0.45,
+    colorBack: 'hsl(0, 0%, 10%)',          // Negro profundo
+    softness: 0.70,
+    intensity: 0.35,
     noise: 0,
     shape: 'corners',
     colors: [
-      'hsl(14, 100%, 57%)',                // Rojo-naranja
-      'hsl(45, 100%, 51%)',                // Amarillo
-      'hsl(340, 82%, 52%)',                // Rosa/Magenta
+      'hsl(14, 88%, 55%)',                 // Naranja cálido
+      'hsl(22, 80%, 50%)',                 // Naranja dorado
+      'hsl(8, 90%, 45%)',                  // Rojo-naranja profundo
     ]
   };
 
