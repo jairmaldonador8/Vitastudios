@@ -4,7 +4,10 @@
 
 function initAnimatedBackground() {
   const canvas = document.getElementById('grain-canvas');
-  if (!canvas) return;
+  if (!canvas) {
+    console.warn('grain-canvas not found');
+    return;
+  }
 
   const ctx = canvas.getContext('2d');
   const width = window.innerWidth;
@@ -13,9 +16,14 @@ function initAnimatedBackground() {
   canvas.width = width;
   canvas.height = height;
 
-  // Grain noise generation
-  function generateGrain() {
-    const imageData = ctx.createImageData(width, height);
+  // Pre-generate grain texture
+  const grainTexture = document.createElement('canvas');
+  const grainCtx = grainTexture.getContext('2d');
+  grainTexture.width = 200;
+  grainTexture.height = 200;
+
+  function generateGrainPattern() {
+    const imageData = grainCtx.createImageData(200, 200);
     const data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
@@ -26,38 +34,33 @@ function initAnimatedBackground() {
       data[i + 3] = 255;
     }
 
-    return imageData;
+    grainCtx.putImageData(imageData, 0, 0);
   }
 
-  let grainTime = 0;
-  const bgElement = document.getElementById('animated-bg');
-  const colors = [
-    'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)',
-    'linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 50%, #F5EBE0 100%)',
-    'linear-gradient(135deg, #FFF8F3 0%, rgba(200, 90, 58, 0.05) 50%, #FFF8F3 100%)',
-  ];
+  generateGrainPattern();
+  const pattern = ctx.createPattern(grainTexture, 'repeat');
 
-  let currentColorIndex = 0;
+  let time = 0;
+  const bgElement = document.getElementById('animated-bg');
 
   function animateBackground() {
-    grainTime += 0.005;
+    time += 0.008;
 
-    // Grain animation
-    const grain = generateGrain();
-    ctx.putImageData(grain, 0, 0);
+    // Clear and draw grain
+    ctx.fillStyle = pattern;
+    ctx.fillRect(0, 0, width, height);
 
-    // Breathing gradient effect
-    const progress = Math.sin(grainTime * 0.5) * 0.5 + 0.5;
-    const nextColorIndex = Math.floor(grainTime * 0.3) % colors.length;
+    // Breathing effect
+    const breathe = Math.sin(time * 0.3) * 0.02 + 0.06;
+    canvas.style.opacity = breathe;
 
-    if (nextColorIndex !== currentColorIndex) {
-      currentColorIndex = nextColorIndex;
-      bgElement.style.background = colors[currentColorIndex];
+    // Breathing gradient colors
+    const colorPhase = Math.sin(time * 0.2);
+    if (colorPhase > 0.8 && bgElement.style.background.indexOf('#F5EBE0') === -1) {
+      bgElement.style.background = 'linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 50%, #F5EBE0 100%)';
+    } else if (colorPhase < -0.8 && bgElement.style.background.indexOf('#FFF8F3') === -1) {
+      bgElement.style.background = 'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)';
     }
-
-    // Subtle opacity breathing
-    const opacity = 0.025 + Math.sin(grainTime * 0.3) * 0.01;
-    canvas.style.opacity = opacity;
 
     requestAnimationFrame(animateBackground);
   }
