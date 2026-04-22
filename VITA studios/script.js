@@ -10,87 +10,100 @@ function initAnimatedBackground() {
   }
 
   const ctx = canvas.getContext('2d');
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
 
   canvas.width = width;
   canvas.height = height;
 
-  // High-quality grain texture with better noise
-  const grainTexture = document.createElement('canvas');
-  const grainCtx = grainTexture.getContext('2d');
-  grainTexture.width = 400;
-  grainTexture.height = 400;
+  // Paper Design Shader Parameters
+  const config = {
+    colorBack: 'hsl(0, 0%, 0%)',           // Negro puro
+    softness: 0.76,
+    intensity: 0.45,
+    noise: 0,
+    shape: 'corners',
+    colors: [
+      'hsl(14, 100%, 57%)',                // Rojo-naranja
+      'hsl(45, 100%, 51%)',                // Amarillo
+      'hsl(340, 82%, 52%)',                // Rosa/Magenta
+    ]
+  };
 
-  function generateGrainPattern() {
-    const imageData = grainCtx.createImageData(400, 400);
-    const data = imageData.data;
+  // Convertir HSL a RGB
+  function hslToRgb(hsl) {
+    const match = hsl.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
+    if (!match) return [0, 0, 0];
 
-    for (let i = 0; i < data.length; i += 4) {
-      // Higher quality noise with variation
-      const noise = Math.random() * 200 + 30;
-      data[i] = noise;
-      data[i + 1] = noise;
-      data[i + 2] = noise;
-      data[i + 3] = 255;
+    let h = parseInt(match[1]) / 360;
+    let s = parseInt(match[2]) / 100;
+    let l = parseInt(match[3]) / 100;
+
+    let r, g, b;
+    if (s === 0) {
+      r = g = b = l;
+    } else {
+      const hue2rgb = (p, q, t) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1/6) return p + (q - p) * 6 * t;
+        if (t < 1/2) return q;
+        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        return p;
+      };
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
     }
 
-    grainCtx.putImageData(imageData, 0, 0);
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
   }
 
-  generateGrainPattern();
-  const pattern = ctx.createPattern(grainTexture, 'repeat');
-
-  let time = 0;
-  const bgElement = document.getElementById('animated-bg');
-  const radialLayer = document.querySelector('.radial-gradient-layer');
-
-  // Color palette - Crema, Terracota, Dorado
-  const colors = [
-    'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)',
-    'linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 50%, #F5EBE0 100%)',
-    'linear-gradient(135deg, #FFF8F3 0%, rgba(212, 163, 115, 0.3) 40%, #F5EBE0 100%)',
-    'linear-gradient(135deg, #F5EBE0 0%, rgba(200, 90, 58, 0.15) 50%, #FFF8F3 100%)',
-  ];
-
-  let colorIndex = 0;
-  let colorTimer = 0;
-
-  function animateBackground() {
-    time += 0.01;
-    colorTimer += 0.01;
-
-    // Draw grain texture
-    ctx.fillStyle = pattern;
+  function drawFrame() {
+    // Fondo base
+    const bgRgb = hslToRgb(config.colorBack);
+    ctx.fillStyle = `rgb(${bgRgb[0]}, ${bgRgb[1]}, ${bgRgb[2]})`;
     ctx.fillRect(0, 0, width, height);
 
-    // Grain opacity breathing - more intense
-    const grainBreathe = Math.sin(time * 0.25) * 0.08 + 0.2;
-    canvas.style.opacity = grainBreathe;
+    // Gradientes radiales desde esquinas
+    const cornerDistance = Math.sqrt(width ** 2 + height ** 2) / 2;
 
-    // Color transitions
-    if (colorTimer > 4000) {
-      colorIndex = (colorIndex + 1) % colors.length;
-      bgElement.style.background = colors[colorIndex];
-      bgElement.style.transition = 'background 3s ease-in-out';
-      colorTimer = 0;
-    }
+    config.colors.forEach((color, index) => {
+      const positions = [
+        { x: 0, y: 0 },
+        { x: width, y: 0 },
+        { x: 0, y: height },
+        { x: width, y: height }
+      ];
 
-    // Radial gradient breathing with intensity variation
-    const radialBreathe = Math.sin(time * 0.2) * 0.3 + 0.5;
-    if (radialLayer) {
-      radialLayer.style.opacity = radialBreathe;
-    }
+      const pos = positions[index % positions.length];
+      const gradient = ctx.createRadialGradient(
+        pos.x, pos.y, 0,
+        pos.x, pos.y,
+        cornerDistance * (1 - config.softness + 0.2)
+      );
 
-    requestAnimationFrame(animateBackground);
+      const rgb = hslToRgb(color);
+      gradient.addColorStop(0, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${config.intensity})`);
+      gradient.addColorStop(1, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0)`);
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+    });
+
+    requestAnimationFrame(drawFrame);
   }
 
-  animateBackground();
+  drawFrame();
 
   // Handle window resize
   window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
   });
 }
 
