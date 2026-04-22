@@ -1,4 +1,77 @@
 // ════════════════════════════════════════════════════════════
+// ANIMATED GRAIN GRADIENT BACKGROUND
+// ════════════════════════════════════════════════════════════
+
+function initAnimatedBackground() {
+  const canvas = document.getElementById('grain-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  canvas.width = width;
+  canvas.height = height;
+
+  // Grain noise generation
+  function generateGrain() {
+    const imageData = ctx.createImageData(width, height);
+    const data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const noise = Math.random() * 255;
+      data[i] = noise;
+      data[i + 1] = noise;
+      data[i + 2] = noise;
+      data[i + 3] = 255;
+    }
+
+    return imageData;
+  }
+
+  let grainTime = 0;
+  const bgElement = document.getElementById('animated-bg');
+  const colors = [
+    'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)',
+    'linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 50%, #F5EBE0 100%)',
+    'linear-gradient(135deg, #FFF8F3 0%, rgba(200, 90, 58, 0.05) 50%, #FFF8F3 100%)',
+  ];
+
+  let currentColorIndex = 0;
+
+  function animateBackground() {
+    grainTime += 0.005;
+
+    // Grain animation
+    const grain = generateGrain();
+    ctx.putImageData(grain, 0, 0);
+
+    // Breathing gradient effect
+    const progress = Math.sin(grainTime * 0.5) * 0.5 + 0.5;
+    const nextColorIndex = Math.floor(grainTime * 0.3) % colors.length;
+
+    if (nextColorIndex !== currentColorIndex) {
+      currentColorIndex = nextColorIndex;
+      bgElement.style.background = colors[currentColorIndex];
+    }
+
+    // Subtle opacity breathing
+    const opacity = 0.025 + Math.sin(grainTime * 0.3) * 0.01;
+    canvas.style.opacity = opacity;
+
+    requestAnimationFrame(animateBackground);
+  }
+
+  animateBackground();
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+}
+
+// ════════════════════════════════════════════════════════════
 // GSAP + ScrollTrigger Animations
 // ════════════════════════════════════════════════════════════
 
@@ -303,6 +376,7 @@ function animateContactForm() {
 
 // Initialize all animations
 function initAnimations() {
+  initAnimatedBackground();
   initHeroParallax();
   animateFloatingShapes();
   animateSectionTitles();
