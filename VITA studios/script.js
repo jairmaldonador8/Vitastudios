@@ -61,14 +61,19 @@ function initAnimatedBackground() {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
   }
 
+  let animationTime = 0;
+
   function drawFrame() {
+    animationTime += 0.002;
+
     // Fondo base
     const bgRgb = hslToRgb(config.colorBack);
     ctx.fillStyle = `rgb(${bgRgb[0]}, ${bgRgb[1]}, ${bgRgb[2]})`;
     ctx.fillRect(0, 0, width, height);
 
-    // Gradientes radiales desde esquinas
+    // Gradientes radiales desde esquinas con breathing
     const cornerDistance = Math.sqrt(width ** 2 + height ** 2) / 2;
+    const breathingIntensity = config.intensity * (0.7 + Math.sin(animationTime * 0.5) * 0.3);
 
     config.colors.forEach((color, index) => {
       const positions = [
@@ -79,19 +84,34 @@ function initAnimatedBackground() {
       ];
 
       const pos = positions[index % positions.length];
+
+      // Animate gradient size
+      const animatedDistance = cornerDistance * (1 - config.softness + 0.2) * (0.9 + Math.sin(animationTime * 0.3 + index) * 0.1);
+
       const gradient = ctx.createRadialGradient(
         pos.x, pos.y, 0,
         pos.x, pos.y,
-        cornerDistance * (1 - config.softness + 0.2)
+        animatedDistance
       );
 
       const rgb = hslToRgb(color);
-      gradient.addColorStop(0, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${config.intensity})`);
+      gradient.addColorStop(0, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${breathingIntensity})`);
       gradient.addColorStop(1, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0)`);
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
     });
+
+    // High-quality grain texture overlay
+    const imageData = ctx.getImageData(0, 0, width, height);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const grain = Math.random() * 40;
+      data[i] += grain;
+      data[i + 1] += grain;
+      data[i + 2] += grain;
+    }
+    ctx.putImageData(imageData, 0, 0);
 
     requestAnimationFrame(drawFrame);
   }

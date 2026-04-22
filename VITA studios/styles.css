@@ -1,11 +1,11 @@
 :root {
-  --color-cream: #FFF8F3;
-  --color-cream-dark: #F5EBE0;
-  --color-terracota: #C85A3A;
-  --color-terracota-dark: #A84A2A;
-  --color-text: #2d2d2d;
-  --color-text-light: #5a5a5a;
-  --color-border: #E8D5C4;
+  --color-cream: #0A0A0A;
+  --color-cream-dark: #1A1A1A;
+  --color-terracota: #FF6B35;
+  --color-terracota-dark: #FF5500;
+  --color-text: #FFFFFF;
+  --color-text-light: #E0E0E0;
+  --color-border: #444444;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --spacing-sm: 1rem;
