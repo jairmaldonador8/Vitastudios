@@ -16,18 +16,19 @@ function initAnimatedBackground() {
   canvas.width = width;
   canvas.height = height;
 
-  // Pre-generate grain texture
+  // High-quality grain texture with better noise
   const grainTexture = document.createElement('canvas');
   const grainCtx = grainTexture.getContext('2d');
-  grainTexture.width = 200;
-  grainTexture.height = 200;
+  grainTexture.width = 400;
+  grainTexture.height = 400;
 
   function generateGrainPattern() {
-    const imageData = grainCtx.createImageData(200, 200);
+    const imageData = grainCtx.createImageData(400, 400);
     const data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
-      const noise = Math.random() * 255;
+      // Higher quality noise with variation
+      const noise = Math.random() * 200 + 30;
       data[i] = noise;
       data[i + 1] = noise;
       data[i + 2] = noise;
@@ -42,24 +43,43 @@ function initAnimatedBackground() {
 
   let time = 0;
   const bgElement = document.getElementById('animated-bg');
+  const radialLayer = document.querySelector('.radial-gradient-layer');
+
+  // Color palette - Crema, Terracota, Dorado
+  const colors = [
+    'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)',
+    'linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 50%, #F5EBE0 100%)',
+    'linear-gradient(135deg, #FFF8F3 0%, rgba(212, 163, 115, 0.3) 40%, #F5EBE0 100%)',
+    'linear-gradient(135deg, #F5EBE0 0%, rgba(200, 90, 58, 0.15) 50%, #FFF8F3 100%)',
+  ];
+
+  let colorIndex = 0;
+  let colorTimer = 0;
 
   function animateBackground() {
-    time += 0.008;
+    time += 0.01;
+    colorTimer += 0.01;
 
-    // Clear and draw grain
+    // Draw grain texture
     ctx.fillStyle = pattern;
     ctx.fillRect(0, 0, width, height);
 
-    // Breathing effect
-    const breathe = Math.sin(time * 0.3) * 0.02 + 0.06;
-    canvas.style.opacity = breathe;
+    // Grain opacity breathing - more intense
+    const grainBreathe = Math.sin(time * 0.25) * 0.08 + 0.2;
+    canvas.style.opacity = grainBreathe;
 
-    // Breathing gradient colors
-    const colorPhase = Math.sin(time * 0.2);
-    if (colorPhase > 0.8 && bgElement.style.background.indexOf('#F5EBE0') === -1) {
-      bgElement.style.background = 'linear-gradient(135deg, #F5EBE0 0%, #FFF8F3 50%, #F5EBE0 100%)';
-    } else if (colorPhase < -0.8 && bgElement.style.background.indexOf('#FFF8F3') === -1) {
-      bgElement.style.background = 'linear-gradient(135deg, #FFF8F3 0%, #F5EBE0 50%, #FFF8F3 100%)';
+    // Color transitions
+    if (colorTimer > 4000) {
+      colorIndex = (colorIndex + 1) % colors.length;
+      bgElement.style.background = colors[colorIndex];
+      bgElement.style.transition = 'background 3s ease-in-out';
+      colorTimer = 0;
+    }
+
+    // Radial gradient breathing with intensity variation
+    const radialBreathe = Math.sin(time * 0.2) * 0.3 + 0.5;
+    if (radialLayer) {
+      radialLayer.style.opacity = radialBreathe;
     }
 
     requestAnimationFrame(animateBackground);
