@@ -485,62 +485,69 @@ nav.scrolled {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */
-/* 7.5. Before/After Comparison Slider */
+/* 7.5. Timeline Transformation Slider */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
 .hero-visual {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
 }
 
-.comparison-slider {
+.timeline-transformer {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   background: var(--color-surface);
-  cursor: ew-resize;
   user-select: none;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 1px rgba(201, 169, 110, 0.1) inset;
-  transition: box-shadow 0.3s ease;
-}
-
-.comparison-slider:hover {
-  box-shadow:
     0 12px 48px rgba(0, 0, 0, 0.4),
-    0 0 1px rgba(201, 169, 110, 0.2) inset;
+    0 0 1px rgba(201, 169, 110, 0.15) inset;
+  transition: box-shadow 0.3s ease;
+  margin-bottom: 32px;
 }
 
-.comparison-slider.is-dragging {
+.timeline-transformer:hover {
   box-shadow:
     0 16px 64px rgba(0, 0, 0, 0.5),
+    0 0 2px rgba(201, 169, 110, 0.25) inset;
+}
+
+.timeline-transformer.is-dragging {
+  box-shadow:
+    0 20px 80px rgba(0, 0, 0, 0.6),
     0 0 2px rgba(201, 169, 110, 0.3) inset;
 }
 
-@media (max-width: 768px) {
-  .comparison-slider {
-    aspect-ratio: 16 / 9;
-  }
+.website-preview-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.comparison-before,
-.comparison-after {
+.website-preview {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.comparison-after {
+.before-preview {
+  z-index: 1;
+}
+
+.after-preview {
+  z-index: 2;
   clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.01s linear;
+  transition: clip-path 0.02s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .before-website,
@@ -549,108 +556,222 @@ nav.scrolled {
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-size: 0.85em;
+  line-height: 1;
 }
 
-.comparison-handle {
+.drag-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: ew-resize;
+  z-index: 8;
+}
+
+.drag-overlay.is-dragging {
+  cursor: grabbing;
+}
+
+.timeline-handle {
   position: absolute;
   top: 0;
   left: 50%;
   height: 100%;
-  width: 3px;
+  width: 4px;
   background: var(--color-gold);
   cursor: grab;
-  transform: translateX(-1.5px);
-  z-index: 10;
+  transform: translateX(-2px);
+  z-index: 9;
   transition: left 0.02s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.3s ease, box-shadow 0.3s ease;
   box-shadow:
-    0 0 20px rgba(201, 169, 110, 0.5),
-    0 0 40px rgba(201, 169, 110, 0.25),
+    0 0 24px rgba(201, 169, 110, 0.6),
+    0 0 48px rgba(201, 169, 110, 0.3),
     inset 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-.comparison-handle:hover {
-  width: 4px;
+.timeline-handle:hover {
+  width: 6px;
   box-shadow:
-    0 0 24px rgba(201, 169, 110, 0.7),
-    0 0 48px rgba(201, 169, 110, 0.4),
+    0 0 32px rgba(201, 169, 110, 0.8),
+    0 0 64px rgba(201, 169, 110, 0.4),
     inset 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
-.comparison-handle.is-dragging {
-  width: 5px;
+.timeline-handle.is-dragging {
+  width: 7px;
   box-shadow:
-    0 0 32px rgba(201, 169, 110, 0.8),
-    0 0 64px rgba(201, 169, 110, 0.5),
+    0 0 40px rgba(201, 169, 110, 1),
+    0 0 80px rgba(201, 169, 110, 0.6),
     inset 0 0 12px rgba(255, 255, 255, 0.5);
   cursor: grabbing;
 }
 
-.comparison-handle.is-dragging {
-  cursor: grabbing;
-}
-
-.slider-icon {
+.handle-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--color-gold);
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-bg);
   box-shadow:
-    0 8px 24px rgba(201, 169, 110, 0.35),
+    0 10px 32px rgba(201, 169, 110, 0.4),
     inset -2px -2px 6px rgba(0, 0, 0, 0.4),
     inset 2px 2px 6px rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(2px);
   transition: all 0.3s ease;
 }
 
-.comparison-handle:hover .slider-icon {
-  width: 56px;
-  height: 56px;
+.timeline-handle:hover .handle-icon {
+  width: 64px;
+  height: 64px;
   box-shadow:
-    0 12px 32px rgba(201, 169, 110, 0.5),
+    0 14px 40px rgba(201, 169, 110, 0.6),
     inset -2px -2px 8px rgba(0, 0, 0, 0.4),
     inset 2px 2px 8px rgba(255, 255, 255, 0.2);
 }
 
-.comparison-handle.is-dragging .slider-icon {
-  width: 64px;
-  height: 64px;
+.timeline-handle.is-dragging .handle-icon {
+  width: 72px;
+  height: 72px;
   box-shadow:
-    0 16px 48px rgba(201, 169, 110, 0.6),
+    0 16px 48px rgba(201, 169, 110, 0.8),
     inset -2px -2px 10px rgba(0, 0, 0, 0.4),
     inset 2px 2px 10px rgba(255, 255, 255, 0.3);
 }
 
-.comparison-label {
+/* Progress Bar */
+.progress-bar {
   position: absolute;
-  top: 16px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: rgba(201, 169, 110, 0.1);
+  z-index: 7;
+  cursor: pointer;
+  border-top: 1px solid rgba(201, 169, 110, 0.2);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold) 100%);
+  width: 0%;
+  transition: width 0.02s linear;
+  box-shadow: 0 0 12px rgba(201, 169, 110, 0.5);
+}
+
+.progress-label {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   color: var(--color-gold);
   text-transform: uppercase;
-  z-index: 5;
-  background: rgba(10, 10, 10, 0.6);
-  padding: 6px 12px;
+  z-index: 6;
+  background: rgba(10, 10, 10, 0.7);
+  padding: 6px 14px;
   border-radius: 4px;
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(201, 169, 110, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
 }
 
-.before-label {
-  left: 16px;
+/* Transformation States */
+.transformation-states {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+  z-index: 5;
+  pointer-events: none;
 }
 
-.after-label {
-  right: 16px;
+.state-marker {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.state-marker::before {
+  content: '';
+  width: 2px;
+  height: 8px;
+  background: var(--color-gold);
+  margin-bottom: -1px;
+}
+
+.state-label {
+  position: absolute;
+  bottom: -18px;
+  font-size: 9px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.state-marker.active {
+  opacity: 1;
+}
+
+.state-marker.active .state-label {
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    box-shadow:
+      0 0 24px rgba(201, 169, 110, 0.6),
+      0 0 48px rgba(201, 169, 110, 0.3),
+      inset 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 32px rgba(201, 169, 110, 0.8),
+      0 0 64px rgba(201, 169, 110, 0.4),
+      inset 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.timeline-transformer {
+  animation: slideInUp 0.8s ease-out;
+}
+
+.timeline-handle {
+  animation: pulseGold 2.5s ease-in-out 1.5s infinite;
 }
 
 @keyframes blink {

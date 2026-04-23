@@ -112,12 +112,14 @@
         <p class="hero-hint">O contáctame por <a href="https://wa.me/528181782508" class="link-accent">WhatsApp</a></p>
       </div>
 
-      <!-- Hero Visual - Before/After Comparator -->
+      <!-- Hero Visual - Timeline Transformation -->
       <div class="hero-visual">
-        <div class="comparison-slider" id="comparisonSlider">
-          <!-- BEFORE (Ugly Website) -->
-          <div class="comparison-before">
-            <div class="before-website">
+        <div class="timeline-transformer" id="timelineTransformer">
+          <!-- Website Preview Container -->
+          <div class="website-preview-container">
+            <!-- BEFORE (Ugly Website) -->
+            <div class="website-preview before-preview">
+              <div class="before-website">
               <!-- Header (Chaotic) -->
               <div style="background: linear-gradient(45deg, #FF1493, #00CED1, #FFD700, #FF69B4); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
                 <span style="color: #FFFF00; font-family: Impact, sans-serif; font-size: 14px; font-weight: 900; text-shadow: 2px 2px #000, 3px 3px #FF00FF;">★★ MY BUSINESS ★★</span>
@@ -184,10 +186,10 @@
                 <p style="margin: 2px 0; color: #FFFF00;">🔥 Cool Web Counter: 00000042 🔥</p>
               </div>
             </div>
-          </div>
+            </div>
 
           <!-- AFTER (Pro Website) -->
-          <div class="comparison-after">
+          <div class="website-preview after-preview">
             <div class="after-website">
               <!-- Premium Header with Luxury Feel -->
               <div style="background: #0A0A0A; padding: 20px 20px; border-bottom: 1px solid rgba(201, 169, 110, 0.15); display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(8px);">
@@ -252,21 +254,46 @@
                 <p style="color: rgba(245, 245, 240, 0.4); font-size: 11px; font-family: 'Inter'; letter-spacing: 0.05em;">© 2024 VITA Studio. All rights reserved.</p>
               </div>
             </div>
+            </div>
           </div>
 
+          <!-- Draggable Overlay (invisible hit area) -->
+          <div class="drag-overlay" id="dragOverlay"></div>
+
           <!-- Slider Handle -->
-          <div class="comparison-handle" id="comparisonHandle">
-            <div class="slider-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="timeline-handle" id="timelineHandle">
+            <div class="handle-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="15 18 9 12 15 6"></polyline>
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
             </div>
           </div>
 
-          <!-- Labels -->
-          <div class="comparison-label before-label">Antes</div>
-          <div class="comparison-label after-label">Después</div>
+          <!-- Progress Bar (Bottom) -->
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+            <div class="progress-label" id="progressLabel">0% Diseño Terrible</div>
+          </div>
+
+          <!-- Transformation States -->
+          <div class="transformation-states">
+            <div class="state-marker" data-percent="0">
+              <span class="state-label">Feo</span>
+            </div>
+            <div class="state-marker" data-percent="25">
+              <span class="state-label">Mejorando</span>
+            </div>
+            <div class="state-marker" data-percent="50">
+              <span class="state-label">Medio</span>
+            </div>
+            <div class="state-marker" data-percent="75">
+              <span class="state-label">Casi</span>
+            </div>
+            <div class="state-marker" data-percent="100">
+              <span class="state-label">Pro</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

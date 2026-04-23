@@ -445,12 +445,16 @@ class LeadPopup {
 // 7. Comparison Slider (Before/After)
 // ─────────────────────────────────────────────────────────────────────────
 
-class ComparisonSlider {
+class TimelineTransformer {
   constructor() {
-    this.slider = document.getElementById('comparisonSlider');
-    this.handle = document.getElementById('comparisonHandle');
+    this.transformer = document.getElementById('timelineTransformer');
+    this.handle = document.getElementById('timelineHandle');
+    this.dragOverlay = document.getElementById('dragOverlay');
+    this.afterPreview = document.querySelector('.after-preview');
+    this.progressFill = document.getElementById('progressFill');
+    this.progressLabel = document.getElementById('progressLabel');
 
-    if (!this.slider || !this.handle) return;
+    if (!this.transformer || !this.handle) return;
 
     this.isActive = false;
     this.currentPercent = 0;
@@ -458,36 +462,38 @@ class ComparisonSlider {
   }
 
   init() {
-    // Mouse events
+    // Drag events
     this.handle.addEventListener('mousedown', (e) => this.startDrag(e));
+    this.dragOverlay.addEventListener('mousedown', (e) => this.startDrag(e));
     document.addEventListener('mousemove', (e) => this.onDrag(e));
     document.addEventListener('mouseup', () => this.endDrag());
-    this.slider.addEventListener('mouseleave', () => this.endDrag());
 
-    // Touch events (mobile)
+    // Touch events
     this.handle.addEventListener('touchstart', (e) => this.startDrag(e));
+    this.dragOverlay.addEventListener('touchstart', (e) => this.startDrag(e));
     document.addEventListener('touchmove', (e) => this.onDrag(e));
     document.addEventListener('touchend', () => this.endDrag());
-    this.slider.addEventListener('touchcancel', () => this.endDrag());
 
-    // Click anywhere on slider to move handle
-    this.slider.addEventListener('click', (e) => this.moveToClick(e));
+    // Click on progress bar
+    document.querySelector('.progress-bar')?.addEventListener('click', (e) => this.moveToClick(e));
 
-    // Initial position (show 'before' website)
+    // Initial position
     this.updateSlider(0);
   }
 
   startDrag(e) {
     this.isActive = true;
     this.handle.classList.add('is-dragging');
-    this.slider.classList.add('is-dragging');
+    this.dragOverlay.classList.add('is-dragging');
+    this.transformer.classList.add('is-dragging');
     e.preventDefault();
   }
 
   endDrag() {
     this.isActive = false;
     this.handle.classList.remove('is-dragging');
-    this.slider.classList.remove('is-dragging');
+    this.dragOverlay.classList.remove('is-dragging');
+    this.transformer.classList.remove('is-dragging');
   }
 
   onDrag(e) {
@@ -495,7 +501,7 @@ class ComparisonSlider {
 
     e.preventDefault();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const rect = this.slider.getBoundingClientRect();
+    const rect = this.transformer.getBoundingClientRect();
     const x = clientX - rect.left;
     const percent = (x / rect.width) * 100;
 
@@ -503,7 +509,7 @@ class ComparisonSlider {
   }
 
   moveToClick(e) {
-    const rect = this.slider.getBoundingClientRect();
+    const rect = this.transformer.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percent = (x / rect.width) * 100;
 
@@ -514,10 +520,56 @@ class ComparisonSlider {
     this.currentPercent = percent;
     this.handle.style.left = percent + '%';
 
-    const after = this.slider.querySelector('.comparison-after');
-    if (after) {
-      after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+    // Update clip-path
+    if (this.afterPreview) {
+      this.afterPreview.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
     }
+
+    // Update progress fill
+    if (this.progressFill) {
+      this.progressFill.style.width = percent + '%';
+    }
+
+    // Update progress label
+    this.updateProgressLabel(percent);
+
+    // Update state markers
+    this.updateStateMarkers(percent);
+  }
+
+  updateProgressLabel(percent) {
+    const labels = {
+      0: '0% Diseño Terrible',
+      25: '25% Mejorando',
+      50: '50% Transformación',
+      75: '75% Casi Pro',
+      100: '100% Diseño Pro'
+    };
+
+    let label = 'Transformando...';
+    if (percent <= 0) label = labels[0];
+    else if (percent <= 25) label = labels[25];
+    else if (percent <= 50) label = labels[50];
+    else if (percent <= 75) label = labels[75];
+    else label = labels[100];
+
+    if (this.progressLabel) {
+      this.progressLabel.textContent = label;
+    }
+  }
+
+  updateStateMarkers(percent) {
+    const markers = document.querySelectorAll('.state-marker');
+    markers.forEach(marker => {
+      const markerPercent = parseInt(marker.dataset.percent);
+      const distance = Math.abs(percent - markerPercent);
+
+      if (distance < 15) {
+        marker.classList.add('active');
+      } else {
+        marker.classList.remove('active');
+      }
+    });
   }
 }
 
@@ -534,5 +586,5 @@ document.addEventListener('DOMContentLoaded', () => {
   new CampaignModal();
   new ContactFormHandler();
   new LeadPopup();
-  new ComparisonSlider();
+  new TimelineTransformer();
 });
