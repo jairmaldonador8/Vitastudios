@@ -983,29 +983,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 function initClientCardsReveal() {
   const clientCards = document.querySelectorAll('.client-card');
-  const section = document.querySelector('#clientes');
 
-  if (!section || clientCards.length === 0) return;
+  if (clientCards.length === 0) return;
 
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
+  // Set initial state for animation
+  clientCards.forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    card.style.transition = `opacity 0.7s ease ${i * 0.12}s, transform 0.7s ease ${i * 0.12}s`;
+  });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        clientCards.forEach((card, index) => {
-          setTimeout(() => {
-            card.classList.add('in-view');
-          }, index * 80);
-        });
-        observer.unobserve(entry.target);
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        cardObserver.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  observer.observe(section);
+  clientCards.forEach(card => cardObserver.observe(card));
 }
 
 // ════════════════════════════════════════════════════════════

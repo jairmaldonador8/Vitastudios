@@ -1711,6 +1711,10 @@ footer {
 
 .clients-container {
   margin-top: var(--spacing-3xl);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
 }
 
 .clients-label {
@@ -1723,7 +1727,7 @@ footer {
 }
 
 .clients-track {
-  display: flex;
+  display: flex !important;
   overflow-x: auto;
   scroll-behavior: smooth;
   gap: var(--spacing-lg);
@@ -1732,6 +1736,8 @@ footer {
   scroll-padding-left: max(5vw, 24px);
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  min-height: 280px;
+  align-items: stretch;
 }
 
 .clients-track::-webkit-scrollbar {
@@ -1753,19 +1759,21 @@ footer {
 
 .client-card {
   flex: 0 0 auto;
-  min-width: 240px;
+  min-width: 280px;
+  min-height: 260px;
   padding: var(--spacing-lg);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(201, 169, 110, 0.1);
   border-radius: var(--radius-lg);
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   scroll-snap-align: start;
-  opacity: 0;
-  transform: translateY(60px) scale(0.97);
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
