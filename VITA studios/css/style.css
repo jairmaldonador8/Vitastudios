@@ -1149,6 +1149,114 @@ footer {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */
+/* 15. Client Cards Section */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.clients-container {
+  margin-top: var(--spacing-3xl);
+}
+
+.clients-label {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.clients-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: var(--spacing-lg);
+  padding-left: max(5vw, 24px);
+  padding-right: max(5vw, 24px);
+  scroll-padding-left: max(5vw, 24px);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.clients-track::-webkit-scrollbar {
+  height: 4px;
+}
+
+.clients-track::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.clients-track::-webkit-scrollbar-thumb {
+  background: rgba(201, 169, 110, 0.3);
+  border-radius: 2px;
+}
+
+.clients-track::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 169, 110, 0.5);
+}
+
+.client-card {
+  flex: 0 0 auto;
+  min-width: 240px;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 169, 110, 0.1);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  scroll-snap-align: start;
+  opacity: 0;
+  transform: translateY(60px) scale(0.97);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.client-card.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.client-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(201, 169, 110, 0.15),
+              inset 0 1px 0 rgba(201, 169, 110, 0.2);
+  border-color: rgba(201, 169, 110, 0.2);
+}
+
+.client-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.client-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  letter-spacing: 0.5px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.client-card:hover .client-label {
+  transform: translateY(-4px);
+}
+
+.client-underline {
+  width: 32px;
+  height: 2px;
+  background: var(--color-gold);
+  border-radius: 1px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.client-card:hover .client-underline {
+  width: 72px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
 /* 16. Responsive Design (Mobile-First) */
 /* ─────────────────────────────────────────────────────────────────────────── */
 

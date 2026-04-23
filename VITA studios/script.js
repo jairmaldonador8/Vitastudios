@@ -820,6 +820,8 @@ function initAnimations() {
   initCountUpAnimations();
   initScrollAnimations();
   initFormValidation();
+  initClientCardsReveal();
+  initClientAutoScroll();
 }
 
 // Initialize testimonials carousel on page load
@@ -973,6 +975,70 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ════════════════════════════════════════════════════════════
+// Client Cards Reveal Animation
+// ════════════════════════════════════════════════════════════
+
+function initClientCardsReveal() {
+  const clientCards = document.querySelectorAll('.client-card');
+  const section = document.querySelector('#clientes');
+
+  if (!section || clientCards.length === 0) return;
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        clientCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('in-view');
+          }, index * 80);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(section);
+}
+
+// ════════════════════════════════════════════════════════════
+// Client Cards Auto-Scroll
+// ════════════════════════════════════════════════════════════
+
+function initClientAutoScroll() {
+  const track = document.querySelector('.clients-track');
+  if (!track) return;
+
+  let autoScrollInterval;
+  let isScrolling = false;
+
+  const startAutoScroll = () => {
+    autoScrollInterval = setInterval(() => {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+        track.scrollLeft = 0;
+      } else {
+        track.scrollLeft += 0.6;
+      }
+    }, 30);
+  };
+
+  const stopAutoScroll = () => {
+    clearInterval(autoScrollInterval);
+  };
+
+  // Only auto-scroll on desktop
+  if (window.innerWidth >= 768) {
+    track.addEventListener('mouseenter', stopAutoScroll);
+    track.addEventListener('mouseleave', startAutoScroll);
+    startAutoScroll();
+  }
+}
 
 // ════════════════════════════════════════════════════════════
 // Before/After Slider - Optimized Mobile-First
