@@ -31,9 +31,10 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-cream);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
   position: relative;
+  font-size: 16px;
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -151,7 +152,7 @@ a:hover {
 
 /* HERO */
 .hero {
-  padding: var(--spacing-3xl) 0;
+  padding: 80px 0;  /* Desktop: generous vertical breathing room */
 }
 
 .hero .container {
@@ -167,6 +168,48 @@ a:hover {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: var(--spacing-lg);
+}
+
+h1 {
+  font-size: 56px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h2 {
+  font-size: 42px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: 20px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+p {
+  font-size: 16px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.subtitle,
+.caption,
+.hint {
+  font-size: 16px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--color-text-light);
 }
 
 .hero-title .accent {
@@ -389,18 +432,18 @@ a:hover {
 
 /* SERVICIOS */
 .servicios {
-  padding: var(--spacing-3xl) 0;
+  padding: 80px 0;  /* Desktop: generous vertical breathing room */
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-2xl);
+  gap: 32px;  /* Desktop: generous gap between items */
 }
 
 .service-card {
   background: var(--color-cream-dark);
-  padding: var(--spacing-2xl);
+  padding: 40px;  /* Desktop: generous internal padding */
   border-radius: 8px;
   border: 1px solid var(--color-border);
   transition: all var(--transition);
@@ -432,13 +475,13 @@ a:hover {
 
 /* CASOS */
 .casos {
-  padding: var(--spacing-3xl) 0;
+  padding: 80px 0;  /* Desktop: generous vertical breathing room */
 }
 
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-2xl);
+  gap: 32px;  /* Desktop: generous gap between items */
 }
 
 .portfolio-card {
@@ -486,17 +529,17 @@ a:hover {
 
 /* WHY */
 .why {
-  padding: var(--spacing-3xl) 0;
+  padding: 80px 0;  /* Desktop: generous vertical breathing room */
 }
 
 .why-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-2xl);
+  gap: 32px;  /* Desktop: generous gap between items */
 }
 
 .why-card {
-  padding: var(--spacing-2xl);
+  padding: 40px;  /* Desktop: generous internal padding */
   background: var(--color-cream-dark);
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -530,7 +573,7 @@ a:hover {
 
 /* CTA SECTION */
 .cta-section {
-  padding: var(--spacing-3xl) 0;
+  padding: 80px 0;  /* Desktop: generous vertical breathing room */
   background: linear-gradient(135deg, var(--color-terracota), var(--color-terracota-dark));
 }
 
@@ -563,13 +606,13 @@ a:hover {
 
 /* FOUNDER */
 .founder {
-  padding: var(--spacing-3xl) 0;
+  padding: 80px 0;  /* Desktop: generous vertical breathing room */
 }
 
 .founder-content {
   display: grid;
   grid-template-columns: 300px 1fr;
-  gap: var(--spacing-3xl);
+  gap: 96px;  /* Desktop: generous gap between items */
   align-items: start;
 }
 
@@ -624,18 +667,18 @@ a:hover {
 
 /* CONTACT */
 .contacto {
-  padding: var(--spacing-3xl) 0;
+  padding: 80px 0;  /* Desktop: generous vertical breathing room */
 }
 
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-3xl);
+  gap: 96px;  /* Desktop: generous gap between items */
 }
 
 .contact-form {
   background: var(--color-cream-dark);
-  padding: var(--spacing-2xl);
+  padding: 40px;  /* Desktop: generous internal padding */
   border-radius: 8px;
   border: 1px solid var(--color-border);
 }
@@ -791,8 +834,122 @@ a:hover {
   text-align: center;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+/* RESPONSIVE - TABLET (1023px) */
+@media (max-width: 1023px) {
+  /* Sections: reduce padding for tablet */
+  .hero,
+  .servicios,
+  .casos,
+  .why,
+  .cta-section,
+  .founder,
+  .contacto {
+    padding: 60px 0;  /* Tablet: slightly reduced but still premium */
+  }
+
+  /* Cards: reduce padding for tablet */
+  .service-card,
+  .why-card,
+  .contact-form {
+    padding: 32px;  /* Tablet: slightly reduced */
+  }
+
+  /* Grids: reduce gaps for tablet */
+  .services-grid,
+  .portfolio-grid,
+  .why-grid {
+    gap: 24px;  /* Tablet: slightly reduced */
+  }
+
+  /* Large gaps: reduce for tablet */
+  .founder-content,
+  .contact-wrapper {
+    gap: 64px;  /* Tablet: reduced from 96px */
+  }
+
+  /* Typography: scale down for tablet */
+  h1 {
+    font-size: 42px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .subtitle,
+  .caption,
+  .hint {
+    font-size: 15px;
+  }
+}
+
+/* RESPONSIVE - MOBILE (767px) */
+@media (max-width: 767px) {
+  /* Sections: appropriate spacing for mobile */
+  .hero,
+  .servicios,
+  .casos,
+  .why,
+  .cta-section,
+  .founder,
+  .contacto {
+    padding: 40px 0;  /* Mobile: appropriate but not cramped */
+  }
+
+  /* Cards: tighter but not cramped padding */
+  .service-card,
+  .why-card,
+  .contact-form {
+    padding: 24px;  /* Mobile: tighter but not cramped */
+  }
+
+  /* Grids: tighter spacing for mobile */
+  .services-grid,
+  .portfolio-grid,
+  .why-grid {
+    gap: 16px;  /* Mobile: tighter spacing */
+  }
+
+  /* Large gaps: reduce significantly for mobile */
+  .founder-content,
+  .contact-wrapper {
+    gap: 32px;  /* Mobile: from 96px desktop */
+  }
+
+  /* Typography: scale for mobile readability */
+  h1 {
+    font-size: 28px;  /* Still impactful, not cramped */
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .subtitle,
+  .caption,
+  .hint {
+    font-size: 13px;
+  }
+
+  /* Navigation */
   .nav-desktop {
     display: none;
   }
@@ -817,20 +974,13 @@ a:hover {
     display: flex;
   }
 
+  /* Layout adjustments */
   .hero .container {
     grid-template-columns: 1fr;
   }
 
-  .hero-title {
-    font-size: 36px;
-  }
-
   .hero-visual {
     height: 300px;
-  }
-
-  .section-title {
-    font-size: 32px;
   }
 
   .founder-content {
@@ -840,31 +990,71 @@ a:hover {
   .contact-wrapper {
     grid-template-columns: 1fr;
   }
-
-  .cta-box h2 {
-    font-size: 28px;
-  }
 }
 
 @media (max-width: 480px) {
+  /* Sections: maintain breathing room on small mobile */
+  .hero,
+  .servicios,
+  .casos,
+  .why,
+  .cta-section,
+  .founder,
+  .contacto {
+    padding: 32px 0;  /* Small mobile: maintain breathing room */
+  }
+
+  /* Container padding */
   .container {
     padding: 0 var(--spacing-md);
   }
 
-  .hero-title {
-    font-size: 28px;
+  /* Cards: appropriate padding for small screens */
+  .service-card,
+  .why-card,
+  .contact-form {
+    padding: 20px;  /* Small mobile: tighter but functional */
   }
 
-  .section-title {
-    font-size: 24px;
-  }
-
+  /* Grids: tight but not cramped */
   .services-grid,
   .portfolio-grid,
   .why-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
+  /* Large gaps: minimal for small mobile */
+  .founder-content,
+  .contact-wrapper {
+    gap: 24px;
+  }
+
+  /* Typography: maximize readability on small screens */
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .subtitle,
+  .caption,
+  .hint {
+    font-size: 12px;
+  }
+
+  /* Button: full-width on small mobile */
   .cta-primary {
     width: 100%;
     text-align: center;
