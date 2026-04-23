@@ -1031,9 +1031,9 @@ class BeforeAfterSlider {
   setSliderPosition(percent) {
     this.currentPercent = percent;
 
-    // Update after-preview position (transform translateX from -100% to 0%)
-    const translatePercent = -100 + percent;
-    this.afterPreview.style.transform = `translateX(${translatePercent}%)`;
+    // Update after-preview using clip-path (reveal from left to right)
+    const clipPercent = 100 - percent;
+    this.afterPreview.style.clipPath = `inset(0 ${clipPercent}% 0 0)`;
 
     // Update handle position
     this.handle.style.left = `${percent}%`;
