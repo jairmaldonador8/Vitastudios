@@ -750,6 +750,34 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ════════════════════════════════════════════════════════════
+// Splash Screen with Logo Animation
+// ════════════════════════════════════════════════════════════
+
+function initSplashScreen() {
+  const splashScreen = document.getElementById('splash-screen');
+  const splashLogo = document.getElementById('splash-logo');
+
+  if (!splashScreen || !splashLogo) {
+    console.warn('Splash screen elements not found');
+    return;
+  }
+
+  // Trigger the glow animation on logo
+  splashLogo.classList.add('animate');
+
+  // After 3 seconds, fade out and hide splash screen
+  setTimeout(() => {
+    splashScreen.style.opacity = '0';
+    splashScreen.style.pointerEvents = 'none';
+
+    // Optional: remove from DOM after fade completes
+    setTimeout(() => {
+      splashScreen.style.display = 'none';
+    }, 800);
+  }, 3000);
+}
+
+// ════════════════════════════════════════════════════════════
 // Forms
 // ════════════════════════════════════════════════════════════
 
