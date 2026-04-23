@@ -372,6 +372,45 @@ p {
   animation: subtitleGlow 3.5s ease-in-out infinite;
 }
 
+/* URGENCY BADGE */
+.urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: rgba(255, 122, 61, 0.1);
+  border: 1px solid rgba(255, 122, 61, 0.3);
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: var(--spacing-2xl);
+  margin-top: var(--spacing-lg);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    border-color: rgba(255, 122, 61, 0.3);
+    background: rgba(255, 122, 61, 0.08);
+  }
+  50% {
+    border-color: rgba(255, 122, 61, 0.5);
+    background: rgba(255, 122, 61, 0.15);
+  }
+}
+
+.badge-icon {
+  font-size: 18px;
+}
+
+.badge-text {
+  font-size: 13px;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.badge-text strong {
+  color: var(--color-terracota);
+}
+
 @keyframes ctaPulse {
   0%, 100% {
     box-shadow:
@@ -412,6 +451,100 @@ p {
 .cta-primary.large {
   padding: 18px 40px;
   font-size: 18px;
+}
+
+/* SECONDARY CTA (Alternative action) */
+.cta-secondary {
+  background: transparent;
+  color: var(--color-terracota);
+  border: 2px solid var(--color-terracota);
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-block;
+}
+
+.cta-secondary:hover {
+  background: rgba(255, 122, 61, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 122, 61, 0.25);
+}
+
+/* INLINE CTA SECTION */
+.cta-inline {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  background: rgba(255, 122, 61, 0.05);
+  border: 1px solid rgba(255, 122, 61, 0.15);
+  border-radius: 12px;
+}
+
+.cta-inline-text {
+  font-size: 18px;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 500;
+}
+
+/* FORM GUARANTEE */
+.form-guarantee {
+  font-size: 13px;
+  color: var(--color-text-light);
+  margin-top: var(--spacing-md);
+  font-weight: 500;
+}
+
+/* CONTACT METHODS */
+.contact-methods {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+}
+
+.contact-method-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px;
+  background: rgba(255, 122, 61, 0.08);
+  border: 1px solid rgba(255, 122, 61, 0.2);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contact-method-btn:hover {
+  background: rgba(255, 122, 61, 0.15);
+  border-color: rgba(255, 122, 61, 0.4);
+  transform: translateY(-4px);
+}
+
+.method-icon {
+  font-size: 28px;
+}
+
+.method-label {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.method-subtext {
+  font-size: 12px;
+  color: var(--color-text-light);
+}
+
+.contact-promise {
+  font-size: 12px;
+  color: var(--color-text-light);
+  margin-top: var(--spacing-lg);
+  opacity: 0.8;
 }
 
 .hero-hint {
