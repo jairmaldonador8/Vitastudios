@@ -526,7 +526,7 @@ nav.scrolled {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .website-preview {
@@ -546,8 +546,8 @@ nav.scrolled {
 
 .after-preview {
   z-index: 2;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.02s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(-100%);
+  transition: transform 0.02s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .before-website,

@@ -782,6 +782,7 @@ function updateFieldError(field, isValid, errorMessage) {
 function initAnimations() {
   initSplashScreen();
   initAnimatedBackground();
+  initBeforeAfterSlider();
   initHeroParallax();
   animateFloatingShapes();
   animateSectionTitles();
@@ -952,6 +953,106 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ════════════════════════════════════════════════════════════
+// Before/After Slider - Optimized Mobile-First
+// ════════════════════════════════════════════════════════════
+
+class BeforeAfterSlider {
+  constructor() {
+    this.transformer = document.getElementById('timelineTransformer');
+    this.afterPreview = document.querySelector('.after-preview');
+    this.dragOverlay = document.getElementById('dragOverlay');
+    this.handle = document.getElementById('timelineHandle');
+    this.progressFill = document.getElementById('progressFill');
+    this.progressLabel = document.getElementById('progressLabel');
+    this.stateMarkers = document.querySelectorAll('.state-marker');
+
+    if (!this.transformer) return;
+
+    this.isDragging = false;
+    this.currentPercent = 0;
+    this.states = [
+      { percent: 0, label: 'Feo' },
+      { percent: 25, label: 'Mejorando' },
+      { percent: 50, label: 'Medio' },
+      { percent: 75, label: 'Casi' },
+      { percent: 100, label: 'Pro' }
+    ];
+
+    this.init();
+  }
+
+  init() {
+    this.dragOverlay.addEventListener('mousedown', (e) => this.handleStart(e));
+    this.dragOverlay.addEventListener('touchstart', (e) => this.handleStart(e));
+    document.addEventListener('mousemove', (e) => this.handleMove(e));
+    document.addEventListener('touchmove', (e) => this.handleMove(e));
+    document.addEventListener('mouseup', () => this.handleEnd());
+    document.addEventListener('touchend', () => this.handleEnd());
+
+    this.stateMarkers.forEach(marker => {
+      marker.addEventListener('click', (e) => {
+        const targetPercent = parseInt(marker.dataset.percent);
+        this.setSliderPosition(targetPercent);
+      });
+    });
+  }
+
+  handleStart(e) {
+    this.isDragging = true;
+    this.dragOverlay.classList.add('is-dragging');
+    this.handle.classList.add('is-dragging');
+    this.transformer.classList.add('is-dragging');
+    this.updatePosition(e);
+  }
+
+  handleMove(e) {
+    if (!this.isDragging) return;
+    this.updatePosition(e);
+  }
+
+  handleEnd() {
+    if (!this.isDragging) return;
+    this.isDragging = false;
+    this.dragOverlay.classList.remove('is-dragging');
+    this.handle.classList.remove('is-dragging');
+    this.transformer.classList.remove('is-dragging');
+  }
+
+  updatePosition(e) {
+    const rect = this.transformer.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const x = clientX - rect.left;
+    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    this.setSliderPosition(percent);
+  }
+
+  setSliderPosition(percent) {
+    this.currentPercent = percent;
+
+    // Update after-preview position (transform translateX from -100% to 0%)
+    const translatePercent = -100 + percent;
+    this.afterPreview.style.transform = `translateX(${translatePercent}%)`;
+
+    // Update handle position
+    this.handle.style.left = `${percent}%`;
+
+    // Update progress bar
+    this.progressFill.style.width = `${percent}%`;
+
+    // Find and update label
+    const currentState = this.states.reduce((closest, state) => {
+      return Math.abs(state.percent - percent) < Math.abs(closest.percent - percent) ? state : closest;
+    });
+    this.progressLabel.textContent = `${Math.round(percent)}% Diseño ${currentState.label}`;
+  }
+}
+
+// Initialize slider when DOM is ready
+function initBeforeAfterSlider() {
+  new BeforeAfterSlider();
+}
 
 // ════════════════════════════════════════════════════════════
 // Initialize on DOM Ready
