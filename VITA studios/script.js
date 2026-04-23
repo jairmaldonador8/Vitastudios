@@ -766,16 +766,16 @@ function initSplashScreen() {
   // Trigger the glow animation on logo
   splashLogo.classList.add('animate');
 
-  // After 3 seconds, fade out and hide splash screen
+  // After 2 seconds, fade out and hide splash screen
   setTimeout(() => {
     splashScreen.style.opacity = '0';
     splashScreen.style.pointerEvents = 'none';
 
-    // Optional: remove from DOM after fade completes
+    // Remove from DOM after fade completes
     setTimeout(() => {
       splashScreen.style.display = 'none';
     }, 800);
-  }, 3000);
+  }, 2000);
 }
 
 // ════════════════════════════════════════════════════════════
