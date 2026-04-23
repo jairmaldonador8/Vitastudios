@@ -234,6 +234,81 @@ function animateServiceCards() {
   });
 }
 
+// Problema Cards Animation
+function animateProblemaCards() {
+  const cards = document.querySelectorAll('.problema-card');
+  cards.forEach((card, index) => {
+    // Initial animation is in CSS, but we can enhance hover with GSAP
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        y: -12,
+        duration: 0.3,
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.3,
+      });
+    });
+  });
+}
+
+// Case Study Cards Animation
+function animateCasoCards() {
+  const cards = document.querySelectorAll('.caso-card');
+  cards.forEach((card, index) => {
+    gsap.fromTo(
+      card,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+        },
+      }
+    );
+
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        y: -8,
+        duration: 0.3,
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.3,
+      });
+    });
+  });
+}
+
+// Metrics Cards Animation
+function animateMetricsCards() {
+  const cards = document.querySelectorAll('.metric-card');
+  cards.forEach((card, index) => {
+    gsap.fromTo(
+      card,
+      { opacity: 0, scale: 0.9 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: '.metrics-container',
+          start: 'top 80%',
+        },
+      }
+    );
+  });
+}
+
 // Portfolio Cards Animation
 function animatePortfolioCards() {
   const cards = document.querySelectorAll('.portfolio-card');
@@ -410,6 +485,27 @@ function animateContactForm() {
   }
 }
 
+// Contact Method Buttons Animation
+function animateContactMethods() {
+  const buttons = document.querySelectorAll('.contact-method-btn');
+  buttons.forEach((button, index) => {
+    gsap.fromTo(
+      button,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        delay: index * 0.08,
+        scrollTrigger: {
+          trigger: '.contact-methods',
+          start: 'top 80%',
+        },
+      }
+    );
+  });
+}
+
 // ============================================
 // TASK 10: Number Count-Up Animations
 // ============================================
@@ -495,11 +591,12 @@ class TestimonialCarousel {
   }
 
   goToSlide(index) {
-    // Fade out current slide
+    // Fade out and scale down current slide
     gsap.to(this.slides[this.currentSlide], {
       opacity: 0,
-      duration: 0.4,
-      ease: 'power2.inOut'
+      scale: 0.95,
+      duration: 0.5,
+      ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
     });
 
     // Remove active class from current dot
@@ -511,12 +608,16 @@ class TestimonialCarousel {
     // Add active class to new dot
     this.dots[this.currentSlide].classList.add('active');
 
-    // Fade in new slide
-    gsap.to(this.slides[this.currentSlide], {
-      opacity: 1,
-      duration: 0.4,
-      ease: 'power2.inOut'
-    });
+    // Fade in and scale up new slide
+    gsap.fromTo(this.slides[this.currentSlide],
+      { opacity: 0, scale: 1.05 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+      }
+    );
   }
 
   advance() {
@@ -685,12 +786,16 @@ function initAnimations() {
   animateFloatingShapes();
   animateSectionTitles();
   animateSectionSubtitles();
+  animateProblemaCards();
   animateServiceCards();
+  animateCasoCards();
+  animateMetricsCards();
   animatePortfolioCards();
   animateWhyCards();
   animateCtaBox();
   animateFounderSection();
   animateContactForm();
+  animateContactMethods();
   initCountUpAnimations();
   initScrollAnimations();
   initFormValidation();
