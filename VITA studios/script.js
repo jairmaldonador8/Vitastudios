@@ -162,15 +162,15 @@ function animateSectionTitles() {
   titles.forEach((title) => {
     gsap.fromTo(
       title,
-      { opacity: 0, y: 30 },
+      { opacity: 0, y: 40 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.6,
+        duration: 0.8,
+        ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         scrollTrigger: {
           trigger: title,
           start: 'top 80%',
-          end: 'top 50%',
         },
       }
     );
@@ -187,8 +187,9 @@ function animateSectionSubtitles() {
       {
         opacity: 1,
         y: 0,
-        duration: 0.5,
-        delay: 0.1,
+        duration: 0.7,
+        delay: 0.15,
+        ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         scrollTrigger: {
           trigger: subtitle,
           start: 'top 80%',
@@ -204,13 +205,13 @@ function animateServiceCards() {
   cards.forEach((card, index) => {
     gsap.fromTo(
       card,
-      { opacity: 0, y: 40, scale: 0.98 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        scale: 1,
-        duration: 0.6,
-        delay: index * 0.1,
+        duration: 0.8,
+        delay: index * 0.12,
+        ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         scrollTrigger: {
           trigger: card,
           start: 'top 80%',
@@ -218,17 +219,19 @@ function animateServiceCards() {
       }
     );
 
-    // Hover effect
+    // Subtle hover effect
     card.addEventListener('mouseenter', () => {
       gsap.to(card, {
-        y: -4,
-        duration: 0.3,
+        y: -6,
+        duration: 0.4,
+        ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       });
     });
     card.addEventListener('mouseleave', () => {
       gsap.to(card, {
         y: 0,
-        duration: 0.3,
+        duration: 0.4,
+        ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       });
     });
   });
@@ -639,36 +642,40 @@ class TestimonialCarousel {
 // ============================================
 
 function initScrollAnimations() {
-  // Apply animations to all card elements (existing + new)
+  // Smooth reveal animations for cards (iUROP style)
   const cardSelectors = [
-    '.card',                    // Existing cards
-    '.problema-card',          // New: Problem cards (Task 1)
-    '.caso-card',              // Enhanced: Case study cards (Task 2)
-    '.metric-card',            // New: Metric cards (Task 3)
-    '.logo-item'               // New: Logo items (Task 3)
+    '.card',
+    '.problema-card',
+    '.caso-card',
+    '.metric-card',
+    '.logo-item',
+    '.service-card',
+    '.why-card'
   ];
 
   cardSelectors.forEach(selector => {
     gsap.utils.toArray(document.querySelectorAll(selector)).forEach((element) => {
       gsap.from(element, {
         opacity: 0,
-        y: 100,
-        duration: 0.7,
-        ease: 'power2.out',
+        y: 60,
+        duration: 0.8,
+        ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         scrollTrigger: {
           trigger: element,
-          start: 'top 85%'
+          start: 'top 80%',
+          markers: false
         }
       });
     });
   });
 
-  // Staggered animations for grid layouts
+  // Staggered grid animations for smooth cascade reveal
   const gridSelectors = [
     '.problema-grid',
     '.casos-grid',
     '.metrics-container',
-    '.logos-grid'
+    '.logos-grid',
+    '.services-grid'
   ];
 
   gridSelectors.forEach(selector => {
@@ -678,17 +685,31 @@ function initScrollAnimations() {
 
       gsap.from(children, {
         opacity: 0,
-        y: 100,
-        duration: 0.7,
-        ease: 'power2.out',
-        stagger: 0.1,
+        y: 60,
+        duration: 0.8,
+        ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        stagger: 0.08,
         scrollTrigger: {
           trigger: grid,
-          start: 'top 85%'
+          start: 'top 80%'
         }
       });
     });
   });
+
+  // Subtle parallax on hero visual
+  const heroVisual = document.querySelector('.hero-visual');
+  if (heroVisual) {
+    gsap.to(heroVisual, {
+      y: -30,
+      scrollTrigger: {
+        trigger: '#hero',
+        scrub: 0.5,
+        start: 'top top',
+        end: 'bottom top'
+      }
+    });
+  }
 }
 
 // ============================================
