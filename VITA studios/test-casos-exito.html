@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test - Casos de Éxito</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: #0A0A0A;
+      color: #F5F5F0;
+    }
+    .debug-info {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.9);
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 12px;
+      z-index: 10000;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="debug-info">
+    <strong>Debug Info:</strong>
+    <div id="card-count">Cards: 0</div>
+    <div id="card-opacities">Opacities: -</div>
+    <div id="grid-height">Grid height: 0px</div>
+  </div>
+
+  <section class="casos-exito" id="casos">
+    <div class="container">
+      <h2>Resultados Reales que Hablan</h2>
+      <p class="subtitle">Transformaciones medibles en industrias diversas</p>
+
+      <div class="casos-grid">
+        <div class="caso-card">
+          <div class="caso-result">
+            <span class="resultado-numero">300%</span>
+            <span class="resultado-label">Aumento en Leads</span>
+          </div>
+          <h3>Médica Especialista</h3>
+          <p class="caso-outcome">De invisibilidad a especialista de referencia en su nicho</p>
+          <p class="caso-timeframe">En 4 meses</p>
+        </div>
+
+        <div class="caso-card">
+          <div class="caso-result">
+            <span class="resultado-numero">$50K</span>
+            <span class="resultado-label">/mes Ingresos</span>
+          </div>
+          <h3>Emprendedor Tech</h3>
+          <p class="caso-outcome">De cero a múltiples streams de ingresos con posicionamiento de marca</p>
+          <p class="caso-timeframe">Con estrategia clara</p>
+        </div>
+
+        <div class="caso-card">
+          <div class="caso-result">
+            <span class="resultado-numero">50K</span>
+            <span class="resultado-label">Seguidores</span>
+          </div>
+          <h3>Creador de Contenido</h3>
+          <p class="caso-outcome">Estrategia de monetización clara y múltiples fuentes de ingresos</p>
+          <p class="caso-timeframe">En 6 meses</p>
+        </div>
+
+        <div class="caso-card">
+          <div class="caso-result">
+            <span class="resultado-numero">+12</span>
+            <span class="resultado-label">Propiedades Vendidas</span>
+          </div>
+          <h3>Inmobiliario Premium</h3>
+          <p class="caso-outcome">Posicionamiento de autoridad generó demanda directa de clientes</p>
+          <p class="caso-timeframe">Por autoridad de marca</p>
+        </div>
+
+        <div class="caso-card">
+          <div class="caso-result">
+            <span class="resultado-numero">10x</span>
+            <span class="resultado-label">Demanda de Servicios</span>
+          </div>
+          <h3>Coach Profesional</h3>
+          <p class="caso-outcome">De lista vacía de clientes a agenda llena de 6 meses</p>
+          <p class="caso-timeframe">En 90 días</p>
+        </div>
+
+        <div class="caso-card">
+          <div class="caso-result">
+            <span class="resultado-numero">#1</span>
+            <span class="resultado-label">En Búsquedas Locales</span>
+          </div>
+          <h3>Médico Especialista</h3>
+          <p class="caso-outcome">Posición de autoridad en su especialidad y zona geográfica</p>
+          <p class="caso-timeframe">En 3 meses</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Debug info
+    setTimeout(() => {
+      const cards = document.querySelectorAll('.caso-card');
+      const grid = document.querySelector('.casos-grid');
+
+      const opacities = Array.from(cards).map(card => {
+        const opacity = window.getComputedStyle(card).opacity;
+        return parseFloat(opacity).toFixed(2);
+      }).join(', ');
+
+      document.getElementById('card-count').textContent = `Cards found: ${cards.length}`;
+      document.getElementById('card-opacities').textContent = `Opacities: [${opacities}]`;
+      document.getElementById('grid-height').textContent = `Grid height: ${grid?.offsetHeight || 0}px`;
+
+      console.log('Casos de Éxito Test:', {
+        cardsFound: cards.length,
+        opacities: opacities,
+        gridHeight: grid?.offsetHeight,
+        casoSection: document.querySelector('.casos-exito')?.offsetHeight
+      });
+    }, 500);
+  </script>
+
+</body>
+</html>
