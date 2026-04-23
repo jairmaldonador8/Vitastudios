@@ -453,20 +453,21 @@ class ComparisonSlider {
     if (!this.slider || !this.handle) return;
 
     this.isActive = false;
+    this.currentPercent = 0;
     this.init();
   }
 
   init() {
     // Mouse events
-    this.handle.addEventListener('mousedown', () => this.startDrag());
-    this.slider.addEventListener('mousemove', (e) => this.onDrag(e));
-    this.slider.addEventListener('mouseup', () => this.endDrag());
+    this.handle.addEventListener('mousedown', (e) => this.startDrag(e));
+    document.addEventListener('mousemove', (e) => this.onDrag(e));
+    document.addEventListener('mouseup', () => this.endDrag());
     this.slider.addEventListener('mouseleave', () => this.endDrag());
 
     // Touch events (mobile)
-    this.handle.addEventListener('touchstart', () => this.startDrag());
-    this.slider.addEventListener('touchmove', (e) => this.onDrag(e));
-    this.slider.addEventListener('touchend', () => this.endDrag());
+    this.handle.addEventListener('touchstart', (e) => this.startDrag(e));
+    document.addEventListener('touchmove', (e) => this.onDrag(e));
+    document.addEventListener('touchend', () => this.endDrag());
     this.slider.addEventListener('touchcancel', () => this.endDrag());
 
     // Click anywhere on slider to move handle
@@ -476,14 +477,17 @@ class ComparisonSlider {
     this.updateSlider(0);
   }
 
-  startDrag() {
+  startDrag(e) {
     this.isActive = true;
-    this.slider.style.cursor = 'grabbing';
+    this.handle.classList.add('is-dragging');
+    this.slider.classList.add('is-dragging');
+    e.preventDefault();
   }
 
   endDrag() {
     this.isActive = false;
-    this.slider.style.cursor = 'ew-resize';
+    this.handle.classList.remove('is-dragging');
+    this.slider.classList.remove('is-dragging');
   }
 
   onDrag(e) {
@@ -507,6 +511,7 @@ class ComparisonSlider {
   }
 
   updateSlider(percent) {
+    this.currentPercent = percent;
     this.handle.style.left = percent + '%';
 
     const after = this.slider.querySelector('.comparison-after');
