@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico</title>
+  <style>
+    body {
+      background: #0A0A0A;
+      color: #F5F5F0;
+      font-family: monospace;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .status {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 3px solid;
+    }
+    .ok { border-left-color: #4ade80; }
+    .error { border-left-color: #f87171; }
+    .warning { border-left-color: #fbbf24; }
+  </style>
+</head>
+<body>
+
+<h1>🔍 Diagnóstico del Sitio</h1>
+
+<div class="status ok" id="html-status">
+  ✓ HTML cargado
+</div>
+
+<div class="status ok" id="css-status">
+  ✓ CSS verificando...
+</div>
+
+<div class="status ok" id="gsap-status">
+  ✓ GSAP verificando...
+</div>
+
+<div class="status ok" id="casos-status">
+  ✓ Sección casos verificando...
+</div>
+
+<div class="status ok" id="calc-status">
+  ✓ Calculadora verificando...
+</div>
+
+<script>
+  // Verificar GSAP
+  setTimeout(() => {
+    const gsapLoaded = typeof gsap !== 'undefined';
+    const scrollTriggerLoaded = typeof ScrollTrigger !== 'undefined';
+
+    const statusEl = document.getElementById('gsap-status');
+    if (gsapLoaded && scrollTriggerLoaded) {
+      statusEl.textContent = '✓ GSAP y ScrollTrigger cargados correctamente';
+      statusEl.className = 'status ok';
+    } else {
+      statusEl.textContent = '✗ GSAP: ' + (gsapLoaded ? 'OK' : 'FALLO') + ' | ScrollTrigger: ' + (scrollTriggerLoaded ? 'OK' : 'FALLO');
+      statusEl.className = 'status error';
+    }
+  }, 1000);
+
+  // Verificar casos
+  setTimeout(() => {
+    const casosSection = document.querySelector('.casos-exito');
+    const casosCards = document.querySelectorAll('.caso-card');
+
+    const statusEl = document.getElementById('casos-status');
+    if (casosSection && casosCards.length > 0) {
+      statusEl.textContent = `✓ Sección casos encontrada con ${casosCards.length} tarjetas`;
+      statusEl.className = 'status ok';
+    } else {
+      statusEl.textContent = `✗ Sección casos: ${casosSection ? 'OK' : 'NO ENCONTRADA'} | Tarjetas: ${casosCards.length}`;
+      statusEl.className = 'status error';
+    }
+  }, 500);
+
+  // Verificar calculadora
+  setTimeout(() => {
+    const calcSliders = document.querySelectorAll('.calc-slider');
+
+    const statusEl = document.getElementById('calc-status');
+    if (calcSliders.length > 0) {
+      statusEl.textContent = `✓ Calculadora encontrada con ${calcSliders.length} sliders`;
+      statusEl.className = 'status ok';
+    } else {
+      statusEl.textContent = '✗ Calculadora no encontrada';
+      statusEl.className = 'status error';
+    }
+  }, 500);
+
+  // Verificar CSS
+  const link = document.createElement('link');
+  link.href = 'styles.css';
+  link.onload = () => {
+    const statusEl = document.getElementById('css-status');
+    statusEl.textContent = '✓ CSS cargado correctamente';
+    statusEl.className = 'status ok';
+  };
+  link.onerror = () => {
+    const statusEl = document.getElementById('css-status');
+    statusEl.textContent = '✗ Error cargando CSS';
+    statusEl.className = 'status error';
+  };
+
+  // Mostrar errores de consola
+  window.addEventListener('error', (e) => {
+    const pre = document.createElement('pre');
+    pre.className = 'status error';
+    pre.textContent = '✗ Error: ' + e.message + '\n' + e.filename + ':' + e.lineno;
+    document.body.appendChild(pre);
+  });
+</script>
+
+<!-- Cargar GSAP para probar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+</body>
+</html>

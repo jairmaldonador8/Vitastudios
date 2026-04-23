@@ -664,16 +664,21 @@ nav.scrolled {
 /* ─────────────────────────────────────────────────────────────────────────── */
 
 .casos-exito {
+  display: block !important;
   padding: var(--spacing-3xl) var(--spacing-lg);
   background: var(--color-bg);
   position: relative;
   z-index: 1;
+  width: 100%;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .casos-exito h2 {
   text-align: center;
   margin-bottom: var(--spacing-md);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-text);
 }
 
 .casos-exito .subtitle {
@@ -681,14 +686,16 @@ nav.scrolled {
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-3xl);
   font-size: clamp(0.95rem, 2vw, 1.1rem);
+  display: block !important;
 }
 
 .casos-grid {
-  display: grid;
+  display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-2xl);
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .caso-card {
@@ -697,9 +704,11 @@ nav.scrolled {
   padding: var(--spacing-2xl);
   border-radius: var(--radius-lg);
   transition: all var(--transition);
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: var(--spacing-lg);
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .caso-card:hover {
