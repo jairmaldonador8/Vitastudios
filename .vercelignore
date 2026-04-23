@@ -1,0 +1,48 @@
+# Git
+.git
+.gitignore
+.github
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# Build & Cache
+.next
+.vercel
+dist
+build
+.cache
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+*.test.js
+*.spec.js
+
+# Docs
+docs
+README.md
+
+# Otros
+.env.local
+.env.*.local
+campañas
+test-*.html
+animation-options.html
+.rebuild-trigger
+.vercel-cache-buster
+.vercel-rebuild
