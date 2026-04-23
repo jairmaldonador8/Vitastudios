@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DIAGNÓSTICO COMPLETO</title>
+  <style>
+    body {
+      background: #0A0A0A;
+      color: #F5F5F0;
+      font-family: monospace;
+      padding: 20px;
+      line-height: 1.8;
+    }
+    .section {
+      background: #111;
+      border: 2px solid #C9A96E;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    .ok { border-color: #4ade80; }
+    .error { border-color: #f87171; }
+    .warning { border-color: #fbbf24; }
+    h2 { color: #C9A96E; margin-top: 0; }
+    pre {
+      background: #000;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🔍 DIAGNÓSTICO COMPLETO DE LA PÁGINA</h1>
+
+<div class="section ok">
+  <h2>1. Verificar que CSS se cargó</h2>
+  <pre id="css-check"></pre>
+</div>
+
+<div class="section ok">
+  <h2>2. Verificar Sección Casos de Éxito</h2>
+  <pre id="casos-check"></pre>
+</div>
+
+<div class="section ok">
+  <h2>3. Verificar Sección Client Cards</h2>
+  <pre id="client-check"></pre>
+</div>
+
+<div class="section ok">
+  <h2>4. Verificar Overlay/Modal</h2>
+  <pre id="modal-check"></pre>
+</div>
+
+<div class="section ok">
+  <h2>5. Computed Styles de Primero Card</h2>
+  <pre id="styles-check"></pre>
+</div>
+
+<script>
+  // 1. CSS Check
+  const link = document.createElement('link');
+  link.href = 'styles.css';
+  link.onload = () => {
+    document.getElementById('css-check').textContent = '✓ styles.css se cargó correctamente';
+  };
+  link.onerror = () => {
+    document.getElementById('css-check').textContent = '✗ ERROR: styles.css no se pudo cargar';
+  };
+
+  // 2. Casos Check
+  setTimeout(() => {
+    const casosSection = document.querySelector('.casos-exito');
+    const casosCards = document.querySelectorAll('.caso-card');
+
+    let info = `Sección casos encontrada: ${casosSection ? 'SÍ' : 'NO'}\n`;
+    info += `Cards encontradas: ${casosCards.length}\n`;
+
+    if (casosSection) {
+      const rect = casosSection.getBoundingClientRect();
+      const styles = window.getComputedStyle(casosSection);
+      info += `\nPosición en página:\n`;
+      info += `  Top: ${rect.top}px\n`;
+      info += `  Height: ${rect.height}px\n`;
+      info += `  Display: ${styles.display}\n`;
+      info += `  Visibility: ${styles.visibility}\n`;
+      info += `  Opacity: ${styles.opacity}\n`;
+    }
+
+    if (casosCards.length > 0) {
+      const firstCard = casosCards[0];
+      const rect = firstCard.getBoundingClientRect();
+      const styles = window.getComputedStyle(firstCard);
+      info += `\nPrimer card:\n`;
+      info += `  Height: ${rect.height}px\n`;
+      info += `  Display: ${styles.display}\n`;
+      info += `  Opacity: ${styles.opacity}\n`;
+    }
+
+    document.getElementById('casos-check').textContent = info;
+  }, 500);
+
+  // 3. Client Cards Check
+  setTimeout(() => {
+    const clientCards = document.querySelectorAll('.client-card');
+    const track = document.querySelector('.clients-track');
+
+    let info = `Client Cards encontradas: ${clientCards.length}\n`;
+    info += `Track encontrado: ${track ? 'SÍ' : 'NO'}\n`;
+
+    if (track) {
+      const rect = track.getBoundingClientRect();
+      const styles = window.getComputedStyle(track);
+      info += `\nTrack:\n`;
+      info += `  Height: ${rect.height}px\n`;
+      info += `  Display: ${styles.display}\n`;
+      info += `  Opacity: ${styles.opacity}\n`;
+    }
+
+    document.getElementById('client-check').textContent = info;
+  }, 500);
+
+  // 4. Modal Check
+  setTimeout(() => {
+    const modal = document.querySelector('.modal-overlay');
+    const bookingModal = document.querySelector('#booking-modal');
+
+    let info = `Modal overlay encontrado: ${modal ? 'SÍ' : 'NO'}\n`;
+    info += `Booking modal encontrado: ${bookingModal ? 'SÍ' : 'NO'}\n`;
+
+    if (modal) {
+      const styles = window.getComputedStyle(modal);
+      info += `\nModal Overlay:\n`;
+      info += `  Display: ${styles.display}\n`;
+      info += `  Visibility: ${styles.visibility}\n`;
+      info += `  Opacity: ${styles.opacity}\n`;
+      info += `  Z-Index: ${styles.zIndex}\n`;
+      info += `  Pointer Events: ${styles.pointerEvents}\n`;
+    }
+
+    document.getElementById('modal-check').textContent = info;
+  }, 500);
+
+  // 5. Computed Styles
+  setTimeout(() => {
+    const firstCaso = document.querySelector('.caso-card');
+
+    if (firstCaso) {
+      const styles = window.getComputedStyle(firstCaso);
+      let info = `Primer .caso-card:\n\n`;
+
+      const props = [
+        'opacity', 'display', 'visibility', 'transform', 'position',
+        'width', 'height', 'background-color', 'border', 'z-index'
+      ];
+
+      props.forEach(prop => {
+        info += `${prop}: ${styles.getPropertyValue(prop)}\n`;
+      });
+
+      document.getElementById('styles-check').textContent = info;
+    } else {
+      document.getElementById('styles-check').textContent = '✗ No se encontró .caso-card';
+    }
+  }, 500);
+</script>
+
+</body>
+</html>
