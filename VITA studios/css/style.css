@@ -412,36 +412,46 @@ nav.scrolled {
   position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 120px var(--spacing-lg) var(--spacing-3xl);
+  padding: 0;
   overflow: hidden;
 }
 
-.hero-content {
-  max-width: 900px;
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 60px var(--spacing-lg);
+  max-width: 800px;
   margin: 0 auto;
   z-index: 1;
 }
 
-.hero-headline {
+.hero-title-main {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 600;
+  color: var(--color-text);
   margin-bottom: var(--spacing-lg);
   line-height: 1.15;
-}
-
-.hero-headline .word {
-  display: inline-block;
-  margin-right: 0.2em;
+  letter-spacing: -0.02em;
   opacity: 0;
-  transform: translateY(60px);
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
-.hero-subheadline {
-  font-size: 1.25rem;
+.hero-subtitle-main {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-2xl);
-  line-height: 1.5;
+  line-height: 1.6;
+  max-width: 600px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
 }
 
 .hero-cta {
@@ -488,10 +498,19 @@ nav.scrolled {
 /* 7.5. Timeline Transformation Slider */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
+.hero-slider-section {
+  width: 100%;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .hero-visual {
   position: relative;
   width: 100%;
-  max-width: 700px;
+  max-width: 900px;
 }
 
 .timeline-transformer {

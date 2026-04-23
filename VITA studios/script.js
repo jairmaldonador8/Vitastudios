@@ -993,6 +993,8 @@ class BeforeAfterSlider {
 
     this.isDragging = false;
     this.currentPercent = 0;
+    this.autoPlayInterval = null;
+    this.isAutoPlaying = true;
     this.states = [
       { percent: 0, label: 'Feo' },
       { percent: 25, label: 'Mejorando' },
@@ -1016,8 +1018,42 @@ class BeforeAfterSlider {
       marker.addEventListener('click', (e) => {
         const targetPercent = parseInt(marker.dataset.percent);
         this.setSliderPosition(targetPercent);
+        this.pauseAutoPlay();
       });
     });
+
+    // Start auto-play animation
+    this.startAutoPlay();
+
+    // Pause auto-play on hover
+    this.transformer.addEventListener('mouseenter', () => this.pauseAutoPlay());
+    this.transformer.addEventListener('mouseleave', () => this.startAutoPlay());
+  }
+
+  startAutoPlay() {
+    if (this.isAutoPlaying && !this.autoPlayInterval) {
+      let direction = 1;
+      this.autoPlayInterval = setInterval(() => {
+        this.currentPercent += direction * 1.5;
+
+        if (this.currentPercent >= 100) {
+          this.currentPercent = 100;
+          direction = -1;
+        } else if (this.currentPercent <= 0) {
+          this.currentPercent = 0;
+          direction = 1;
+        }
+
+        this.setSliderPosition(this.currentPercent);
+      }, 30);
+    }
+  }
+
+  pauseAutoPlay() {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    }
   }
 
   handleStart(e) {
