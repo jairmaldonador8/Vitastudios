@@ -1892,6 +1892,21 @@ textarea.error:focus {
   .contact-wrapper {
     grid-template-columns: 1fr;
   }
+
+  /* Contact methods mobile */
+  .contact-methods {
+    flex-direction: column;
+  }
+
+  .urgency-badge {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .badge-text {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 480px) {
