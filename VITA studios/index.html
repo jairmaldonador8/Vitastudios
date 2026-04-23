@@ -442,6 +442,70 @@
   </section>
 
   <!-- ════════════════════════════════════════════════════════════
+       CALCULADORA ROI SECTION
+       ════════════════════════════════════════════════════════════ -->
+  <section class="calculadora" id="calculadora">
+    <div class="container">
+      <h2 class="section-title">Calcula Tu Potencial de Crecimiento</h2>
+      <p class="section-subtitle">Descubre cuánto dinero podrías estar dejando en la mesa</p>
+
+      <div class="calculadora-wrapper">
+        <div class="sliders-container">
+          <div class="slider-group">
+            <label for="visitas">Visitas Mensuales</label>
+            <div class="slider-display">
+              <input type="range" id="visitas" class="calc-slider" min="1000" max="100000" value="10000" step="1000">
+              <span id="visitas-value">10,000</span>
+            </div>
+          </div>
+
+          <div class="slider-group">
+            <label for="leads">Leads Generados</label>
+            <div class="slider-display">
+              <input type="range" id="leads" class="calc-slider" min="10" max="5000" value="150" step="10">
+              <span id="leads-value">150</span>
+            </div>
+          </div>
+
+          <div class="slider-group">
+            <label for="cierre">Tasa de Cierre (%)</label>
+            <div class="slider-display">
+              <input type="range" id="cierre" class="calc-slider" min="0.5" max="50" value="3" step="0.5">
+              <span id="cierre-value">3</span>%
+            </div>
+          </div>
+
+          <div class="slider-group">
+            <label for="ticket-mxn">Ticket Promedio (MXN)</label>
+            <div class="slider-display">
+              <input type="range" id="ticket-mxn" class="calc-slider" min="1000" max="100000" value="8500" step="500">
+              <span id="ticket-value">8,500</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="resultado-cards-container">
+          <div class="resultado-card">
+            <div class="resultado-label">Facturación Mensual Potencial</div>
+            <div class="resultado-card-value" id="facturacion-result">$0 MXN</div>
+          </div>
+
+          <div class="resultado-card">
+            <div class="resultado-label">Score de Oportunidad</div>
+            <div class="resultado-card-value" id="oportunidad-result">0</div>
+            <div class="resultado-text" id="oportunidad-text">Ajusta los sliders para ver tu potencial</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calculadora-cta">
+        <p>¿Ves el potencial? Vamos a hacerlo realidad.</p>
+        <button class="cta-primary" id="cta-calculadora">Agendar Consulta Gratis →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
        CTA SECTION - Call to Action Secundario
        ════════════════════════════════════════════════════════════ -->
   <section class="cta-section" id="cta-section">

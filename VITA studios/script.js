@@ -822,6 +822,7 @@ function initAnimations() {
   initFormValidation();
   initClientCardsReveal();
   initClientAutoScroll();
+  initCalculadora();
 }
 
 // Initialize testimonials carousel on page load
@@ -1037,6 +1038,83 @@ function initClientAutoScroll() {
     track.addEventListener('mouseenter', stopAutoScroll);
     track.addEventListener('mouseleave', startAutoScroll);
     startAutoScroll();
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// Calculadora ROI
+// ════════════════════════════════════════════════════════════
+
+function initCalculadora() {
+  const sliders = document.querySelectorAll('.calc-slider');
+  if (sliders.length === 0) return;
+
+  sliders.forEach((slider) => {
+    const updateDisplay = () => {
+      const value = parseFloat(slider.value);
+      const max = parseFloat(slider.max);
+      const min = parseFloat(slider.min);
+      const percentage = ((value - min) / (max - min)) * 100;
+
+      slider.style.background = `linear-gradient(to right, var(--color-gold) 0%, var(--color-gold) ${percentage}%, rgba(201, 169, 110, 0.2) ${percentage}%, rgba(201, 169, 110, 0.5) 100%)`;
+      updateCalculos();
+    };
+
+    slider.addEventListener('input', updateDisplay);
+    slider.addEventListener('change', updateDisplay);
+    updateDisplay();
+  });
+
+  function updateCalculos() {
+    const visitas = parseFloat(document.querySelector('#visitas').value || 10000);
+    const leads = parseFloat(document.querySelector('#leads').value || 150);
+    const tasa = parseFloat(document.querySelector('#cierre').value || 3);
+    const ticket = parseFloat(document.querySelector('#ticket-mxn').value || 8500);
+
+    const clientesCerrados = Math.floor(leads * (tasa / 100));
+    const facturacionMensual = clientesCerrados * ticket;
+    const conversionRate = (leads / visitas) * 100;
+
+    let oportunidadScore = 0;
+    if (conversionRate < 1) {
+      oportunidadScore = 180;
+    } else if (conversionRate < 2) {
+      oportunidadScore = 150;
+    } else if (conversionRate < 3) {
+      oportunidadScore = 120;
+    } else if (conversionRate < 5) {
+      oportunidadScore = 80;
+    } else {
+      oportunidadScore = 40;
+    }
+
+    const facturacionCard = document.querySelector('#facturacion-result');
+    const oportunidadCard = document.querySelector('#oportunidad-result');
+    const oportunidadText = document.querySelector('#oportunidad-text');
+    const resultadoCards = document.querySelectorAll('.resultado-card');
+
+    resultadoCards.forEach((card) => {
+      card.classList.remove('result-flash');
+      void card.offsetWidth;
+      card.classList.add('result-flash');
+    });
+
+    facturacionCard.textContent = '$' + Math.floor(facturacionMensual).toLocaleString('es-MX') + ' MXN';
+    oportunidadCard.textContent = Math.floor(oportunidadScore);
+
+    if (oportunidadScore > 150) {
+      oportunidadText.textContent = 'Estás dejando mucho dinero en la mesa 🚨';
+      oportunidadText.style.color = 'rgba(200, 50, 50, 0.8)';
+    } else if (oportunidadScore > 100) {
+      oportunidadText.textContent = 'Hay oportunidades significativas 📈';
+      oportunidadText.style.color = 'rgba(245, 200, 66, 0.8)';
+    } else if (oportunidadScore > 50) {
+      oportunidadText.textContent = 'Potencial moderado para crecer 💡';
+      oportunidadText.style.color = 'rgba(245, 200, 66, 0.8)';
+    } else {
+      oportunidadText.textContent = 'Buena conversión, buen trabajo ✓';
+      oportunidadText.style.color = 'rgba(100, 200, 100, 0.8)';
+    }
   }
 }
 
