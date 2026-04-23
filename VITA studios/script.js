@@ -410,6 +410,273 @@ function animateContactForm() {
   }
 }
 
+// ============================================
+// TASK 10: Number Count-Up Animations
+// ============================================
+
+function initCountUpAnimations() {
+  const countUpElements = document.querySelectorAll('[data-count]');
+
+  if (countUpElements.length === 0) return;
+
+  countUpElements.forEach(element => {
+    const targetValue = parseFloat(element.dataset.count);
+    const isDecimal = targetValue % 1 !== 0;
+
+    const obj = { value: 0 };
+    const tween = gsap.to(obj, {
+      value: targetValue,
+      duration: 2,
+      ease: 'power2.out',
+      onUpdate: function() {
+        if (isDecimal) {
+          element.textContent = obj.value.toFixed(1);
+        } else {
+          element.textContent = Math.floor(obj.value);
+        }
+      }
+    });
+
+    // Pause until section is visible
+    tween.pause();
+
+    // Use ScrollTrigger to start animation when section enters viewport
+    ScrollTrigger.create({
+      trigger: element.closest('.metrics-container'),
+      onEnter: () => tween.play(),
+      once: true
+    });
+  });
+}
+
+// ============================================
+// TASK 11: Testimonials Carousel
+// ============================================
+
+class TestimonialCarousel {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) return;
+
+    this.slides = this.container.querySelectorAll('.testimonial-slide');
+    this.dots = document.querySelectorAll('.carousel-dot');
+    this.currentSlide = 0;
+    this.autoAdvanceInterval = null;
+
+    this.init();
+  }
+
+  init() {
+    // Setup dot click handlers
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.goToSlide(index));
+    });
+
+    // Start auto-advance
+    this.startAutoAdvance();
+
+    // Pause on hover
+    this.container.addEventListener('mouseenter', () => this.stopAutoAdvance());
+    this.container.addEventListener('mouseleave', () => this.startAutoAdvance());
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        this.goToSlide((this.currentSlide - 1 + this.slides.length) % this.slides.length);
+        this.stopAutoAdvance();
+        this.startAutoAdvance();
+      }
+      if (e.key === 'ArrowRight') {
+        this.advance();
+        this.stopAutoAdvance();
+        this.startAutoAdvance();
+      }
+    });
+  }
+
+  goToSlide(index) {
+    // Fade out current slide
+    gsap.to(this.slides[this.currentSlide], {
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power2.inOut'
+    });
+
+    // Remove active class from current dot
+    this.dots[this.currentSlide].classList.remove('active');
+
+    // Update current slide index
+    this.currentSlide = index;
+
+    // Add active class to new dot
+    this.dots[this.currentSlide].classList.add('active');
+
+    // Fade in new slide
+    gsap.to(this.slides[this.currentSlide], {
+      opacity: 1,
+      duration: 0.4,
+      ease: 'power2.inOut'
+    });
+  }
+
+  advance() {
+    const nextIndex = (this.currentSlide + 1) % this.slides.length;
+    this.goToSlide(nextIndex);
+  }
+
+  startAutoAdvance() {
+    this.autoAdvanceInterval = setInterval(() => this.advance(), 5000);
+  }
+
+  stopAutoAdvance() {
+    clearInterval(this.autoAdvanceInterval);
+  }
+}
+
+// ============================================
+// TASK 12: Enhance Existing Scroll Animations
+// ============================================
+
+function initScrollAnimations() {
+  // Apply animations to all card elements (existing + new)
+  const cardSelectors = [
+    '.card',                    // Existing cards
+    '.problema-card',          // New: Problem cards (Task 1)
+    '.caso-card',              // Enhanced: Case study cards (Task 2)
+    '.metric-card',            // New: Metric cards (Task 3)
+    '.logo-item'               // New: Logo items (Task 3)
+  ];
+
+  cardSelectors.forEach(selector => {
+    gsap.utils.toArray(document.querySelectorAll(selector)).forEach((element) => {
+      gsap.from(element, {
+        opacity: 0,
+        y: 100,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%'
+        }
+      });
+    });
+  });
+
+  // Staggered animations for grid layouts
+  const gridSelectors = [
+    '.problema-grid',
+    '.casos-grid',
+    '.metrics-container',
+    '.logos-grid'
+  ];
+
+  gridSelectors.forEach(selector => {
+    const grids = document.querySelectorAll(selector);
+    grids.forEach(grid => {
+      const children = grid.querySelectorAll('> div');
+
+      gsap.from(children, {
+        opacity: 0,
+        y: 100,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: grid,
+          start: 'top 85%'
+        }
+      });
+    });
+  });
+}
+
+// ============================================
+// TASK 13: Form Validation
+// ============================================
+
+function initFormValidation() {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  const inputs = form.querySelectorAll('input, textarea');
+
+  inputs.forEach(input => {
+    // Validate on input event (real-time)
+    input.addEventListener('input', () => validateField(input));
+
+    // Validate on blur event (final check)
+    input.addEventListener('blur', () => validateField(input));
+  });
+
+  // Form submission
+  form.addEventListener('submit', (e) => {
+    let isValid = true;
+    inputs.forEach(input => {
+      if (!validateField(input)) isValid = false;
+    });
+
+    if (!isValid) {
+      e.preventDefault();
+    }
+  });
+}
+
+function validateField(field) {
+  let isValid = true;
+  let errorMessage = '';
+
+  // Name validation
+  if (field.name === 'name' || field.id === 'name') {
+    if (field.value.trim().length < 2) {
+      isValid = false;
+      errorMessage = 'El nombre debe tener al menos 2 caracteres';
+    }
+  }
+
+  // Email validation
+  if (field.name === 'email' || field.id === 'email') {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(field.value)) {
+      isValid = false;
+      errorMessage = 'Por favor ingresa un email válido';
+    }
+  }
+
+  // Message validation
+  if (field.name === 'message' || field.id === 'message') {
+    if (field.value.trim().length < 10) {
+      isValid = false;
+      errorMessage = 'El mensaje debe tener al menos 10 caracteres';
+    }
+  }
+
+  // Update UI
+  updateFieldError(field, isValid, errorMessage);
+  return isValid;
+}
+
+function updateFieldError(field, isValid, errorMessage) {
+  // Try to find error element by ID pattern: {fieldName}-error
+  const errorElementId = `${field.name || field.id}-error`;
+  const errorElement = document.getElementById(errorElementId);
+
+  if (!isValid) {
+    field.classList.add('error');
+    field.setAttribute('aria-invalid', 'true');
+    if (errorElement) {
+      errorElement.textContent = errorMessage;
+      errorElement.style.display = 'block';
+    }
+  } else {
+    field.classList.remove('error');
+    field.setAttribute('aria-invalid', 'false');
+    if (errorElement) {
+      errorElement.textContent = '';
+      errorElement.style.display = 'none';
+    }
+  }
+}
+
 // Initialize all animations
 function initAnimations() {
   initAnimatedBackground();
@@ -423,7 +690,15 @@ function initAnimations() {
   animateCtaBox();
   animateFounderSection();
   animateContactForm();
+  initCountUpAnimations();
+  initScrollAnimations();
+  initFormValidation();
 }
+
+// Initialize testimonials carousel on page load
+window.addEventListener('load', () => {
+  new TestimonialCarousel('testimonialCarousel');
+});
 
 // ════════════════════════════════════════════════════════════
 // Mobile Navigation
