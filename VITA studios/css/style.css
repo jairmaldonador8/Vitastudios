@@ -485,6 +485,105 @@ nav.scrolled {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */
+/* 7.5. Before/After Comparison Slider */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.comparison-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: ew-resize;
+  user-select: none;
+}
+
+.comparison-before,
+.comparison-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.comparison-after {
+  clip-path: inset(0 0 0 50%);
+  transition: clip-path 0.01s linear;
+}
+
+.before-website,
+.after-website {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 4px;
+  background: var(--color-gold);
+  cursor: ew-resize;
+  transform: translateX(-2px);
+  z-index: 10;
+  transition: left 0.01s linear;
+  box-shadow: 0 0 16px rgba(201, 169, 110, 0.4);
+}
+
+.slider-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-gold);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-bg);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
+}
+
+.comparison-label {
+  position: absolute;
+  top: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  z-index: 5;
+}
+
+.before-label {
+  left: 12px;
+}
+
+.after-label {
+  right: 12px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
 /* 8. Services Section */
 /* ─────────────────────────────────────────────────────────────────────────── */
 

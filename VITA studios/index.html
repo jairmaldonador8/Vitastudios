@@ -112,21 +112,99 @@
         <p class="hero-hint">O contáctame por <a href="https://wa.me/528181782508" class="link-accent">WhatsApp</a></p>
       </div>
 
-      <!-- Hero Visual -->
+      <!-- Hero Visual - Before/After Comparator -->
       <div class="hero-visual">
-        <div class="visual-placeholder">
-          <!-- Blobs Background -->
-          <div class="blob blob-1"></div>
-          <div class="blob blob-2"></div>
-          <div class="blob blob-3"></div>
+        <div class="comparison-slider" id="comparisonSlider">
+          <!-- BEFORE (Ugly Website) -->
+          <div class="comparison-before">
+            <div class="before-website">
+              <!-- Header -->
+              <div style="background: linear-gradient(90deg, #FF00FF, #00FFFF); padding: 12px; text-align: center;">
+                <span style="color: #FFFF00; font-family: 'Comic Sans MS'; font-size: 18px; font-weight: bold;">🌟 MEGA COMPANY 2005 🌟</span>
+              </div>
 
-          <!-- Geometric Shapes -->
-          <div class="shape-container">
-            <div class="geo-shape circle"></div>
-            <div class="geo-shape square"></div>
-            <div class="geo-shape triangle"></div>
-            <div class="center-glow">✨</div>
+              <!-- Content -->
+              <div style="padding: 20px; background: #E6E6FA;">
+                <h2 style="color: #FF0000; font-family: Georgia; font-size: 16px; text-shadow: 2px 2px #00FF00;">Welcome to Our Site!!!</h2>
+                <p style="color: #0000FF; font-size: 12px;">
+                  Click here for MORE info!
+                  <a href="#" style="color: #FF6600; text-decoration: underline blink;">AMAZING DEALS</a>
+                </p>
+
+                <!-- Blinking Text Effect -->
+                <div style="background: #FFFF00; padding: 10px; margin: 10px 0; border: 3px dashed #FF00FF; animation: blink 0.5s infinite;">
+                  <span style="color: #FF0000; font-weight: bold;">⚡ LIMITED TIME OFFER ⚡</span>
+                </div>
+              </div>
+
+              <!-- Services (Messy) -->
+              <div style="padding: 15px; background: #CCFFCC;">
+                <div style="margin: 10px 0;">
+                  <span style="background: #FF9900; color: white; padding: 5px; border-radius: 50px; font-size: 10px;">Service 1</span>
+                  <span style="background: #00FF00; color: #FF0000; padding: 5px; border-radius: 0; font-size: 10px;">Service 2</span>
+                  <span style="background: #9900FF; color: yellow; padding: 5px; border-radius: 3px; font-size: 10px;">Service 3</span>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div style="background: #333333; color: #CCCCCC; padding: 15px; text-align: center; font-size: 11px;">
+                <p>© 2005 - 2006 All Rights Reserved | Hosted on Geocities | Best Viewed in IE 6 | 1024x768</p>
+              </div>
+            </div>
           </div>
+
+          <!-- AFTER (Pro Website) -->
+          <div class="comparison-after">
+            <div class="after-website">
+              <!-- Premium Header -->
+              <div style="background: #0A0A0A; padding: 16px 20px; border-bottom: 1px solid rgba(201, 169, 110, 0.2); display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: #C9A96E; font-family: 'Playfair Display'; font-size: 16px; font-weight: 600;">VITA Studio</span>
+                <div style="display: flex; gap: 20px; font-size: 12px;">
+                  <a style="color: #F5F5F0; text-decoration: none;">Services</a>
+                  <a style="color: #F5F5F0; text-decoration: none;">Work</a>
+                  <a style="color: #F5F5F0; text-decoration: none;">Contact</a>
+                </div>
+              </div>
+
+              <!-- Hero Section -->
+              <div style="padding: 40px 20px; background: linear-gradient(135deg, #0A0A0A 0%, #111111 100%); text-align: center;">
+                <h1 style="color: #F5F5F0; font-family: 'Playfair Display'; font-size: 28px; margin-bottom: 12px;">Transform Your Brand</h1>
+                <p style="color: rgba(245, 245, 240, 0.7); font-size: 13px; margin-bottom: 20px;">Premium branding & web design for entrepreneurs</p>
+                <button style="background: #C9A96E; color: #0A0A0A; padding: 10px 24px; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">Book Consultation</button>
+              </div>
+
+              <!-- Services Grid -->
+              <div style="padding: 30px 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                <div style="background: #111111; border: 1px solid rgba(201, 169, 110, 0.1); padding: 16px; border-radius: 8px;">
+                  <p style="color: #C9A96E; font-size: 12px; margin-bottom: 6px;">Branding</p>
+                  <p style="color: #F5F5F0; font-size: 11px;">Identity & Strategy</p>
+                </div>
+                <div style="background: #111111; border: 1px solid rgba(201, 169, 110, 0.1); padding: 16px; border-radius: 8px;">
+                  <p style="color: #C9A96E; font-size: 12px; margin-bottom: 6px;">Web Design</p>
+                  <p style="color: #F5F5F0; font-size: 11px;">Conversion Focused</p>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div style="background: #0A0A0A; padding: 20px; text-align: center; border-top: 1px solid rgba(201, 169, 110, 0.1);">
+                <p style="color: rgba(245, 245, 240, 0.5); font-size: 11px;">© 2024 VITA Studio. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slider Handle -->
+          <div class="comparison-handle" id="comparisonHandle">
+            <div class="slider-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Labels -->
+          <div class="comparison-label before-label">Antes</div>
+          <div class="comparison-label after-label">Después</div>
         </div>
       </div>
     </div>

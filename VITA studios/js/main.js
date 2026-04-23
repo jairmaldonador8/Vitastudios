@@ -442,6 +442,81 @@ class LeadPopup {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+// 7. Comparison Slider (Before/After)
+// ─────────────────────────────────────────────────────────────────────────
+
+class ComparisonSlider {
+  constructor() {
+    this.slider = document.getElementById('comparisonSlider');
+    this.handle = document.getElementById('comparisonHandle');
+
+    if (!this.slider || !this.handle) return;
+
+    this.isActive = false;
+    this.init();
+  }
+
+  init() {
+    // Mouse events
+    this.handle.addEventListener('mousedown', () => this.startDrag());
+    this.slider.addEventListener('mousemove', (e) => this.onDrag(e));
+    this.slider.addEventListener('mouseup', () => this.endDrag());
+    this.slider.addEventListener('mouseleave', () => this.endDrag());
+
+    // Touch events (mobile)
+    this.handle.addEventListener('touchstart', () => this.startDrag());
+    this.slider.addEventListener('touchmove', (e) => this.onDrag(e));
+    this.slider.addEventListener('touchend', () => this.endDrag());
+    this.slider.addEventListener('touchcancel', () => this.endDrag());
+
+    // Click anywhere on slider to move handle
+    this.slider.addEventListener('click', (e) => this.moveToClick(e));
+
+    // Initial position
+    this.updateSlider(50);
+  }
+
+  startDrag() {
+    this.isActive = true;
+    this.slider.style.cursor = 'grabbing';
+  }
+
+  endDrag() {
+    this.isActive = false;
+    this.slider.style.cursor = 'ew-resize';
+  }
+
+  onDrag(e) {
+    if (!this.isActive) return;
+
+    e.preventDefault();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const rect = this.slider.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percent = (x / rect.width) * 100;
+
+    this.updateSlider(Math.max(0, Math.min(percent, 100)));
+  }
+
+  moveToClick(e) {
+    const rect = this.slider.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = (x / rect.width) * 100;
+
+    this.updateSlider(Math.max(0, Math.min(percent, 100)));
+  }
+
+  updateSlider(percent) {
+    this.handle.style.left = percent + '%';
+
+    const after = this.slider.querySelector('.comparison-after');
+    if (after) {
+      after.style.clipPath = `inset(0 0 0 ${percent}%)`;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 // 8. Initialization on DOM Ready
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -454,4 +529,5 @@ document.addEventListener('DOMContentLoaded', () => {
   new CampaignModal();
   new ContactFormHandler();
   new LeadPopup();
+  new ComparisonSlider();
 });
