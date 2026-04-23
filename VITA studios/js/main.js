@@ -472,8 +472,8 @@ class ComparisonSlider {
     // Click anywhere on slider to move handle
     this.slider.addEventListener('click', (e) => this.moveToClick(e));
 
-    // Initial position
-    this.updateSlider(50);
+    // Initial position (show 'before' website)
+    this.updateSlider(0);
   }
 
   startDrag() {
@@ -511,7 +511,7 @@ class ComparisonSlider {
 
     const after = this.slider.querySelector('.comparison-after');
     if (after) {
-      after.style.clipPath = `inset(0 0 0 ${percent}%)`;
+      after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
     }
   }
 }
