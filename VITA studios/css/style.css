@@ -672,6 +672,7 @@ nav.scrolled {
   width: 100%;
   visibility: visible !important;
   opacity: 1 !important;
+  min-height: 600px;
 }
 
 .casos-exito h2 {
@@ -703,12 +704,11 @@ nav.scrolled {
   border: 1px solid rgba(201, 169, 110, 0.1);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-lg);
-  transition: all var(--transition);
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  visibility: visible !important;
-  opacity: 1 !important;
+  min-height: 320px;
+  width: 100%;
 }
 
 .caso-card:hover {

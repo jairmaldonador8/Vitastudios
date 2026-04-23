@@ -260,33 +260,42 @@ function animateProblemaCards() {
 // Case Study Cards Animation
 function animateCasoCards() {
   const cards = document.querySelectorAll('.caso-card');
-  cards.forEach((card, index) => {
-    gsap.fromTo(
-      card,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: index * 0.1,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 80%',
-        },
-      }
-    );
+  if (cards.length === 0) return;
 
+  // Set initial state for animation
+  cards.forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(40px)';
+    card.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
+  });
+
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  cards.forEach(card => cardObserver.observe(card));
+
+  // Hover effects
+  cards.forEach((card) => {
     card.addEventListener('mouseenter', () => {
-      gsap.to(card, {
-        y: -8,
-        duration: 0.3,
-      });
+      card.style.transform = 'translateY(-8px)';
     });
     card.addEventListener('mouseleave', () => {
-      gsap.to(card, {
-        y: 0,
-        duration: 0.3,
+      // Get current computed values and maintain them during hover exit
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
       });
+      observer.observe(card);
     });
   });
 }
