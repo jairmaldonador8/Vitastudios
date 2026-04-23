@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test - Client Cards</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: #0A0A0A;
+      color: #F5F5F0;
+    }
+    .debug-info {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.9);
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 12px;
+      z-index: 10000;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="debug-info">
+    <strong>Debug Info:</strong>
+    <div id="card-count">Cards: 0</div>
+    <div id="card-visible">Visible: 0</div>
+    <div id="track-height">Track height: 0px</div>
+  </div>
+
+  <section class="social-proof" id="social-proof">
+    <div class="container">
+      <h2>Confianza Demostrada</h2>
+
+      <div class="clients-container" id="clientes">
+        <p class="clients-label">Confían en VITA</p>
+        <div class="clients-track">
+          <div class="client-card">
+            <div class="client-content">
+              <div class="client-label">Médicos Especialistas</div>
+              <div class="client-underline"></div>
+            </div>
+          </div>
+          <div class="client-card">
+            <div class="client-content">
+              <div class="client-label">Tech Startups</div>
+              <div class="client-underline"></div>
+            </div>
+          </div>
+          <div class="client-card">
+            <div class="client-content">
+              <div class="client-label">Creadores de Contenido</div>
+              <div class="client-underline"></div>
+            </div>
+          </div>
+          <div class="client-card">
+            <div class="client-content">
+              <div class="client-label">Coaches Profesionales</div>
+              <div class="client-underline"></div>
+            </div>
+          </div>
+          <div class="client-card">
+            <div class="client-content">
+              <div class="client-label">Emprendedores</div>
+              <div class="client-underline"></div>
+            </div>
+          </div>
+          <div class="client-card">
+            <div class="client-content">
+              <div class="client-label">Profesionales Inmobiliarios</div>
+              <div class="client-underline"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Debug info
+    setTimeout(() => {
+      const cards = document.querySelectorAll('.client-card');
+      const track = document.querySelector('.clients-track');
+
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const opacity = window.getComputedStyle(card).opacity;
+        if (parseFloat(opacity) > 0.5) visibleCount++;
+      });
+
+      document.getElementById('card-count').textContent = `Cards found: ${cards.length}`;
+      document.getElementById('card-visible').textContent = `Visible: ${visibleCount}/${cards.length}`;
+      document.getElementById('track-height').textContent = `Track height: ${track?.offsetHeight || 0}px`;
+
+      console.log('Client Cards Test:', {
+        cardsFound: cards.length,
+        visibleCount,
+        trackHeight: track?.offsetHeight,
+        trackWidth: track?.offsetWidth
+      });
+    }, 500);
+  </script>
+
+</body>
+</html>
