@@ -679,6 +679,7 @@ function updateFieldError(field, isValid, errorMessage) {
 
 // Initialize all animations
 function initAnimations() {
+  initSplashScreen();
   initAnimatedBackground();
   initHeroParallax();
   animateFloatingShapes();
