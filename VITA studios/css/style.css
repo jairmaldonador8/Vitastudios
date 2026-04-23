@@ -10,16 +10,16 @@
 :root {
   /* Colors */
   --color-bg: #0A0A0A;
-  --color-surface: #111111;
-  --color-surface-hover: #1a1a1a;
-  --color-border: rgba(255, 255, 255, 0.06);
-  --color-border-light: rgba(255, 255, 255, 0.1);
+  --color-surface: #0A0A0A;
+  --color-surface-hover: #111111;
+  --color-border: rgba(255, 255, 255, 0.04);
+  --color-border-light: rgba(255, 255, 255, 0.08);
   --color-text: #F5F5F0;
-  --color-text-muted: rgba(245, 245, 240, 0.5);
-  --color-text-dim: rgba(245, 245, 240, 0.3);
+  --color-text-muted: rgba(245, 245, 240, 0.6);
+  --color-text-dim: rgba(245, 245, 240, 0.35);
   --color-gold: #C9A96E;
-  --color-gold-dim: rgba(201, 169, 110, 0.15);
-  --color-gold-bright: rgba(201, 169, 110, 0.25);
+  --color-gold-dim: rgba(201, 169, 110, 0.08);
+  --color-gold-bright: rgba(201, 169, 110, 0.12);
 
   /* Typography */
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -820,8 +820,8 @@ nav.scrolled {
 }
 
 .service-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-lg);
   transition: all var(--transition);
@@ -831,26 +831,16 @@ nav.scrolled {
 }
 
 .service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, var(--color-gold-bright) 0%, transparent 100%);
-  opacity: 0;
-  transition: opacity var(--transition);
-  z-index: -1;
+  display: none;
 }
 
 .service-card:hover {
-  border-color: var(--color-gold);
-  background: rgba(201, 169, 110, 0.05);
-  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .service-card:hover::before {
-  opacity: 1;
+  display: none;
 }
 
 .service-number {
