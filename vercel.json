@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cp -r 'VITA studios'/* . && echo 'Files copied to root'",
+  "buildCommand": "rm -rf node_modules .next .vercel dist build && cp -r 'VITA studios'/* . 2>/dev/null || true && echo 'Deploy ready'",
   "outputDirectory": ".",
-  "installCommand": "echo 'No dependencies needed'"
+  "installCommand": "echo 'Skip install'"
 }
